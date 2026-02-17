@@ -1,0 +1,345 @@
+---
+interface Props {
+  images?: Array<{
+    src: string;
+    alt: string;
+    title?: string;
+  }>;
+}
+
+const { images = [] } = Astro.props;
+
+// Client-side lightbox functionality
+---
+
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <div class="lightbox-overlay" aria-label="Close lightbox"></div>
+  <div class="lightbox-content">
+    <button class="lightbox-close" aria-label="Close lightbox">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <button class="lightbox-prev" aria-label="Previous image">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <div class="lightbox-image-container">
+      <img src="" alt="" class="lightbox-image" />
+      <div class="lightbox-caption"></div>
+    </div>
+    <button class="lightbox-next" aria-label="Next image">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<style>
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+  }
+
+  .lightbox.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lightbox-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    cursor: pointer;
+  }
+
+  .lightbox-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  .lightbox-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  .lightbox-prev {
+    left: 1rem;
+  }
+
+  .lightbox-next {
+    right: 1rem;
+  }
+
+  .lightbox-prev:hover,
+  .lightbox-next:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+
+  .lightbox-image-container {
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lightbox-image {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  .lightbox-caption {
+    margin-top: 1rem;
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+    max-width: 800px;
+  }
+
+  @media (max-width: 768px) {
+    .lightbox-close {
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 40px;
+      height: 40px;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+      width: 48px;
+      height: 48px;
+    }
+
+    .lightbox-prev {
+      left: 0.5rem;
+    }
+
+    .lightbox-next {
+      right: 0.5rem;
+    }
+
+    .lightbox-image {
+      max-height: 75vh;
+    }
+
+    .lightbox-caption {
+      font-size: 0.875rem;
+      padding: 0 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Lightbox functionality
+  class Lightbox {
+    private lightbox: HTMLElement;
+    private overlay: HTMLElement;
+    private closeBtn: HTMLElement;
+    private prevBtn: HTMLElement;
+    private nextBtn: HTMLElement;
+    private image: HTMLImageElement;
+    private caption: HTMLElement;
+    private galleryItems: NodeListOf<Element>;
+    private currentIndex: number;
+    private images: Array<{ src: string; alt: string; title: string }>;
+
+    constructor() {
+      this.lightbox = document.getElementById("lightbox") as HTMLElement;
+      this.overlay = this.lightbox.querySelector(
+        ".lightbox-overlay",
+      ) as HTMLElement;
+      this.closeBtn = this.lightbox.querySelector(
+        ".lightbox-close",
+      ) as HTMLElement;
+      this.prevBtn = this.lightbox.querySelector(
+        ".lightbox-prev",
+      ) as HTMLElement;
+      this.nextBtn = this.lightbox.querySelector(
+        ".lightbox-next",
+      ) as HTMLElement;
+      this.image = this.lightbox.querySelector(
+        ".lightbox-image",
+      ) as HTMLImageElement;
+      this.caption = this.lightbox.querySelector(
+        ".lightbox-caption",
+      ) as HTMLElement;
+      this.galleryItems = document.querySelectorAll(".gallery-item");
+      this.currentIndex = 0;
+      this.images = [];
+
+      this.init();
+    }
+
+    init() {
+      // Collect all gallery images
+      this.galleryItems.forEach((item, index) => {
+        const img = item.querySelector("img") as HTMLImageElement;
+        const href = item.getAttribute("href");
+        this.images.push({
+          src: href || "",
+          alt: img?.getAttribute("alt") || "",
+          title: img?.getAttribute("alt") || "",
+        });
+
+        // Add click event to gallery items
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          this.open(index);
+        });
+      });
+
+      // Add event listeners
+      this.closeBtn.addEventListener("click", () => this.close());
+      this.overlay.addEventListener("click", () => this.close());
+      this.prevBtn.addEventListener("click", () => this.prev());
+      this.nextBtn.addEventListener("click", () => this.next());
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (!this.lightbox.classList.contains("active")) return;
+
+        if (e.key === "Escape") this.close();
+        if (e.key === "ArrowLeft") this.prev();
+        if (e.key === "ArrowRight") this.next();
+      });
+
+      // Prevent body scroll when lightbox is open
+      this.lightbox.addEventListener("transitionend", () => {
+        if (this.lightbox.classList.contains("active")) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "";
+        }
+      });
+    }
+
+    open(index: number) {
+      this.currentIndex = index;
+      this.updateImage();
+      this.lightbox.classList.add("active");
+      this.lightbox.setAttribute("aria-hidden", "false");
+    }
+
+    close() {
+      this.lightbox.classList.remove("active");
+      this.lightbox.setAttribute("aria-hidden", "true");
+    }
+
+    prev() {
+      this.currentIndex =
+        (this.currentIndex - 1 + this.images.length) % this.images.length;
+      this.updateImage();
+    }
+
+    next() {
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
+      this.updateImage();
+    }
+
+    updateImage() {
+      const imageData = this.images[this.currentIndex];
+      this.image.src = imageData.src;
+      this.image.alt = imageData.alt;
+      this.caption.textContent = imageData.title;
+    }
+  }
+
+  // Initialize lightbox when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => new Lightbox());
+  } else {
+    new Lightbox();
+  }
+</script>

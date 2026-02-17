@@ -1,6 +1,7 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
-import { Image as ImageIcon, Filter, Grid3x3 } from '@lucide/astro';
+import PageLayout from "../layouts/PageLayout.astro";
+import { Image as ImageIcon, Filter, Grid3x3 } from "@lucide/astro";
+import Lightbox from "../components/Lightbox.astro";
 ---
 
 <PageLayout
@@ -16,7 +17,8 @@ import { Image as ImageIcon, Filter, Grid3x3 } from '@lucide/astro';
 
       <div class="content-section">
         <p>
-          Zobacz nasze realizacje. Prezentujemy różne projekty oklejania samochodów, od zmiany koloru po reklamy na pojazdach.
+          Zobacz nasze realizacje. Prezentujemy różne projekty oklejania
+          samochodów, od zmiany koloru po reklamy na pojazdach.
         </p>
       </div>
 
@@ -47,29 +49,93 @@ import { Image as ImageIcon, Filter, Grid3x3 } from '@lucide/astro';
       <div class="content-section">
         <h3>Zmiana koloru</h3>
         <div class="gallery-grid">
-          <a href="/img/demopage/image-1.jpg" class="gallery-item" data-category="zmiana-koloru">
-            <img src="/img/demopage/thumb-1.jpg" alt="Zmiana koloru - realizacja 1" loading="lazy" />
+          <a
+            href="/img/demopage/image-1.jpg"
+            class="gallery-item"
+            data-category="zmiana-koloru"
+          >
+            <img
+              src="/img/demopage/thumb-1.jpg"
+              alt="Zmiana koloru - realizacja 1"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-2.jpg" class="gallery-item" data-category="zmiana-koloru">
-            <img src="/img/demopage/thumb-2.jpg" alt="Zmiana koloru - realizacja 2" loading="lazy" />
+          <a
+            href="/img/demopage/image-2.jpg"
+            class="gallery-item"
+            data-category="zmiana-koloru"
+          >
+            <img
+              src="/img/demopage/thumb-2.jpg"
+              alt="Zmiana koloru - realizacja 2"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-3.jpg" class="gallery-item" data-category="zmiana-koloru">
-            <img src="/img/demopage/thumb-3.jpg" alt="Zmiana koloru - realizacja 3" loading="lazy" />
+          <a
+            href="/img/demopage/image-3.jpg"
+            class="gallery-item"
+            data-category="zmiana-koloru"
+          >
+            <img
+              src="/img/demopage/thumb-3.jpg"
+              alt="Zmiana koloru - realizacja 3"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-4.jpg" class="gallery-item" data-category="zmiana-koloru">
-            <img src="/img/demopage/thumb-4.jpg" alt="Zmiana koloru - realizacja 4" loading="lazy" />
+          <a
+            href="/img/demopage/image-4.jpg"
+            class="gallery-item"
+            data-category="zmiana-koloru"
+          >
+            <img
+              src="/img/demopage/thumb-4.jpg"
+              alt="Zmiana koloru - realizacja 4"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-5.jpg" class="gallery-item" data-category="zmiana-koloru">
-            <img src="/img/demopage/thumb-5.jpg" alt="Zmiana koloru - realizacja 5" loading="lazy" />
+          <a
+            href="/img/demopage/image-5.jpg"
+            class="gallery-item"
+            data-category="zmiana-koloru"
+          >
+            <img
+              src="/img/demopage/thumb-5.jpg"
+              alt="Zmiana koloru - realizacja 5"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-6.jpg" class="gallery-item" data-category="zmiana-koloru">
-            <img src="/img/demopage/thumb-6.jpg" alt="Zmiana koloru - realizacja 6" loading="lazy" />
+          <a
+            href="/img/demopage/image-6.jpg"
+            class="gallery-item"
+            data-category="zmiana-koloru"
+          >
+            <img
+              src="/img/demopage/thumb-6.jpg"
+              alt="Zmiana koloru - realizacja 6"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-7.jpg" class="gallery-item" data-category="zmiana-koloru">
-            <img src="/img/demopage/thumb-7.jpg" alt="Zmiana koloru - realizacja 7" loading="lazy" />
+          <a
+            href="/img/demopage/image-7.jpg"
+            class="gallery-item"
+            data-category="zmiana-koloru"
+          >
+            <img
+              src="/img/demopage/thumb-7.jpg"
+              alt="Zmiana koloru - realizacja 7"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-8.jpg" class="gallery-item" data-category="zmiana-koloru">
-            <img src="/img/demopage/thumb-8.jpg" alt="Zmiana koloru - realizacja 8" loading="lazy" />
+          <a
+            href="/img/demopage/image-8.jpg"
+            class="gallery-item"
+            data-category="zmiana-koloru"
+          >
+            <img
+              src="/img/demopage/thumb-8.jpg"
+              alt="Zmiana koloru - realizacja 8"
+              loading="lazy"
+            />
           </a>
         </div>
       </div>
@@ -77,17 +143,49 @@ import { Image as ImageIcon, Filter, Grid3x3 } from '@lucide/astro';
       <div class="content-section">
         <h3>Reklamy na pojazdach</h3>
         <div class="gallery-grid">
-          <a href="/img/demopage/image-9.jpg" class="gallery-item" data-category="reklamy">
-            <img src="/img/demopage/thumb-9.jpg" alt="Reklama - realizacja 1" loading="lazy" />
+          <a
+            href="/img/demopage/image-9.jpg"
+            class="gallery-item"
+            data-category="reklamy"
+          >
+            <img
+              src="/img/demopage/thumb-9.jpg"
+              alt="Reklama - realizacja 1"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-10.jpg" class="gallery-item" data-category="reklamy">
-            <img src="/img/demopage/thumb-10.jpg" alt="Reklama - realizacja 2" loading="lazy" />
+          <a
+            href="/img/demopage/image-10.jpg"
+            class="gallery-item"
+            data-category="reklamy"
+          >
+            <img
+              src="/img/demopage/thumb-10.jpg"
+              alt="Reklama - realizacja 2"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-11.jpg" class="gallery-item" data-category="reklamy">
-            <img src="/img/demopage/thumb-11.jpg" alt="Reklama - realizacja 3" loading="lazy" />
+          <a
+            href="/img/demopage/image-11.jpg"
+            class="gallery-item"
+            data-category="reklamy"
+          >
+            <img
+              src="/img/demopage/thumb-11.jpg"
+              alt="Reklama - realizacja 3"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-12.jpg" class="gallery-item" data-category="reklamy">
-            <img src="/img/demopage/thumb-12.jpg" alt="Reklama - realizacja 4" loading="lazy" />
+          <a
+            href="/img/demopage/image-12.jpg"
+            class="gallery-item"
+            data-category="reklamy"
+          >
+            <img
+              src="/img/demopage/thumb-12.jpg"
+              alt="Reklama - realizacja 4"
+              loading="lazy"
+            />
           </a>
         </div>
       </div>
@@ -95,17 +193,49 @@ import { Image as ImageIcon, Filter, Grid3x3 } from '@lucide/astro';
       <div class="content-section">
         <h3>Floty pojazdów</h3>
         <div class="gallery-grid">
-          <a href="/img/demopage/image-13.jpg" class="gallery-item" data-category="floty">
-            <img src="/img/demopage/thumb-13.jpg" alt="Flota - realizacja 1" loading="lazy" />
+          <a
+            href="/img/demopage/image-13.jpg"
+            class="gallery-item"
+            data-category="floty"
+          >
+            <img
+              src="/img/demopage/thumb-13.jpg"
+              alt="Flota - realizacja 1"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-14.jpg" class="gallery-item" data-category="floty">
-            <img src="/img/demopage/thumb-14.jpg" alt="Flota - realizacja 2" loading="lazy" />
+          <a
+            href="/img/demopage/image-14.jpg"
+            class="gallery-item"
+            data-category="floty"
+          >
+            <img
+              src="/img/demopage/thumb-14.jpg"
+              alt="Flota - realizacja 2"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-15.jpg" class="gallery-item" data-category="floty">
-            <img src="/img/demopage/thumb-15.jpg" alt="Flota - realizacja 3" loading="lazy" />
+          <a
+            href="/img/demopage/image-15.jpg"
+            class="gallery-item"
+            data-category="floty"
+          >
+            <img
+              src="/img/demopage/thumb-15.jpg"
+              alt="Flota - realizacja 3"
+              loading="lazy"
+            />
           </a>
-          <a href="/img/demopage/image-16.jpg" class="gallery-item" data-category="floty">
-            <img src="/img/demopage/thumb-16.jpg" alt="Flota - realizacja 4" loading="lazy" />
+          <a
+            href="/img/demopage/image-16.jpg"
+            class="gallery-item"
+            data-category="floty"
+          >
+            <img
+              src="/img/demopage/thumb-16.jpg"
+              alt="Flota - realizacja 4"
+              loading="lazy"
+            />
           </a>
         </div>
       </div>
@@ -114,16 +244,17 @@ import { Image as ImageIcon, Filter, Grid3x3 } from '@lucide/astro';
         <div class="cta-section">
           <h3>Chcesz zobacz więcej?</h3>
           <p>
-            Skontaktuj się z nami, aby omówić projekt i zobacz więcej naszych realizacji.
+            Skontaktuj się z nami, aby omówić projekt i zobacz więcej naszych
+            realizacji.
           </p>
-          <a href="/kontakt" class="button">
-            Skontaktuj się z nami
-          </a>
+          <a href="/kontakt" class="button"> Skontaktuj się z nami </a>
         </div>
       </div>
     </div>
   </div>
 </PageLayout>
+
+<Lightbox />
 
 <style>
   .content-page {
@@ -231,7 +362,11 @@ import { Image as ImageIcon, Filter, Grid3x3 } from '@lucide/astro';
   }
 
   .cta-section {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-primary-dark)
+    );
     border-radius: 0.5rem;
     padding: 3rem;
     text-align: center;
@@ -281,24 +416,25 @@ import { Image as ImageIcon, Filter, Grid3x3 } from '@lucide/astro';
 
 <script>
   // Filter functionality
-  const filterButtons = document.querySelectorAll('.filter-button');
-  const galleryItems = document.querySelectorAll('.gallery-item');
+  const filterButtons =
+    document.querySelectorAll<HTMLButtonElement>(".filter-button");
+  const galleryItems = document.querySelectorAll<HTMLElement>(".gallery-item");
 
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
       const filter = button.dataset.filter;
 
       // Update active state
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
+      filterButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
 
       // Filter gallery items
-      galleryItems.forEach(item => {
+      galleryItems.forEach((item) => {
         const itemCategory = item.dataset.category;
-        if (filter === 'all' || itemCategory === filter) {
-          item.style.display = 'block';
+        if (filter === "all" || itemCategory === filter) {
+          item.style.display = "block";
         } else {
-          item.style.display = 'none';
+          item.style.display = "none";
         }
       });
     });
