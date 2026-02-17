@@ -1,6 +1,5 @@
 ---
-import { Menu } from '@lucide/astro';
-import { useState } from 'astro:hooks';
+import { Menu } from "@lucide/astro";
 
 interface Props {
   currentPath: string;
@@ -9,16 +8,16 @@ interface Props {
 const { currentPath } = Astro.props;
 
 const menuItems = [
-  { label: 'Home', href: '/' },
-  { label: 'O nas', href: '/o-nas' },
-  { label: 'O foliach', href: '/o-foliach' },
-  { label: 'Referencje', href: '/referencje' },
-  { label: 'Wycena', href: '/wycena' },
-  { label: 'Prasa o nas', href: '/press' },
-  { label: 'Kontakt', href: '/kontakt' },
-  { label: 'Drukarnia', href: '/drukarnia' },
-  { label: 'Inspiracje', href: '/inspiracje' },
-  { label: 'Galeria', href: '/galeria' },
+  { label: "Home", href: "/" },
+  { label: "O nas", href: "/o-nas" },
+  { label: "O foliach", href: "/o-foliach" },
+  { label: "Referencje", href: "/referencje" },
+  { label: "Wycena", href: "/wycena" },
+  { label: "Prasa o nas", href: "/press" },
+  { label: "Kontakt", href: "/kontakt" },
+  { label: "Drukarnia", href: "/drukarnia" },
+  { label: "Inspiracje", href: "/inspiracje" },
+  { label: "Galeria", href: "/galeria" },
 ];
 ---
 
@@ -33,17 +32,19 @@ const menuItems = [
   </button>
 
   <ul class="nav-list" id="navList">
-    {menuItems.map(item => (
-      <li>
-        <a
-          href={item.href}
-          class={currentPath === item.href ? 'active' : ''}
-          aria-current={currentPath === item.href ? 'page' : undefined}
-        >
-          {item.label}
-        </a>
-      </li>
-    ))}
+    {
+      menuItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class={currentPath === item.href ? "active" : ""}
+            aria-current={currentPath === item.href ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </nav>
 
@@ -75,6 +76,7 @@ const menuItems = [
     margin: 0;
     padding: 0;
     gap: 0;
+    flex-wrap: nowrap;
   }
 
   .nav-list li {
@@ -83,12 +85,13 @@ const menuItems = [
 
   .nav-list a {
     display: block;
-    padding: 0.75rem 1.25rem;
+    padding: 0.75rem 1rem;
     color: white;
     text-decoration: none;
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
     transition: all 0.3s ease;
     border-radius: 0.25rem;
   }
@@ -97,14 +100,6 @@ const menuItems = [
   .nav-list a.active {
     background-color: var(--color-accent);
     color: #000;
-  }
-
-  /* Desktop separator */
-  .nav-list li:nth-child(8)::after {
-    content: '|';
-    color: white;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
   }
 
   /* Mobile styles */
@@ -123,10 +118,6 @@ const menuItems = [
     .nav-list a {
       padding: 0.5rem 0.75rem;
       font-size: 0.75rem;
-    }
-
-    .nav-list li:nth-child(8)::after {
-      display: none;
     }
   }
 
@@ -177,28 +168,31 @@ const menuItems = [
 </style>
 
 <script>
-  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-  const navList = document.getElementById('navList');
+  const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+  const navList = document.getElementById("navList");
 
   if (mobileMenuToggle && navList) {
-    mobileMenuToggle.addEventListener('click', () => {
-      const isOpen = navList.classList.toggle('open');
-      mobileMenuToggle.setAttribute('aria-expanded', isOpen.toString());
+    mobileMenuToggle.addEventListener("click", () => {
+      const isOpen = navList.classList.toggle("open");
+      mobileMenuToggle.setAttribute("aria-expanded", isOpen.toString());
     });
 
     // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!mobileMenuToggle?.contains(e.target) && !navList?.contains(e.target)) {
-        navList.classList.remove('open');
-        mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+    document.addEventListener("click", (e) => {
+      if (
+        !mobileMenuToggle?.contains(e.target as Node) &&
+        !navList?.contains(e.target as Node)
+      ) {
+        navList.classList.remove("open");
+        mobileMenuToggle?.setAttribute("aria-expanded", "false");
       }
     });
 
     // Close menu on link click
-    navList.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navList.classList.remove('open');
-        mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+    navList.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navList.classList.remove("open");
+        mobileMenuToggle?.setAttribute("aria-expanded", "false");
       });
     });
   }

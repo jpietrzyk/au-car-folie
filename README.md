@@ -12,7 +12,7 @@ A modern, responsive static website for Car-folie.pl, built with Astro and Tailw
 
 ## Project Structure
 
-```
+```text
 car-folie-astro/
 ├── public/                 # Static assets
 │   ├── images/            # Images
@@ -136,20 +136,20 @@ The development server will start at `http://localhost:4321`
 
 ### Remaining Pages
 
-4. About Films (`/o-foliach`)
-5. References (`/referencje`)
-6. Quote Request (`/wycena`)
-7. Press Coverage (`/press`)
-8. Printing Services (`/drukarnia`)
-9. Inspirations (`/inspiracje`)
-10. Gallery (`/galeria`)
-11. Color Change (`/zmiana-koloru`)
-12. Distribution (`/dystrybucja`)
-13. Fleet Services (`/floty`)
-14. Franchising (`/franchising`)
-15. Vehicle Advertising (`/reklamy`)
-16. Training (`/szkolenia`)
-17. Technology (`/technologia`)
+1. About Films (`/o-foliach`)
+2. References (`/referencje`)
+3. Quote Request (`/wycena`)
+4. Press Coverage (`/press`)
+5. Printing Services (`/drukarnia`)
+6. Inspirations (`/inspiracje`)
+7. Gallery (`/galeria`)
+8. Color Change (`/zmiana-koloru`)
+9. Distribution (`/dystrybucja`)
+10. Fleet Services (`/floty`)
+11. Franchising (`/franchising`)
+12. Vehicle Advertising (`/reklamy`)
+13. Training (`/szkolenia`)
+14. Technology (`/technologia`)
 
 ## Deployment
 
