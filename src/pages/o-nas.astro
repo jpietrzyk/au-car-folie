@@ -1,0 +1,113 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="Car-folie.pl - O nas"
+  description="Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach"
+  currentPath="/o-nas"
+  bannerImage="/images/bg_o_nas.jpg"
+  bannerTitle="O nas"
+>
+  <div class="container">
+    <div class="about-page">
+      <h2>Car-folie.pl - O nas</h2>
+
+      <div class="about-content">
+        <p>
+          Jesteśmy firmą zajmującą się profesjonalnie oklejaniem samochodów. Nasza główna specjalność to zmiana koloru samochodów folią.
+        </p>
+
+        <p>
+          Posiadamy bogatą wiedzę oraz wieloletnie doświadczenie, by w 100% spełnić Państwa wymagania.
+        </p>
+
+        <p>
+          Dysponujemy 650m² powierzchnią produkcyjną w Jaworniku, oraz 400m² w Warszawie, gdzie przygotowywujemy materiały do druku, projektujemy, oraz oklejamy samochody.
+        </p>
+
+        <p>
+          Zapewniamy najwyższą jakość świadczonych usług. Obsługujemy klientów indywidualnych, firmy, agencje reklamowe, salony samochodowe i wiele innych.
+        </p>
+
+        <p>
+          Zajmujemy się również dystrybucją folii samochodowych oraz folii ploterowych, wiodących marek 3M i APA. Zaopatrujemy firmy oklejające samochody i agencje reklamowe, organizujemy też szkolenia z zakresu aplikacji folii.
+        </p>
+      </div>
+
+      <div class="partner-logos">
+        <h3>Nasi partnerzy</h3>
+        <div class="logos-grid">
+          <img src="/images/apa_min.png" alt="APA" loading="lazy" />
+          <img src="/images/euromaster.jpg" alt="Euromaster" loading="lazy" />
+          <img src="/images/integart.jpg" alt="Integart" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .about-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .about-page h2 {
+    color: white;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .about-content p {
+    color: var(--color-text-main);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-size: 1.125rem;
+  }
+
+  .partner-logos {
+    margin-top: 4rem;
+    text-align: center;
+  }
+
+  .partner-logos h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .logos-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .logos-grid img {
+    max-height: 80px;
+    width: auto;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .logos-grid img:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .about-content p {
+      font-size: 1rem;
+    }
+
+    .logos-grid {
+      gap: 2rem;
+    }
+
+    .logos-grid img {
+      max-height: 60px;
+    }
+  }
+</style>

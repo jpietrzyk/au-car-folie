@@ -1,0 +1,475 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { Calculator, FileText, Phone, Mail } from '@lucide/astro';
+---
+
+<PageLayout
+  title="Car-folie.pl - Wycena"
+  description="Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach"
+  currentPath="/wycena"
+  bannerImage="/images/bg_wycena.jpg"
+  bannerTitle="Wycena"
+>
+  <div class="container">
+    <div class="content-page">
+      <h2>Car-folie.pl - Wycena</h2>
+
+      <div class="content-section">
+        <p>
+          Zainteresowany naszymi usługami? Wypełnij formularz poniżej, a my przygotujemy indywidualną wycenę dla Twojego projektu.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <div class="form-wrapper">
+          <h3>Formularz wyceny</h3>
+          <form class="quote-form" action="/api/quote" method="POST">
+            <div class="form-section">
+              <h4>Dane kontaktowe</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Imię i nazwisko *</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    placeholder="Jan Kowalski"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    placeholder="jan@example.com"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Telefon</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="123 456 789"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="company">Firma</label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    placeholder="Nazwa firmy"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h4>Informacje o usłudze</h4>
+              <div class="form-group">
+                <label for="service">Rodzaj usługi *</label>
+                <select id="service" name="service" required>
+                  <option value="">Wybierz rodzaj usługi</option>
+                  <option value="zmiana-koloru">Zmiana koloru</option>
+                  <option value="reklamy">Reklamy na pojazdach</option>
+                  <option value="floty">Oklejanie flot</option>
+                  <option value="dystrybucja">Dystrybucja materiałów</option>
+                  <option value="szkolenia">Szkolenia</option>
+                  <option value="inne">Inne</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="vehicle">Typ pojazdu *</label>
+                <select id="vehicle" name="vehicle" required>
+                  <option value="">Wybierz typ pojazdu</option>
+                  <option value="osobowy">Samochód osobowy</option>
+                  <option value="dostawczy">Samochód dostawczy</option>
+                  <option value="suv">SUV / Crossover</option>
+                  <option value="van">Van / Bus</option>
+                  <option value="motocykl">Motocykl</option>
+                  <option value="ciezarówka">Cieżarówka</option>
+                  <option value="inne">Inne</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="brand">Marka pojazdu</label>
+                <input
+                  type="text"
+                  id="brand"
+                  name="brand"
+                  placeholder="np. BMW, Audi, Mercedes"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="model">Model pojazdu</label>
+                <input
+                  type="text"
+                  id="model"
+                  name="model"
+                  placeholder="np. Seria 3, A4, C-Klasa"
+                />
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h4>Szczegóły projektu</h4>
+              <div class="form-group">
+                <label for="description">Opis projektu *</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  required
+                  placeholder="Opisz szczegóły projektu, oczekiwania, preferencje..."
+                  rows="6"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="budget">Budżet (opcjonalnie)</label>
+                <input
+                  type="text"
+                  id="budget"
+                  name="budget"
+                  placeholder="np. 5000 - 10000 PLN"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="deadline">Termin realizacji (opcjonalnie)</label>
+                <input
+                  type="text"
+                  id="deadline"
+                  name="deadline"
+                  placeholder="np. do końca miesiąca"
+                />
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h4>Dodatkowe informacje</h4>
+              <div class="form-group">
+                <label for="additional">Dodatkowe uwagi</label>
+                <textarea
+                  id="additional"
+                  name="additional"
+                  placeholder="Wszelkie dodatkowe informacje..."
+                  rows="4"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="button button-large">
+                <Calculator size={20} style="display: inline; vertical-align: middle;" />
+                Wyślij zapytanie o wycenę
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Informacje kontaktowe</h3>
+        <div class="contact-info-grid">
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <Phone size={24} />
+            </div>
+            <div class="contact-text">
+              <h4>Telefon</h4>
+              <p>
+                <a href="tel:570603695" class="contact-link">570-603-695</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <Mail size={24} />
+            </div>
+            <div class="contact-text">
+              <h4>Email</h4>
+              <p>
+                <a href="mailto:biuro@car-folie.pl" class="contact-link">biuro@car-folie.pl</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <FileText size={24} />
+            </div>
+            <div class="contact-text">
+              <h4>Godziny pracy</h4>
+              <p>
+                Pon-Pt: 8:00 - 17:00
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="info-box">
+          <h3>Ważne informacje</h3>
+          <ul>
+            <li>
+              <strong>Odpowiedź:</strong> Staraj się podać jak najwięcej szczegółów, abyśmy mogli przygotować dokładną wycenę.
+            </li>
+            <li>
+              <strong>Czas odpowiedzi:</strong> Zwykle odpowiadamy w ciągu 1-2 dni roboczych.
+            </li>
+            <li>
+              <strong>Bezpłatna wycena:</strong> Wycena jest bezpłatna i niezobowiązująca.
+            </li>
+            <li>
+              <strong>Dokładność:</strong> Wycena może się zmienić w zależności od szczegółów projektu.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .content-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .content-page h2 {
+    color: white;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .content-section {
+    margin-bottom: 3rem;
+  }
+
+  .content-section > p {
+    color: var(--color-text-main);
+    line-height: 1.8;
+    font-size: 1.125rem;
+  }
+
+  .content-section h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .form-wrapper {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 2rem;
+  }
+
+  .form-wrapper h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-section {
+    margin-bottom: 2rem;
+  }
+
+  .form-section h4 {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.875rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(1, 115, 255, 0.1);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-actions {
+    margin-top: 2rem;
+  }
+
+  .button-large {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .contact-info-item {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .contact-text h4 {
+    color: white;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-text p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .contact-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-link:hover {
+    color: var(--color-primary-light);
+  }
+
+  .info-box {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 0.5rem;
+    padding: 2rem;
+  }
+
+  .info-box h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .info-box li {
+    color: rgba(255, 255, 255, 0.95);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .info-box li:last-child {
+    border-bottom: none;
+  }
+
+  .info-box strong {
+    color: white;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .content-section > p {
+      font-size: 1rem;
+    }
+
+    .form-wrapper {
+      padding: 1.5rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .contact-info-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .contact-info-item {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .info-box {
+      padding: 1.5rem;
+    }
+  }
+</style>

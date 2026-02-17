@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  currentPath?: string;
+}
+
+const {
+  title = 'Car-folie.pl - Oklejanie aut, Zmiana koloru aut folia, pełne oklejanie, reklama na pojazdach',
+  description = 'Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach',
+  image = '/images/logo.png',
+  currentPath = '/'
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="keywords" content="oklejanie, aut, samochodów, zmiana, koloru, folia, car, wrapping, reklama, na, pojazdach, grafika, pełne, reklamy, chrom, carbon" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={`https://car-folie.pl${currentPath}`} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`https://car-folie.pl${image}`} />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={`https://car-folie.pl${currentPath}`} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={`https://car-folie.pl${image}`} />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href={`https://car-folie.pl${currentPath}`} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap" rel="stylesheet" />
+
+  <title>{title}</title>
+</head>
+<body>
+  <slot />
+</body>
+</html>

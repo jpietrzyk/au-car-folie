@@ -1,0 +1,278 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { Mail, Phone, MapPin } from '@lucide/astro';
+---
+
+<PageLayout
+  title="Car-folie.pl - Kontakt"
+  description="Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach"
+  currentPath="/kontakt"
+  bannerImage="/images/bg_kontakt.jpg"
+  bannerTitle="Kontakt"
+>
+  <div class="container">
+    <div class="contact-page">
+      <div class="contact-info">
+        <h2>Skontaktuj się z nami</h2>
+
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <MapPin size={24} />
+            </div>
+            <div class="contact-text">
+              <h3>Adres</h3>
+              <address>
+                <p><strong>Myślenice</strong></p>
+                <p>ul. Wybickiego 48</p>
+              </address>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <Phone size={24} />
+            </div>
+            <div class="contact-text">
+              <h3>Telefon</h3>
+              <p>
+                <a href="tel:570603695" class="contact-link">570-603-695</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <Mail size={24} />
+            </div>
+            <div class="contact-text">
+              <h3>Email</h3>
+              <p>
+                <a href="mailto:biuro@car-folie.pl" class="contact-link">biuro@car-folie.pl</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-note">
+          <p><small>Zapraszamy do skorzystania z naszych usług w siedzibie, w Myślenice</small></p>
+        </div>
+      </div>
+
+      <div class="contact-form-wrapper">
+        <h2>Wyślij wiadomość</h2>
+        <form class="contact-form" action="/api/contact" method="POST">
+          <div class="form-group">
+            <label for="name">Imię i nazwisko</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="Jan Kowalski"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="jan@example.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefon (opcjonalnie)</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="123 456 789"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Temat</label>
+            <select id="subject" name="subject" required>
+              <option value="">Wybierz temat</option>
+              <option value="zmiana-koloru">Zmiana koloru</option>
+              <option value="reklamy">Reklamy na pojazdach</option>
+              <option value="floty">Floty</option>
+              <option value="szkolenia">Szkolenia</option>
+              <option value="dystrybucja">Dystrybucja materiałów</option>
+              <option value="inne">Inne</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Wiadomość</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              placeholder="Opisz swoje potrzeby..."
+              rows="6"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="button button-full">
+            Wyślij wiadomość
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .contact-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contact-info h2,
+  .contact-form-wrapper h2 {
+    color: white;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 2rem;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .contact-text h3 {
+    color: white;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .contact-text p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .contact-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-link:hover {
+    color: var(--color-primary-light);
+  }
+
+  .contact-note {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+
+  .contact-note p {
+    color: var(--color-text-muted);
+    margin: 0;
+    font-size: 0.875rem;
+  }
+
+  .contact-form {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.875rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(1, 115, 255, 0.1);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+
+  .button-full {
+    width: 100%;
+    text-align: center;
+  }
+
+  @media (max-width: 1024px) {
+    .contact-page {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-form {
+      padding: 1.5rem;
+    }
+
+    .contact-item {
+      gap: 0.75rem;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+</style>

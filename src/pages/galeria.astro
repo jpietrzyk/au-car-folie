@@ -1,0 +1,306 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { Image as ImageIcon, Filter, Grid3x3 } from '@lucide/astro';
+---
+
+<PageLayout
+  title="Car-folie.pl - Galeria"
+  description="Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach"
+  currentPath="/galeria"
+  bannerImage="/images/bg_galeria.jpg"
+  bannerTitle="Galeria"
+>
+  <div class="container">
+    <div class="content-page">
+      <h2>Car-folie.pl - Galeria</h2>
+
+      <div class="content-section">
+        <p>
+          Zobacz nasze realizacje. Prezentujemy różne projekty oklejania samochodów, od zmiany koloru po reklamy na pojazdach.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <div class="gallery-controls">
+          <h3>Kategorie</h3>
+          <div class="filter-buttons">
+            <button class="filter-button active" data-filter="all">
+              <Grid3x3 size={20} />
+              Wszystkie
+            </button>
+            <button class="filter-button" data-filter="zmiana-koloru">
+              <ImageIcon size={20} />
+              Zmiana koloru
+            </button>
+            <button class="filter-button" data-filter="reklamy">
+              <Filter size={20} />
+              Reklamy
+            </button>
+            <button class="filter-button" data-filter="floty">
+              <Filter size={20} />
+              Floty
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Zmiana koloru</h3>
+        <div class="gallery-grid">
+          <a href="/img/demopage/image-1.jpg" class="gallery-item" data-category="zmiana-koloru">
+            <img src="/img/demopage/thumb-1.jpg" alt="Zmiana koloru - realizacja 1" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-2.jpg" class="gallery-item" data-category="zmiana-koloru">
+            <img src="/img/demopage/thumb-2.jpg" alt="Zmiana koloru - realizacja 2" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-3.jpg" class="gallery-item" data-category="zmiana-koloru">
+            <img src="/img/demopage/thumb-3.jpg" alt="Zmiana koloru - realizacja 3" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-4.jpg" class="gallery-item" data-category="zmiana-koloru">
+            <img src="/img/demopage/thumb-4.jpg" alt="Zmiana koloru - realizacja 4" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-5.jpg" class="gallery-item" data-category="zmiana-koloru">
+            <img src="/img/demopage/thumb-5.jpg" alt="Zmiana koloru - realizacja 5" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-6.jpg" class="gallery-item" data-category="zmiana-koloru">
+            <img src="/img/demopage/thumb-6.jpg" alt="Zmiana koloru - realizacja 6" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-7.jpg" class="gallery-item" data-category="zmiana-koloru">
+            <img src="/img/demopage/thumb-7.jpg" alt="Zmiana koloru - realizacja 7" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-8.jpg" class="gallery-item" data-category="zmiana-koloru">
+            <img src="/img/demopage/thumb-8.jpg" alt="Zmiana koloru - realizacja 8" loading="lazy" />
+          </a>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Reklamy na pojazdach</h3>
+        <div class="gallery-grid">
+          <a href="/img/demopage/image-9.jpg" class="gallery-item" data-category="reklamy">
+            <img src="/img/demopage/thumb-9.jpg" alt="Reklama - realizacja 1" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-10.jpg" class="gallery-item" data-category="reklamy">
+            <img src="/img/demopage/thumb-10.jpg" alt="Reklama - realizacja 2" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-11.jpg" class="gallery-item" data-category="reklamy">
+            <img src="/img/demopage/thumb-11.jpg" alt="Reklama - realizacja 3" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-12.jpg" class="gallery-item" data-category="reklamy">
+            <img src="/img/demopage/thumb-12.jpg" alt="Reklama - realizacja 4" loading="lazy" />
+          </a>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Floty pojazdów</h3>
+        <div class="gallery-grid">
+          <a href="/img/demopage/image-13.jpg" class="gallery-item" data-category="floty">
+            <img src="/img/demopage/thumb-13.jpg" alt="Flota - realizacja 1" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-14.jpg" class="gallery-item" data-category="floty">
+            <img src="/img/demopage/thumb-14.jpg" alt="Flota - realizacja 2" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-15.jpg" class="gallery-item" data-category="floty">
+            <img src="/img/demopage/thumb-15.jpg" alt="Flota - realizacja 3" loading="lazy" />
+          </a>
+          <a href="/img/demopage/image-16.jpg" class="gallery-item" data-category="floty">
+            <img src="/img/demopage/thumb-16.jpg" alt="Flota - realizacja 4" loading="lazy" />
+          </a>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="cta-section">
+          <h3>Chcesz zobacz więcej?</h3>
+          <p>
+            Skontaktuj się z nami, aby omówić projekt i zobacz więcej naszych realizacji.
+          </p>
+          <a href="/kontakt" class="button">
+            Skontaktuj się z nami
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .content-page {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .content-page h2 {
+    color: white;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .content-section {
+    margin-bottom: 3rem;
+  }
+
+  .content-section > p {
+    color: var(--color-text-main);
+    line-height: 1.8;
+    font-size: 1.125rem;
+  }
+
+  .content-section h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .gallery-controls {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .gallery-controls h3 {
+    color: white;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .filter-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    border: 2px solid var(--color-border);
+    border-radius: 0.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-button:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .filter-button.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.05);
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 0.5rem;
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .cta-section h3 {
+    color: white;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .content-section > p {
+      font-size: 1rem;
+    }
+
+    .gallery-controls {
+      padding: 1rem;
+    }
+
+    .filter-buttons {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .filter-button {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .cta-section {
+      padding: 2rem;
+    }
+  }
+</style>
+
+<script>
+  // Filter functionality
+  const filterButtons = document.querySelectorAll('.filter-button');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+
+      // Update active state
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // Filter gallery items
+      galleryItems.forEach(item => {
+        const itemCategory = item.dataset.category;
+        if (filter === 'all' || itemCategory === filter) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

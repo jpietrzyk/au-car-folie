@@ -1,0 +1,393 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { Package, Truck, Shield } from '@lucide/astro';
+---
+
+<PageLayout
+  title="Car-folie.pl - Dystrybucja materiałów"
+  description="Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach"
+  currentPath="/dystrybucja"
+  bannerImage="/images/bg_dystrybucja.jpg"
+  bannerTitle="Dystrybucja materiałów"
+>
+  <div class="container">
+    <div class="content-page">
+      <h2>Car-folie.pl - Dystrybucja materiałów</h2>
+
+      <div class="content-section">
+        <p>
+          Oferujemy sprzedaż folii samochodowych oraz folii ploterowych wiodących marek 3M i APA. Zaopatrujemy firmy oklejające samochody i agencje reklamowe w najwyższej jakości materiały do aplikacji.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h3>Nasza oferta</h3>
+        <div class="offer-grid">
+          <div class="offer-card">
+            <div class="offer-icon">
+              <Package size={40} />
+            </div>
+            <h4>Folie do zmiany koloru</h4>
+            <p>
+              Szeroki wybór folii do pełnego oklejania samochodów. Dostępne w różnych kolorach i wykończeniach.
+            </p>
+            <ul>
+              <li>3M Series 1080, 2080</li>
+              <li>APA Ultra Wrap</li>
+              <li>APA Durawrap</li>
+              <li>Matowe, błyszczące, metaliczne</li>
+            </ul>
+          </div>
+
+          <div class="offer-card">
+            <div class="offer-icon">
+              <Package size={40} />
+            </div>
+            <h4>Folie reklamowe</h4>
+            <p>
+              Wysokiej jakości folie do druku cyfrowego. Odporne na UV i długotrwałe.
+            </p>
+            <ul>
+              <li>Folie ploterowe 3M</li>
+              <li>Folie ploterowe APA</li>
+              <li>Różne szerokości</li>
+              <li>Odporność na warunki atmosferyczne</li>
+            </ul>
+          </div>
+
+          <div class="offer-card">
+            <div class="offer-icon">
+              <Shield size={40} />
+            </div>
+            <h4>Akcesoria</h4>
+            <p>
+              Kompletna oferta akcesoriów do aplikacji folii.
+            </p>
+            <ul>
+              <li>Noże i skalpele</li>
+              <li>Rakle</li>
+              <li>Pistolety</li>
+              <li>Mieszalniki i rozpuszczalniki</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Dlaczego my?</h3>
+        <div class="reasons-grid">
+          <div class="reason-item">
+            <h4>Oficjalny dystrybutor</h4>
+            <p>
+              Jesteśmy oficjalnym dystrybutorem marek 3M i APA, gwarantując oryginalne produkty.
+            </p>
+          </div>
+
+          <div class="reason-item">
+            <h4>Doświadczenie</h4>
+            <p>
+              Wiele lat doświadczenia w branży oklejania samochodów. Doradzamy w doborze odpowiednich materiałów.
+            </p>
+          </div>
+
+          <div class="reason-item">
+            <h4>Konkurencyjne ceny</h4>
+            <p>
+              Oferujemy atrakcyjne ceny dla firm i klientów indywidualnych.
+            </p>
+          </div>
+
+          <div class="reason-item">
+            <h4>Szybka dostawa</h4>
+            <p>
+              Szybka realizacja zamówień i dostawa na terenie całej Polski.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Nasze marki</h3>
+        <div class="brands-section">
+          <div class="brand-card">
+            <h4>3M</h4>
+            <p>
+              Światowy lider w produkcji folii samochodowych. Oferujemy pełną gamę produktów 3M, w tym serie 1080, 2080 oraz folie reklamowe.
+            </p>
+            <ul>
+              <li>Seria 1080 - Controltac</li>
+              <li>Seria 2080 - Comply</li>
+              <li>Folie ploterowe IJ180</li>
+              <li>Folie ploterowe IJ35</li>
+            </ul>
+          </div>
+
+          <div class="brand-card">
+            <h4>APA</h4>
+            <p>
+              Europejski producent wysokiej jakości folii do zmiany koloru. Popularne serie APA Ultra Wrap oraz APA Durawrap.
+            </p>
+            <ul>
+              <li>APA Ultra Wrap</li>
+              <li>APA Durawrap</li>
+              <li>APA Carbon</li>
+              <li>APA Chrome</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="cta-section">
+          <h3>Zamów materiały</h3>
+          <p>
+            Skontaktuj się z nami, aby złożyć zamówienie lub uzyskać więcej informacji o naszej ofercie.
+          </p>
+          <div class="cta-buttons">
+            <a href="/kontakt" class="button">
+              Skontaktuj się z nami
+            </a>
+            <a href="tel:570603695" class="button button-secondary">
+              <Truck size={16} style="display: inline; vertical-align: middle;" />
+              Zadzwoń teraz
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .content-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .content-page h2 {
+    color: white;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .content-section {
+    margin-bottom: 3rem;
+  }
+
+  .content-section > p {
+    color: var(--color-text-main);
+    line-height: 1.8;
+    font-size: 1.125rem;
+  }
+
+  .content-section h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .offer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .offer-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+  }
+
+  .offer-icon {
+    width: 64px;
+    height: 64px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .offer-card h4 {
+    color: white;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .offer-card p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .offer-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .offer-card li {
+    color: var(--color-text-main);
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .offer-card li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: bold;
+  }
+
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .reason-item {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .reason-item:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+  }
+
+  .reason-item h4 {
+    color: var(--color-primary);
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .reason-item p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .brands-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .brand-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 2rem;
+  }
+
+  .brand-card h4 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .brand-card p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .brand-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .brand-card li {
+    color: var(--color-text-main);
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .brand-card li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: bold;
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 0.5rem;
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .cta-section h3 {
+    color: white;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .button-secondary {
+    background-color: transparent;
+    border: 2px solid white;
+  }
+
+  .button-secondary:hover {
+    background-color: white;
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .content-section > p {
+      font-size: 1rem;
+    }
+
+    .offer-grid,
+    .reasons-grid,
+    .brands-section {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .offer-card,
+    .reason-item,
+    .brand-card {
+      padding: 1.25rem;
+    }
+
+    .cta-section {
+      padding: 2rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+    }
+
+    .cta-buttons .button {
+      width: 100%;
+    }
+  }
+</style>

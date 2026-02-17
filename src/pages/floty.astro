@@ -1,0 +1,429 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { Users, MapPin, Clock } from '@lucide/astro';
+---
+
+<PageLayout
+  title="Car-folie.pl - Oklejanie flot pojazdów"
+  description="Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach"
+  currentPath="/floty"
+  bannerImage="/images/bg_floty.jpg"
+  bannerTitle="Floty"
+>
+  <div class="container">
+    <div class="content-page">
+      <h2>Car-folie.pl - Oklejanie flot pojazdów</h2>
+
+      <div class="content-section">
+        <p>
+          Oklejanie flot pojazdów. Przygotowanie i wdrażanie projektu, masowy transport samochodów, proces realizacji zamówienia na terenie całego kraju.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h3>Nasze usługi flotowe</h3>
+        <div class="services-grid">
+          <div class="service-item">
+            <div class="service-icon">
+              <Users size={32} />
+            </div>
+            <h4>Projektowanie</h4>
+            <p>
+              Tworzymy spójny projekt wizualny dla całej floty, zgodny z tożsamością marki.
+            </p>
+          </div>
+
+          <div class="service-item">
+            <div class="service-icon">
+              <MapPin size={32} />
+            </div>
+            <h4>Transport</h4>
+            <p>
+              Organizujemy masowy transport samochodów do naszej hali produkcyjnej.
+            </p>
+          </div>
+
+          <div class="service-item">
+            <div class="service-icon">
+              <Clock size={32} />
+            </div>
+            <h4>Szybka realizacja</h4>
+            <p>
+              Efektywne oklejanie dużej liczby pojazdów w krótkim czasie.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Proces oklejania flot</h3>
+        <div class="process-timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Konsultacja i projekt</h4>
+              <p>
+                Omawiamy wymagania, tworzymy projekt wizualny dla floty.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Transport pojazdów</h4>
+              <p>
+                Organizujemy transport samochodów do naszej hali produkcyjnej.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Przygotowanie</h4>
+              <p>
+                Dokładne mycie i dekontaminacja wszystkich pojazdów.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Aplikacja</h4>
+              <p>
+                Profesjonalne oklejanie floty zgodnie z projektem.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Kontrola jakości</h4>
+              <p>
+                Sprawdzamy jakość wykonania każdego pojazdu.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>Dostawa</h4>
+              <p>
+                Transportujemy oklejone pojazdy do klienta.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Zalety oklejania flot</h3>
+        <div class="benefits-list">
+          <div class="benefit-row">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">
+              <strong>Spójny wizerunek marki</strong>
+              <p>
+                Wszystkie pojazdy prezentują spójny, profesjonalny wizerunek.
+              </p>
+            </div>
+          </div>
+
+          <div class="benefit-row">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">
+              <strong>Mobilna reklama</strong>
+              <p>
+                Każdy pojazd staje się nośnikiem reklamy Twojej firmy.
+              </p>
+            </div>
+          </div>
+
+          <div class="benefit-row">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">
+              <strong>Ochrona lakieru</strong>
+              <p>
+                Folia chroni oryginalny lakier przed uszkodzeniami.
+              </p>
+            </div>
+          </div>
+
+          <div class="benefit-row">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">
+              <strong>Wzrost wartości</strong>
+              <p>
+                Po usunięciu folii pojazdy zachowują oryginalny lakier.
+              </p>
+            </div>
+          </div>
+
+          <div class="benefit-row">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">
+              <strong>Elastyczność</strong>
+              <p>
+                Możliwość łatwej zmiany projektu w przyszłości.
+              </p>
+            </div>
+          </div>
+
+          <div class="benefit-row">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">
+              <strong>Kosztowe</strong>
+              <p>
+                Bardziej opłacalne niż malowanie całej floty.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="cta-section">
+          <h3>Zainteresowany oklejaniem floty?</h3>
+          <p>
+            Skontaktuj się z nami, aby omówić szczegóły projektu i otrzymać wycenę.
+          </p>
+          <a href="/kontakt" class="button">
+            Skontaktuj się z nami
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .content-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .content-page h2 {
+    color: white;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .content-section {
+    margin-bottom: 3rem;
+  }
+
+  .content-section > p {
+    color: var(--color-text-main);
+    line-height: 1.8;
+    font-size: 1.125rem;
+  }
+
+  .content-section h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-item {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .service-item:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+  }
+
+  .service-icon {
+    width: 56px;
+    height: 56px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .service-item h4 {
+    color: white;
+    font-size: 1.125rem;
+    margin: 0;
+  }
+
+  .service-item p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .process-timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .process-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-primary);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.5rem;
+    top: 0;
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    border: 3px solid var(--color-bg-dark);
+  }
+
+  .timeline-content h4 {
+    color: white;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-content p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .benefit-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .benefit-row:hover {
+    border-color: var(--color-primary);
+  }
+
+  .benefit-check {
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .benefit-text {
+    flex: 1;
+  }
+
+  .benefit-text strong {
+    color: white;
+    font-size: 1.125rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-text p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 0.5rem;
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .cta-section h3 {
+    color: white;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .content-section > p {
+      font-size: 1rem;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .service-item {
+      padding: 1.25rem;
+    }
+
+    .process-timeline {
+      padding-left: 1.5rem;
+    }
+
+    .timeline-dot {
+      left: -2rem;
+    }
+
+    .benefit-row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .benefit-check {
+      width: 28px;
+      height: 28px;
+    }
+
+    .cta-section {
+      padding: 2rem;
+    }
+  }
+</style>

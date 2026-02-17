@@ -1,0 +1,78 @@
+---
+interface Props {
+  image?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  image = '/images/comic_superman.jpg',
+  title,
+  subtitle
+} = Astro.props;
+---
+
+<section class="banner" style={`background-image: url('${image}')`}>
+  <div class="banner-content">
+    {title && <h1 class="banner-title">{title}</h1>}
+    {subtitle && <p class="banner-subtitle">{subtitle}</p>}
+  </div>
+</section>
+
+<style>
+  .banner {
+    position: relative;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(18, 18, 18, 0.3), rgba(18, 18, 18, 0.7));
+  }
+
+  .banner-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    max-width: 800px;
+  }
+
+  .banner-title {
+    color: white;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .banner-subtitle {
+    color: var(--color-accent);
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .banner {
+      min-height: 300px;
+    }
+
+    .banner-content {
+      padding: 1.5rem;
+    }
+  }
+</style>

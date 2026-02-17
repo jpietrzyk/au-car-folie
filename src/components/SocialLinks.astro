@@ -1,0 +1,90 @@
+---
+import { Facebook, Twitter, Instagram, Linkedin } from '@lucide/astro';
+
+const socialLinks = [
+  {
+    name: 'Facebook',
+    href: 'https://www.facebook.com/pages/Car-foliepl/162406957140941',
+    icon: Facebook,
+    label: 'Facebook'
+  },
+  {
+    name: 'Twitter',
+    href: '#',
+    icon: Twitter,
+    label: 'Twitter'
+  },
+  {
+    name: 'Instagram',
+    href: '#',
+    icon: Instagram,
+    label: 'Instagram'
+  },
+  {
+    name: 'LinkedIn',
+    href: '#',
+    icon: Linkedin,
+    label: 'LinkedIn'
+  }
+];
+---
+
+<ul class="social-links">
+  {socialLinks.map(link => (
+    <li>
+      <a
+        href={link.href}
+        target={link.href !== '#' ? '_blank' : undefined}
+        rel={link.href !== '#' ? 'noopener noreferrer' : undefined}
+        aria-label={link.label}
+      >
+        <link.icon size={20} />
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .social-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0.75rem;
+  }
+
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: white;
+    background-color: var(--color-bg-card);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-border);
+  }
+
+  .social-links a:hover {
+    background-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(1, 115, 255, 0.3);
+  }
+
+  .social-links a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .social-links {
+      gap: 0.5rem;
+    }
+
+    .social-links a {
+      width: 36px;
+      height: 36px;
+    }
+  }
+</style>

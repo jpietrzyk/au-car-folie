@@ -1,0 +1,205 @@
+---
+import { Menu } from '@lucide/astro';
+import { useState } from 'astro:hooks';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const menuItems = [
+  { label: 'Home', href: '/' },
+  { label: 'O nas', href: '/o-nas' },
+  { label: 'O foliach', href: '/o-foliach' },
+  { label: 'Referencje', href: '/referencje' },
+  { label: 'Wycena', href: '/wycena' },
+  { label: 'Prasa o nas', href: '/press' },
+  { label: 'Kontakt', href: '/kontakt' },
+  { label: 'Drukarnia', href: '/drukarnia' },
+  { label: 'Inspiracje', href: '/inspiracje' },
+  { label: 'Galeria', href: '/galeria' },
+];
+---
+
+<nav class="navigation">
+  <button
+    class="mobile-menu-toggle"
+    id="mobileMenuToggle"
+    aria-label="Otwórz menu"
+    aria-expanded="false"
+  >
+    <Menu size={24} />
+  </button>
+
+  <ul class="nav-list" id="navList">
+    {menuItems.map(item => (
+      <li>
+        <a
+          href={item.href}
+          class={currentPath === item.href ? 'active' : ''}
+          aria-current={currentPath === item.href ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .navigation {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .mobile-menu-toggle:hover {
+    color: var(--color-primary);
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+  }
+
+  .nav-list li {
+    position: relative;
+  }
+
+  .nav-list a {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    border-radius: 0.25rem;
+  }
+
+  .nav-list a:hover,
+  .nav-list a.active {
+    background-color: var(--color-accent);
+    color: #000;
+  }
+
+  /* Desktop separator */
+  .nav-list li:nth-child(8)::after {
+    content: '|';
+    color: white;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  /* Mobile styles */
+  @media (max-width: 1024px) {
+    .navigation {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .nav-list {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.25rem;
+    }
+
+    .nav-list a {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.75rem;
+    }
+
+    .nav-list li:nth-child(8)::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu-toggle {
+      display: block;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .nav-list {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: var(--color-bg-card);
+      border-top: 1px solid var(--color-border);
+      padding: 1rem 0;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      gap: 0;
+    }
+
+    .nav-list.open {
+      display: flex;
+    }
+
+    .nav-list li {
+      width: 100%;
+    }
+
+    .nav-list a {
+      padding: 1rem;
+      text-align: center;
+      border-radius: 0;
+    }
+
+    .nav-list a:hover,
+    .nav-list a.active {
+      background-color: var(--color-primary);
+      color: white;
+    }
+  }
+</style>
+
+<script>
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  const navList = document.getElementById('navList');
+
+  if (mobileMenuToggle && navList) {
+    mobileMenuToggle.addEventListener('click', () => {
+      const isOpen = navList.classList.toggle('open');
+      mobileMenuToggle.setAttribute('aria-expanded', isOpen.toString());
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!mobileMenuToggle?.contains(e.target) && !navList?.contains(e.target)) {
+        navList.classList.remove('open');
+        mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close menu on link click
+    navList.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navList.classList.remove('open');
+        mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>

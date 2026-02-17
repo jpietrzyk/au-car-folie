@@ -1,0 +1,583 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { Settings, Shield, Wrench, CheckCircle } from '@lucide/astro';
+---
+
+<PageLayout
+  title="Car-folie.pl - Technologia"
+  description="Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach"
+  currentPath="/technologia"
+  bannerImage="/images/bg_technologia.jpg"
+  bannerTitle="Technologia"
+>
+  <div class="container">
+    <div class="content-page">
+      <h2>Car-folie.pl - Technologia</h2>
+
+      <div class="content-section">
+        <p>
+          Opis procesu od przygotowania pojazdu do ostatecznej realizacji. Zalety oklejania, opisy typów folii. Wszystko co powinieneś wiedzieć przed oklejaniem.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h3>Proces oklejania</h3>
+        <div class="process-timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>1. Konsultacja</h4>
+              <p>
+                Omawiamy oczekiwania klienta, wybieramy odpowiednią folię i kolor.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>2. Przygotowanie pojazdu</h4>
+              <p>
+                Dokładne mycie i dekontaminacja powierzchni przed aplikacją folii.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>3. Demontaż</h4>
+              <p>
+                Usuwamy elementy, które mogą utrudniać aplikację folii.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>4. Aplikacja folii</h4>
+              <p>
+                Profesjonalne nakładanie folii na przygotowaną powierzchnię.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>5. Formowanie i cięcie</h4>
+              <p>
+                Precyzyjne formowanie folii i cięcie do odpowiedniego kształtu.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>6. Ostateczne wykończenie</h4>
+              <p>
+                Szczegółowa obróbka, korekta i kontrola jakości.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>7. Montaż elementów</h4>
+              <p>
+                Ponowny montaż usuniętych elementów pojazdu.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h4>8. Odbiór</h4>
+              <p>
+                Przekazanie pojazdu klientowi z instrukcją pielęgnacji.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Przygotowanie pojazdu</h3>
+        <div class="prep-grid">
+          <div class="prep-card">
+            <div class="prep-icon">
+              <Settings size={32} />
+            </div>
+            <h4>Mycie</h4>
+            <p>
+              Dokładne mycie pojazdu specjalistycznymi środkami.
+            </p>
+          </div>
+
+          <div class="prep-card">
+            <div class="prep-icon">
+              <Wrench size={32} />
+            </div>
+            <h4>Dekontaminacja</h4>
+            <p>
+              Usuwamy wszelkie zanieczyszczenia i tłuszcze z powierzchni.
+            </p>
+          </div>
+
+          <div class="prep-card">
+            <div class="prep-icon">
+              <Shield size={32} />
+            </div>
+            <h4>Suszenie</h4>
+            <p>
+              Dokładne osuszanie powierzchni przed aplikacją folii.
+            </p>
+          </div>
+
+          <div class="prep-card">
+            <div class="prep-icon">
+              <CheckCircle size={32} />
+            </div>
+            <h4>Kontrola</h4>
+            <p>
+              Sprawdzamy stan powierzchni przed rozpoczęciem pracy.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Typy folii</h3>
+        <div class="types-grid">
+          <div class="type-card">
+            <h4>Folie cast</h4>
+            <p>
+              Najpopularniejsze folie do zmiany koloru. Łatwe w aplikacji i trwałe.
+            </p>
+            <ul>
+              <li>Szeroka gama kolorów</li>
+              <li>Różne wykończenia</li>
+              <li>Trwałość 3-5 lat</li>
+              <li>Łatwa do usunięcia</li>
+            </ul>
+          </div>
+
+          <div class="type-card">
+            <h4>Folie calendered</h4>
+            <p>
+              Bardziej elastyczne, idealne do skomplikowanych powierzchni.
+            </p>
+            <ul>
+              <li>Wysoka elastyczność</li>
+              <li>Dobra przyczepność</li>
+              <li>Łatwiejsze formowanie</li>
+              <li>Trwałość 2-3 lat</li>
+            </ul>
+          </div>
+
+          <div class="type-card">
+            <h4>Folie ploterowe</h4>
+            <p>
+              Do druku cyfrowego i tworzenia reklam na pojazdach.
+            </p>
+            <ul>
+              <li>Wysoka jakość druku</li>
+              <li>Odporność na UV</li>
+              <li>Szeroka gama kolorów</li>
+              <li>Długa trwałość</li>
+            </ul>
+          </div>
+
+          <div class="type-card">
+            <h4>Folie specjalne</h4>
+            <p>
+              Chromowane, carbonowe, perłowe i inne efekty specjalne.
+            </p>
+            <ul>
+              <li>Unikalne efekty</li>
+              <li>Wysoka jakość</li>
+              <li>Profesjonalny wygląd</li>
+              <li>Różne zastosowania</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Zalety oklejania folią</h3>
+        <div class="benefits-list">
+          <div class="benefit-row">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">
+              <strong>Ochrona lakieru</strong>
+              <p>
+                Folia chroni oryginalny lakier przed uszkodzeniami mechanicznymi i UV.
+              </p>
+            </div>
+          </div>
+
+          <div class="benefit-row">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">
+              <strong>Odwracalność</strong>
+              <p>
+                Proces jest w pełni odwracalny - po usunięciu folii auto wygląda jak nowy.
+              </p>
+            </div>
+          </div>
+
+          <div class="benefit-row">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">
+              <strong>Wzrost wartości</strong>
+              <p>
+                Po usunięciu folii auto zachowuje oryginalny lakier, co zwiększa jego wartość.
+              </p>
+            </div>
+          </div>
+
+          <div class="benefit-row">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">
+              <strong>Szybka zmiana</strong>
+              <p>
+                Zmień kolor samochodu w kilka dni bez konieczności malowania.
+              </p>
+            </div>
+          </div>
+
+          <div class="benefit-row">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">
+              <strong>Unikalny wygląd</strong>
+              <p>
+                Osiągnij nietypowe kolory i wykończenia niedostępne w fabryce.
+              </p>
+            </div>
+          </div>
+
+          <div class="benefit-row">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">
+              <strong>Niskie koszty</strong>
+              <p>
+                Bardziej opłacalne niż malowanie całego samochodu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="info-box">
+          <h3>Ważne informacje</h3>
+          <ul>
+            <li>
+              <strong>Czas realizacji:</strong> Zwykle 1-3 dni w zależności od wielkości pojazdu i skomplikowania projektu.
+            </li>
+            <li>
+              <strong>Trwałość:</strong> Folie cast utrzymują się 3-5 lat, calendered 2-3 lat.
+            </li>
+            <li>
+              <strong>Gwarancja:</strong> Oferujemy gwarancję na wykonanie usługi.
+            </li>
+            <li>
+              <strong>Pielęgnacja:</strong> Myj oklejony pojazd delikatnym szamponem i wodą, unikaj myjni automatycznych.
+            </li>
+            <li>
+              <strong>Usunięcie:</strong> Folie można usunąć bez uszkodzenia oryginalnego lakieru.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .content-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .content-page h2 {
+    color: white;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .content-section {
+    margin-bottom: 3rem;
+  }
+
+  .content-section > p {
+    color: var(--color-text-main);
+    line-height: 1.8;
+    font-size: 1.125rem;
+  }
+
+  .content-section h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .process-timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .process-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-primary);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.5rem;
+    top: 0;
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    border: 3px solid var(--color-bg-dark);
+  }
+
+  .timeline-content h4 {
+    color: white;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-content p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .prep-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .prep-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .prep-icon {
+    width: 56px;
+    height: 56px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .prep-card h4 {
+    color: white;
+    font-size: 1.125rem;
+    margin: 0;
+  }
+
+  .prep-card p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .type-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+  }
+
+  .type-card h4 {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .type-card p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .type-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .type-card li {
+    color: var(--color-text-main);
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .type-card li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: bold;
+  }
+
+  .benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .benefit-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .benefit-row:hover {
+    border-color: var(--color-primary);
+  }
+
+  .benefit-check {
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .benefit-text {
+    flex: 1;
+  }
+
+  .benefit-text strong {
+    color: white;
+    font-size: 1.125rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .benefit-text p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .info-box {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 0.5rem;
+    padding: 2rem;
+  }
+
+  .info-box h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .info-box li {
+    color: rgba(255, 255, 255, 0.95);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .info-box li:last-child {
+    border-bottom: none;
+  }
+
+  .info-box strong {
+    color: white;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .content-section > p {
+      font-size: 1rem;
+    }
+
+    .prep-grid,
+    .types-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .prep-card,
+    .type-card {
+      padding: 1.25rem;
+    }
+
+    .process-timeline {
+      padding-left: 1.5rem;
+    }
+
+    .timeline-dot {
+      left: -2rem;
+    }
+
+    .benefit-row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .benefit-check {
+      width: 28px;
+      height: 28px;
+    }
+
+    .info-box {
+      padding: 1.5rem;
+    }
+  }
+</style>

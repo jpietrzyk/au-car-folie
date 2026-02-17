@@ -1,0 +1,108 @@
+---
+import { ArrowRight } from '@lucide/astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+}
+
+const { title, description, image, link } = Astro.props;
+---
+
+<article class="service-card">
+  <a href={link} class="service-card-link">
+    <div class="service-card-image">
+      <img src={image} alt={title} loading="lazy" />
+    </div>
+    <div class="service-card-content">
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <span class="service-card-button">
+        Dowiedz się więcej
+        <ArrowRight size={16} />
+      </span>
+    </div>
+  </a>
+</article>
+
+<style>
+  .service-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-primary);
+  }
+
+  .service-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .service-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .service-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover .service-card-image img {
+    transform: scale(1.05);
+  }
+
+  .service-card-content {
+    padding: 1.5rem;
+  }
+
+  .service-card-content h3 {
+    color: white;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .service-card-content p {
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .service-card-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+
+  .service-card:hover .service-card-button {
+    color: var(--color-primary-light);
+  }
+
+  @media (max-width: 768px) {
+    .service-card-content {
+      padding: 1.25rem;
+    }
+
+    .service-card-content h3 {
+      font-size: 1.125rem;
+    }
+  }
+</style>

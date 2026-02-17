@@ -1,0 +1,430 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
+---
+
+<PageLayout
+  title="Car-folie.pl - Prasa o nas"
+  description="Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach"
+  currentPath="/press"
+  bannerImage="/images/bg_press.jpg"
+  bannerTitle="Prasa o nas"
+>
+  <div class="container">
+    <div class="content-page">
+      <h2>Car-folie.pl - Prasa o nas</h2>
+
+      <div class="content-section">
+        <p>
+          Jesteśmy dumni z tego, że nasza praca jest zauważana przez media. Oto niektóre publikacje i artykuły o naszej firmie.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h3>Artykuły i publikacje</h3>
+        <div class="articles-grid">
+          <div class="article-card">
+            <div class="article-header">
+              <Newspaper size={24} class="article-icon" />
+              <div class="article-meta">
+                <span class="article-source">Motoryzacja.pl</span>
+                <Calendar size={14} class="calendar-icon" />
+                <span class="article-date">Marzec 2024</span>
+              </div>
+            </div>
+            <div class="article-content">
+              <h4>Car-folie.pl: Profesjonalne oklejanie samochodów</h4>
+              <p>
+                Artykuł o naszej firmie i usługach oklejania pojazdów. Opisujemy proces zmiany koloru folią, zalety tej metody oraz prezentujemy nasze realizacje.
+              </p>
+              <a href="#" class="article-link">
+                Przeczytaj artykuł
+                <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+
+          <div class="article-card">
+            <div class="article-header">
+              <Newspaper size={24} class="article-icon" />
+              <div class="article-meta">
+                <span class="article-source">Biznes Motoryzacyjny</span>
+                <Calendar size={14} class="calendar-icon" />
+                <span class="article-date">Styczeń 2024</span>
+              </div>
+            </div>
+            <div class="article-content">
+              <h4>Floty pojazdów: Jak zwiększyć rozpoznawalność marki?</h4>
+              <p>
+                Wywiad z właścicielem Car-folie.pl o oklejaniu flot pojazdów. Omawiamy zalety mobilnej reklamy i znaczenie spójnego wizerunku marki.
+              </p>
+              <a href="#" class="article-link">
+                Przeczytaj artykuł
+                <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+
+          <div class="article-card">
+            <div class="article-header">
+              <Newspaper size={24} class="article-icon" />
+              <div class="article-meta">
+                <span class="article-source">Reklama i Promocja</span>
+                <Calendar size={14} class="calendar-icon" />
+                <span class="article-date">Listopad 2023</span>
+              </div>
+            </div>
+            <div class="article-content">
+              <h4>Reklama na pojazdach: Skuteczna mobilna promocja</h4>
+              <p>
+                Artykuł o skuteczności reklamy mobilnej. Porównujemy z tradycyjnymi formami reklamy i prezentujemy korzyści oklejania pojazdów.
+              </p>
+              <a href="#" class="article-link">
+                Przeczytaj artykuł
+                <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+
+          <div class="article-card">
+            <div class="article-header">
+              <Newspaper size={24} class="article-icon" />
+              <div class="article-meta">
+                <span class="article-source">Motofakty</span>
+                <Calendar size={14} class="calendar-icon" />
+                <span class="article-date">Październik 2023</span>
+              </div>
+            </div>
+            <div class="article-content">
+              <h4>Zmiana koloru aut folią: Nowe możliwości dla właścicieli</h4>
+              <p>
+                Przegląd najnowszych technologii folii samochodowych. Opisujemy różne rodzaje folii, ich właściwości oraz zastosowania.
+              </p>
+              <a href="#" class="article-link">
+                Przeczytaj artykuł
+                <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Nagrody i wyróżnienia</h3>
+        <div class="awards-grid">
+          <div class="award-card">
+            <h4>Partner Roku 2023</h4>
+            <p>
+              Wyróżnienie dla najlepszego partnera w dziedzinie oklejania pojazdów w Polsce.
+            </p>
+          </div>
+
+          <div class="award-card">
+            <h4>Certyfikat Jakości</h4>
+            <p>
+              Potwierdzenie wysokiej jakości naszych usług i materiałów.
+            </p>
+          </div>
+
+          <div class="award-card">
+            <h4>Lider Branży</h4>
+            <p>
+              Uznanie za lidera w dziedzinie profesjonalnego oklejania samochodów.
+            </p>
+          </div>
+
+          <div class="award-card">
+            <h4>Zaufany Partner</h4>
+            <p>
+              Certyfikat zaufanego partnera dla wiodących marek 3M i APA.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Media o nas</h3>
+        <div class="media-list">
+          <div class="media-item">
+            <h4>Motoryzacja.pl</h4>
+            <p>
+              Portal informacyjny dla miłośników motoryzacji. Publikujemy artykuły o nowościach, testach i poradach.
+            </p>
+            <a href="https://motoryzacja.pl" target="_blank" rel="noopener noreferrer" class="media-link">
+              Odwiedź portal
+              <ExternalLink size={16} />
+            </a>
+          </div>
+
+          <div class="media-item">
+            <h4>Biznes Motoryzacyjny</h4>
+            <p>
+              Magazyn dla profesjonalistów z branży motoryzacyjnej. Artykuły o trendach, technologii i biznesie.
+            </p>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="media-link">
+              Odwiedź magazyn
+              <ExternalLink size={16} />
+            </a>
+          </div>
+
+          <div class="media-item">
+            <h4>Reklama i Promocja</h4>
+            <p>
+              Magazyn o marketingu i reklamie. Poradniki dla marketerów i właścicieli firm.
+            </p>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="media-link">
+              Odwiedź magazyn
+              <ExternalLink size={16} />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="cta-section">
+          <h3>Jesteś z mediów?</h3>
+          <p>
+            Jesteś zainteresowany napisaniem artykułu o naszej firmie? Skontaktuj się z nami, aby omówić szczegóły.
+          </p>
+          <a href="/kontakt" class="button">
+            Skontaktuj się z nami
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .content-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .content-page h2 {
+    color: white;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .content-section {
+    margin-bottom: 3rem;
+  }
+
+  .content-section > p {
+    color: var(--color-text-main);
+    line-height: 1.8;
+    font-size: 1.125rem;
+  }
+
+  .content-section h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .article-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .article-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+  }
+
+  .article-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .article-icon {
+    color: var(--color-primary);
+  }
+
+  .article-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+  }
+
+  .article-source {
+    color: var(--color-accent);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .calendar-icon {
+    display: inline;
+    vertical-align: middle;
+    color: var(--color-text-muted);
+    margin-right: 0.25rem;
+  }
+
+  .article-date {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .article-content h4 {
+    color: white;
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .article-content p {
+    color: var(--color-text-main);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .article-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .article-link:hover {
+    color: var(--color-primary-light);
+  }
+
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .award-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .award-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-4px);
+  }
+
+  .award-card h4 {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .award-card p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .media-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .media-item {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+  }
+
+  .media-item h4 {
+    color: var(--color-primary);
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .media-item p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .media-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .media-link:hover {
+    color: var(--color-primary-light);
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 0.5rem;
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .cta-section h3 {
+    color: white;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .content-section > p {
+      font-size: 1rem;
+    }
+
+    .articles-grid,
+    .awards-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .article-card,
+    .award-card,
+    .media-item {
+      padding: 1.25rem;
+    }
+
+    .article-header {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .cta-section {
+      padding: 2rem;
+    }
+  }
+</style>

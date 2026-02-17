@@ -1,0 +1,396 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { Building2, TrendingUp, Users, Award } from '@lucide/astro';
+---
+
+<PageLayout
+  title="Car-folie.pl - Franchising"
+  description="Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach"
+  currentPath="/franchising"
+  bannerImage="/images/bg_franchising.jpg"
+  bannerTitle="Franchising"
+>
+  <div class="container">
+    <div class="content-page">
+      <h2>Car-folie.pl - Franchising</h2>
+
+      <div class="content-section">
+        <p>
+          Stwórz własne miejsce oklejania samochodów, we współpracy z nami! Oferujemy model franczyzowy dla osób zainteresowanych prowadzeniem własnego biznesu w branży oklejania pojazdów.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h3>Dlaczego franczyza z nami?</h3>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <Building2 size={40} />
+            </div>
+            <h4>Sprawdzony model biznesowy</h4>
+            <p>
+              Oferujemy model franczyzowy oparty na latach doświadczenia w branży.
+            </p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <TrendingUp size={40} />
+            </div>
+            <h4>Wsparcie marketingowe</h4>
+            <p>
+              Pomagamy w promocji Twojego biznesu i pozyskiwaniu klientów.
+            </p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <Users size={40} />
+            </div>
+            <h4>Szkolenia</h4>
+            <p>
+              Zapewniamy kompleksowe szkolenia z aplikacji folii.
+            </p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <Award size={40} />
+            </div>
+            <h4>Marka rozpoznawalna</h4>
+            <p>
+              Korzystaj z rozpoznawalności marki Car-folie.pl.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Co oferujemy franczyzobiorcom?</h3>
+        <div class="offer-list">
+          <div class="offer-item">
+            <h4>Szkolenia</h4>
+            <p>
+              Kompleksowe szkolenia z aplikacji folii samochodowych, prowadzone przez doświadczonych instruktorów.
+            </p>
+            <ul>
+              <li>Teoria i praktyka</li>
+              <li>Praca na prawdziwych pojazdach</li>
+              <li>Certyfikat ukończenia</li>
+              <li>Wsparcie po szkoleniu</li>
+            </ul>
+          </div>
+
+          <div class="offer-item">
+            <h4>Materiały</h4>
+            <p>
+              Dostęp do wysokiej jakości folii i akcesoriów w konkurencyjnych cenach.
+            </p>
+            <ul>
+              <li>Folie 3M i APA</li>
+              <li>Akcesoria do aplikacji</li>
+              <li>Preferencyjne ceny</li>
+              <li>Szybka dostawa</li>
+            </ul>
+          </div>
+
+          <div class="offer-item">
+            <h4>Wsparcie techniczne</h4>
+            <p>
+              Pomoc techniczna i doradztwo w trakcie prowadzenia biznesu.
+            </p>
+            <ul>
+              <li>Konsultacje telefoniczne</li>
+              <li>Pomoc przy skomplikowanych zleceniach</li>
+              <li>Dostęp do wiedzy i doświadczenia</li>
+              <li>Rozwiązywanie problemów</li>
+            </ul>
+          </div>
+
+          <div class="offer-item">
+            <h4>Marketing</h4>
+            <p>
+              Wsparcie w promocji Twojego biznesu i pozyskiwaniu klientów.
+            </p>
+            <ul>
+              <li>Materiały marketingowe</li>
+              <li>Wskazówki SEO</li>
+              <li>Strategie pozyskiwania klientów</li>
+              <li>Wsparcie social media</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h3>Wymagania</h3>
+        <div class="requirements-list">
+          <div class="requirement-item">
+            <div class="requirement-number">1</div>
+            <div class="requirement-content">
+              <h4>Doświadczenie</h4>
+              <p>
+                Preferowane doświadczenie w branży motoryzacyjnej lub reklamowej.
+              </p>
+            </div>
+          </div>
+
+          <div class="requirement-item">
+            <div class="requirement-number">2</div>
+            <div class="requirement-content">
+              <h4>Lokalizacja</h4>
+              <p>
+                Odpowiednia hala lub warsztat do aplikacji folii.
+              </p>
+            </div>
+          </div>
+
+          <div class="requirement-item">
+            <div class="requirement-number">3</div>
+            <div class="requirement-content">
+              <h4>Zaangażowanie</h4>
+              <p>
+                Gotowość do pełnego zaangażowania w prowadzenie biznesu.
+              </p>
+            </div>
+          </div>
+
+          <div class="requirement-item">
+            <div class="requirement-number">4</div>
+            <div class="requirement-content">
+              <h4>Inwestycja</h4>
+              <p>
+                Możliwość inwestycji w niezbędny sprzęt i materiały.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="cta-section">
+          <h3>Zainteresowany franczyzą?</h3>
+          <p>
+            Skontaktuj się z nami, aby omówić szczegóły współpracy i otrzymać więcej informacji.
+          </p>
+          <a href="/kontakt" class="button">
+            Skontaktuj się z nami
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .content-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .content-page h2 {
+    color: white;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .content-section {
+    margin-bottom: 3rem;
+  }
+
+  .content-section > p {
+    color: var(--color-text-main);
+    line-height: 1.8;
+    font-size: 1.125rem;
+  }
+
+  .content-section h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .benefit-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .benefit-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .benefit-icon {
+    width: 64px;
+    height: 64px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .benefit-card h4 {
+    color: white;
+    font-size: 1.125rem;
+    margin: 0;
+  }
+
+  .benefit-card p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .offer-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .offer-item {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+  }
+
+  .offer-item h4 {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .offer-item p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .offer-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .offer-item li {
+    color: var(--color-text-main);
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .offer-item li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: bold;
+  }
+
+  .requirements-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .requirement-item {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .requirement-number {
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .requirement-content h4 {
+    color: white;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .requirement-content p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 0.5rem;
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .cta-section h3 {
+    color: white;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .content-section > p {
+      font-size: 1rem;
+    }
+
+    .benefits-grid,
+    .offer-list,
+    .requirements-list {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .benefit-card,
+    .offer-item,
+    .requirement-item {
+      padding: 1.25rem;
+    }
+
+    .requirement-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .cta-section {
+      padding: 2rem;
+    }
+  }
+</style>

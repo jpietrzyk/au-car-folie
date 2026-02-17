@@ -1,0 +1,158 @@
+---
+import SocialLinks from './SocialLinks.astro';
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Car-folie.pl</h3>
+        <p>Professional full car wrapping services</p>
+        <p class="footer-tagline">Zmiana koloru aut folią</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Szybkie linki</h3>
+        <ul class="footer-links">
+          <li><a href="/o-nas">O nas</a></li>
+          <li><a href="/o-foliach">O foliach</a></li>
+          <li><a href="/wycena">Wycena</a></li>
+          <li><a href="/kontakt">Kontakt</a></li>
+          <li><a href="/galeria">Galeria</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Usługi</h3>
+        <ul class="footer-links">
+          <li><a href="/zmiana-koloru">Zmiana koloru</a></li>
+          <li><a href="/dystrybucja">Dystrybucja</a></li>
+          <li><a href="/floty">Floty</a></li>
+          <li><a href="/franchising">Franchising</a></li>
+          <li><a href="/reklamy">Reklamy na pojazdach</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Kontakt</h3>
+        <address class="footer-contact">
+          <p><strong>Myślenice</strong></p>
+          <p>ul. Wybickiego 48</p>
+          <p><a href="tel:570603695">tel: 570-603-695</a></p>
+          <p><a href="mailto:biuro@car-folie.pl">biuro@car-folie.pl</a></p>
+        </address>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <p>Copyright &copy; {new Date().getFullYear()} car-folie.pl. Wszystkie prawa zastrzeżone.</p>
+      </div>
+      <SocialLinks />
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-bg-card);
+    border-top: 1px solid var(--color-border);
+    padding: 3rem 0 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-section h3 {
+    color: white;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .footer-section p {
+    margin-bottom: 0.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .footer-tagline {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-contact {
+    font-style: normal;
+  }
+
+  .footer-contact p {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-contact a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-contact a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-copyright p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 768px) {
+    .footer {
+      padding: 2rem 0 1rem;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

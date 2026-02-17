@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from './Navigation.astro';
+import SocialLinks from './SocialLinks.astro';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+---
+
+<header class="header">
+  <div class="container">
+    <a href="/" class="logo" aria-label="Car-folie.pl - Strona główna">
+      <img src="/images/logo.png" alt="Car-folie.pl" />
+    </a>
+    <Navigation currentPath={currentPath} />
+    <SocialLinks />
+  </div>
+</header>
+
+<style>
+  .header {
+    background-color: var(--color-bg-dark);
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .logo {
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    height: 60px;
+    width: auto;
+    transition: transform 0.3s ease;
+  }
+
+  .logo:hover img {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 1024px) {
+    .container {
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      width: 100%;
+      text-align: center;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      padding: 0.75rem 0;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+  }
+</style>

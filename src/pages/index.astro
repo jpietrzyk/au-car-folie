@@ -1,17 +1,264 @@
 ---
-
+import PageLayout from '../layouts/PageLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { ArrowRight, Plus, CircleDot } from '@lucide/astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<PageLayout
+  title="Car-folie.pl - Oklejanie aut, Zmiana koloru aut folia, pełne oklejanie, reklama na pojazdach - Strona główna"
+  description="Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach"
+  currentPath="/"
+  bannerImage="/images/comic_superman.jpg"
+  bannerTitle="Car-folie"
+  bannerSubtitle="Professional full car wrapping"
+>
+  <div class="container">
+    <!-- Services Section -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Nasze usługi</h2>
+        <p class="section-subtitle">Zmiana koloru aut folią</p>
+      </div>
+
+      <div class="services-grid">
+        <ServiceCard
+          title="Zmiana koloru"
+          description="Zmiana koloru samochodów folią - pełne oklejanie."
+          image="/images/scr01.jpg"
+          link="/zmiana-koloru"
+        />
+
+        <ServiceCard
+          title="Dystrybucja materiałów"
+          description="Sprzedaż folii, akcesoriów, oraz materiałów pomocniczych."
+          image="/images/scr02.jpg"
+          link="/dystrybucja"
+        />
+
+        <ServiceCard
+          title="Franchising"
+          description="Stwórz własne miejsce oklejania samochodów, we współpracy z nami!"
+          image="/images/scr03.jpg"
+          link="/franchising"
+        />
+
+        <ServiceCard
+          title="Reklamy na pojazdach"
+          description="Mobilna przestrzeń reklamowa, jaką jest Twój samochód."
+          image="/images/scr04.jpg"
+          link="/reklamy"
+        />
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <Plus size={32} />
+          </div>
+          <div class="feature-content">
+            <h3>Technologia</h3>
+            <p class="feature-description">
+              Opis procesu od przygotowania pojazdu do ostatecznej realizacji. Zalety oklejania, opisy typów folii. Wszystko co powinieneś wiedzieć przed oklejaniem.
+            </p>
+            <a href="/technologia" class="feature-link">
+              Sprawdź
+              <ArrowRight size={16} />
+            </a>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <CircleDot size={32} />
+          </div>
+          <div class="feature-content">
+            <h3>Floty</h3>
+            <p class="feature-description">
+              Oklejanie flot pojazdów. Przygotowanie i wdrażanie projektu, masowy transport samochodów, proces realizacji zamówienia na terenie całego kraju.
+            </p>
+            <a href="/floty" class="feature-link">
+              Sprawdź
+              <ArrowRight size={16} />
+            </a>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <CircleDot size={32} />
+          </div>
+          <div class="feature-content">
+            <h3>Szkolenia</h3>
+            <p class="feature-description">
+              Prowadzimy szkolenia z aplikacji folii. Jeśli oklejasz, lub chcesz zająć się oklejaniem samochodów, zapisz się na nasze profesjonalne szkolenie.
+            </p>
+            <a href="/szkolenia" class="feature-link">
+              Sprawdź
+              <ArrowRight size={16} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section">
+      <div class="about-section">
+        <h2>Car-folie.pl - Zmiana koloru aut folią</h2>
+        <div class="about-content">
+          <p>
+            Nasza firma specjalizuje się w oklejaniu samochodów folią. Stawiamy tylko na najwyższą jakość, co przekłada się bezpośrednio na zadowolenie klienta.
+          </p>
+          <p>
+            Wykonujemy reklamy na samochodach w pełni profesjonalnie i terminowo. Przygotowujemy projekt, materiały do druku, oraz zajmujemy się aplikacją folii. Posiadamy halę, z zapleczem zapewniającym sprawne i rzetelne wykonanie usługi oklejania.
+          </p>
+          <p>
+            Reklama mobilna bardziej przyciąga uwagę potencjalnych klientów, niż szyldy reklamowe, w dodatku jest to BEZPŁATNA powierzchnia reklamowa, w związku z czym, zachęcamy do jej wykorzystania.
+          </p>
+          <p>
+            Folia jest również dodatkowym zabezpieczeniem lakieru przed działaniem promieni UV, uszkodzeń mechanicznych, uderzeń małych kamieni itp. W przypadku pełnego oklejenia, np. przy zakupie auta w leasing, po usunięciu folii - po okresie trzech, pięciu lat, auto wygląda jak w dniu oklejenia- co automatycznie przyczynia się do wzrostu jego wartości do dalszej sprzedaży- około 5-10%!
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</PageLayout>
+
+<style>
+  .section {
+    margin-bottom: 4rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    color: white;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-subtitle {
+    color: var(--color-accent);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .feature-icon {
+    width: 64px;
+    height: 64px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .feature-content h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .feature-description {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+
+  .feature-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .feature-link:hover {
+    color: var(--color-primary-light);
+  }
+
+  .about-section {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 3rem;
+  }
+
+  .about-section h2 {
+    color: white;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 2rem;
+  }
+
+  .about-content p {
+    color: var(--color-text-main);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      padding: 1.5rem;
+    }
+
+    .about-section {
+      padding: 2rem;
+    }
+  }
+</style>
