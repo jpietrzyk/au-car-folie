@@ -310,6 +310,7 @@ See [`plans/car-folie-migration-plan.md`](../plans/car-folie-migration-plan.md) 
 ## Animations Documentation
 
 See [`ANIMATIONS.md`](ANIMATIONS.md) for comprehensive documentation about the animation system, including:
+
 - Animation utilities and keyframes
 - Scroll-triggered animations
 - Component animations
