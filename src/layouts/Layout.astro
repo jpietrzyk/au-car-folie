@@ -130,6 +130,9 @@ const structuredData = {
     />
   </head>
   <body>
-    <slot />
+    <a href="#main-content" class="skip-link"> Przejdź do głównej treści </a>
+    <main id="main-content">
+      <slot />
+    </main>
   </body>
 </html>

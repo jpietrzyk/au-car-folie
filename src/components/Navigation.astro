@@ -27,6 +27,7 @@ const menuItems = [
     id="mobileMenuToggle"
     aria-label="Otwórz menu"
     aria-expanded="false"
+    aria-controls="navList"
   >
     <Menu size={24} />
   </button>
@@ -175,6 +176,14 @@ const menuItems = [
     mobileMenuToggle.addEventListener("click", () => {
       const isOpen = navList.classList.toggle("open");
       mobileMenuToggle.setAttribute("aria-expanded", isOpen.toString());
+
+      // Manage focus when menu opens/closes
+      if (isOpen) {
+        const firstLink = navList.querySelector("a") as HTMLElement;
+        firstLink?.focus();
+      } else {
+        mobileMenuToggle.focus();
+      }
     });
 
     // Close menu when clicking outside
@@ -185,6 +194,7 @@ const menuItems = [
       ) {
         navList.classList.remove("open");
         mobileMenuToggle?.setAttribute("aria-expanded", "false");
+        mobileMenuToggle.focus();
       }
     });
 
