@@ -8,7 +8,7 @@ This document outlines the performance optimizations implemented for the Car-fol
 
 ### 1. Image Optimization ✅
 
-#### What Was Done
+#### What Was Done: Image Conversion
 
 - Created [`scripts/optimize-images.js`](scripts/optimize-images.js) - Utility script to convert images to WebP format
 - Installed Sharp library for high-performance image processing
@@ -45,7 +45,7 @@ npm run optimize:images
 
 ### 2. Responsive Images ✅
 
-#### What Was Done
+#### What Was Done: Image Attributes
 
 - Added `width` and `height` attributes to all images
 - Implemented `sizes` attribute for responsive image loading
@@ -76,7 +76,7 @@ npm run optimize:images
 
 ### 3. Astro Image Configuration ✅
 
-#### What Was Done
+#### What Was Done: Configuration Setup
 
 - Configured [`astro.config.mjs`](astro.config.mjs) with image optimization settings
 - Set up Sharp as the image service
