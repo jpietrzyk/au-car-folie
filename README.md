@@ -115,6 +115,7 @@ The development server will start at `http://localhost:4321`
 - [x] Image assets copied
 - [x] SEO optimization (sitemap, robots.txt, meta tags, structured data)
 - [x] Performance optimization (WebP conversion, responsive images, lazy loading)
+- [x] High priority accessibility improvements (WCAG AA compliance, color contrast, keyboard navigation)
 
 ### 🚧 In Progress
 
@@ -122,7 +123,7 @@ The development server will start at `http://localhost:4321`
 
 ### 📋 Planned
 
-- [ ] Accessibility improvements
+- [ ] Medium priority accessibility improvements (focus management, ARIA live regions, breadcrumbs)
 - [ ] Dark mode support
 - [ ] Animations and transitions
 - [ ] Contact form with Formspree/Netlify Forms
@@ -141,12 +142,19 @@ The development server will start at `http://localhost:4321`
 ### Colors
 
 ```css
---color-primary: #0173ff;      /* Blue */
+--color-primary: #4da6ff;      /* Light blue (WCAG AA compliant) */
+--color-primary-dark: #0066cc; /* Darker blue */
+--color-primary-light: #80c4ff; /* Lighter blue */
 --color-accent: #ccff00;        /* Lime green */
+--color-accent-dark: #b8e600;   /* Darker lime */
 --color-bg-dark: #121212;       /* Dark background */
 --color-bg-card: #1a1a1a;      /* Card background */
---color-text-main: #cccccc;      /* Main text */
---color-text-muted: #888888;     /* Muted text */
+--color-text-main: #e0e0e0;    /* Main text (WCAG AA compliant) */
+--color-text-muted: #b0b0b0;   /* Muted text (WCAG AA compliant) */
+--color-border: #333333;       /* Border color */
+--color-success: #22c55e;      /* Success green */
+--color-error: #ef4444;        /* Error red */
+--color-warning: #f59e0b;      /* Warning orange */
 ```
 
 ### Typography
@@ -232,11 +240,17 @@ npm run build
 
 ## Accessibility
 
-- WCAG 2.1 AA compliant
-- Keyboard navigation
-- Screen reader support
-- Focus indicators
-- ARIA labels
+- ✅ WCAG 2.1 AA compliant (high priority improvements)
+- ✅ Color contrast meeting WCAG AA standards (4.5:1 for normal text)
+- ✅ Skip navigation link for keyboard users
+- ✅ Keyboard navigation with proper focus management
+- ✅ Screen reader support with ARIA labels and roles
+- ✅ Focus indicators on all interactive elements
+- ✅ Mobile menu accessibility with focus trap
+- ✅ Lightbox accessibility with dialog role and focus management
+- ✅ Form focus styles for better keyboard navigation
+
+See [`ACCESSIBILITY_IMPROVEMENTS.md`](ACCESSIBILITY_IMPROVEMENTS.md) for detailed accessibility documentation.
 
 ## License
 
@@ -249,4 +263,4 @@ See [`plans/car-folie-migration-plan.md`](../plans/car-folie-migration-plan.md) 
 ---
 
 **Last Updated**: 2026-02-18
-**Status**: SEO and performance optimizations completed, ready for deployment
+**Status**: SEO, performance, and high priority accessibility optimizations completed, ready for deployment
