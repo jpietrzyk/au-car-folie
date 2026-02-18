@@ -2,12 +2,32 @@
 
 /* Custom CSS Variables based on original site colors */
 :root {
+  /* Light mode colors (default) */
   --color-primary: #4da6ff;
   --color-primary-dark: #0066cc;
   --color-primary-light: #80c4ff;
   --color-accent: #ccff00;
   --color-accent-dark: #b8e600;
-  --color-bg-dark: #121212;
+  --color-bg-light: #ffffff;
+  --color-bg-secondary: #f5f5f5;
+  --color-bg-card: #ffffff;
+  --color-text-main: #333333;
+  --color-text-muted: #666666;
+  --color-border: #e0e0e0;
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+}
+
+/* Dark mode colors */
+:root.dark {
+  --color-primary: #4da6ff;
+  --color-primary-dark: #0066cc;
+  --color-primary-light: #80c4ff;
+  --color-accent: #ccff00;
+  --color-accent-dark: #b8e600;
+  --color-bg-light: #121212;
+  --color-bg-secondary: #1a1a1a;
   --color-bg-card: #1a1a1a;
   --color-text-main: #e0e0e0;
   --color-text-muted: #b0b0b0;
@@ -27,12 +47,15 @@ html {
 }
 
 body {
-  background-color: var(--color-bg-dark);
+  background-color: var(--color-bg-light);
   color: var(--color-text-main);
   font-family: "Source Sans Pro", "Inter", sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* Typography */
@@ -42,7 +65,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: white;
+  color: var(--color-text-main);
   font-weight: 600;
   line-height: 1.2;
 }
@@ -126,8 +149,8 @@ form textarea {
   padding: 1rem;
   border: 1px solid var(--color-border);
   border-radius: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.75);
-  color: #333;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-main);
   font-size: 1rem;
   transition: all 0.3s ease;
   margin-bottom: 1rem;
@@ -140,7 +163,7 @@ form textarea:focus {
   outline-offset: 2px;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 4px rgba(77, 166, 255, 0.2);
-  background-color: white;
+  background-color: var(--color-bg-card);
 }
 
 form label {
@@ -216,4 +239,65 @@ form label {
 
 .skip-link:focus {
   top: 0;
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--color-text-main);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark-mode-toggle:hover {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-primary);
+}
+
+.dark-mode-toggle:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.dark-mode-toggle svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.dark-mode-toggle:hover svg {
+  transform: rotate(15deg);
+}
+
+/* Global override for white colors in dark mode */
+:root.dark h1,
+:root.dark h2,
+:root.dark h3,
+:root.dark h4,
+:root.dark h5,
+:root.dark h6 {
+  color: var(--color-text-main) !important;
+}
+
+/* Elements that should remain white in dark mode */
+:root.dark .feature-icon,
+:root.dark .social-links a:hover,
+:root.dark .button,
+:root.dark .button-secondary:hover,
+:root.dark .banner-title,
+:root.dark .nav-list a:hover,
+:root.dark .nav-list a.active {
+  color: white !important;
+}
+
+/* Background colors that should remain white in dark mode */
+:root.dark .button,
+:root.dark .button-secondary:hover {
+  background-color: var(--color-primary) !important;
 }
