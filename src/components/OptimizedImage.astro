@@ -26,14 +26,45 @@ const {
 } = Astro.props;
 ---
 
-<Image
-  src={src}
-  alt={alt}
-  width={width}
-  height={height}
-  quality={quality}
-  loading={loading}
-  sizes={sizes}
-  class={className}
-  format={format}
-/>
+<div class="optimized-image-container">
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    quality={quality}
+    loading={loading}
+    sizes={sizes}
+    class={`optimized-image ${className || ""}`}
+    format={format}
+  />
+</div>
+
+<style>
+  .optimized-image-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .optimized-image {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .optimized-image.loaded {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  const image = document.querySelector(".optimized-image") as HTMLImageElement;
+  if (image) {
+    if (image.complete) {
+      image.classList.add("loaded");
+    } else {
+      image.addEventListener("load", () => {
+        image.classList.add("loaded");
+      });
+    }
+  }
+</script>
