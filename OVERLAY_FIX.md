@@ -5,21 +5,27 @@
 The website had multiple issues blocking clicks and causing visual problems on different pages:
 
 ### Issue 1: Global Overlay (All Pages)
+
 Users couldn't:
+
 - Click on footer links
 - Click on homepage links
 - Interact with any page elements except menu links
 
 ### Issue 2: Gallery Page Specific
+
 On the gallery page specifically, users couldn't:
+
 - Click on gallery images to open lightbox
 - Click on filter buttons
 - Interact with any gallery elements
 
 ### Issue 3: Page Blink Effect (All Pages)
+
 Pages were blinking/fading in and out repeatedly after load, creating a poor user experience.
 
 ### Issue 4: Lightbox Component Included on Gallery Page (Gallery Page Only)
+
 On the gallery page, the lightbox component was always present in the DOM with a very high z-index (9999), blocking all interactions even when the lightbox wasn't open. The lightbox overlay was catching clicks and preventing any interaction with the gallery page.
 
 ## Root Causes
@@ -133,19 +139,23 @@ The lightbox component should only be included on pages where it's actually need
 ## What Changed
 
 **Issue 1 (Body Opacity):**
+
 - **Before**: Body starts invisible (`opacity: 0`), only becomes visible when JavaScript adds `page-enter` class
 - **After**: Body starts visible (`opacity: 1`), still gets fade-in animation when `page-enter` class is added
 - **Bonus**: Changed `page-exit` from animation to transition to prevent blink effect
 
 **Issue 2 (Gallery Pointer Events):**
+
 - **Before**: Images have `pointer-events: none`, blocking all clicks on gallery items
 - **After**: Images allow pointer events, gallery items are clickable
 
 **Issue 3 (Page Blink Effect):**
+
 - **Before**: `page-exit` used an animation, causing conflicts with `page-enter` animation
 - **After**: `page-exit` uses CSS transition, preventing blink effect
 
 **Issue 4 (Lightbox Component):**
+
 - **Before**: Lightbox component was included on gallery page with z-index 9999, blocking all interactions
 - **After**: Lightbox component removed from gallery page entirely
 
@@ -172,6 +182,7 @@ The lightbox component should only be included on pages where it's actually need
 After these fixes, verify that:
 
 ### All Pages
+
 - ✅ Footer links work
 - ✅ Homepage links work
 - ✅ All interactive elements are clickable
@@ -180,6 +191,7 @@ After these fixes, verify that:
 - ✅ No blink effect on page load
 
 ### Gallery Page Specifically
+
 - ✅ Gallery images are clickable (note: lightbox removed from this page)
 - ✅ Filter buttons work (Wszystkie, Zmiana koloru, Reklamy, Floty)
 - ✅ Gallery hover effects work
@@ -211,6 +223,7 @@ The page transition system works as follows:
 ### Why Original Approach Was Problematic
 
 The original approach relied on JavaScript to make the page visible:
+
 - If JavaScript failed to load or execute, page remained invisible
 - If there was a timing issue, page could be stuck invisible
 - Created a poor user experience and accessibility issue
@@ -219,6 +232,7 @@ The original approach relied on JavaScript to make the page visible:
 ### Why Fix Works
 
 The new approach is more robust:
+
 - Page is always visible by default
 - JavaScript enhances with animations but isn't required
 - No risk of page being stuck invisible
@@ -229,11 +243,13 @@ The new approach is more robust:
 The lightbox component should only be included on pages where it's actually needed:
 
 **Current Implementation** (Problematic):
+
 - Lightbox was included on gallery page with z-index 9999
 - Always present in DOM, even when not in use
 - Blocking all interactions on gallery page
 
 **Correct Implementation**:
+
 - Lightbox component should only be included on pages where it's needed
 - For gallery page, use a simpler image viewer or different approach
 - Lightbox should be dynamically loaded only when needed
@@ -257,6 +273,7 @@ To prevent similar issues in the future:
 ## Additional Checks
 
 While investigating, I also verified:
+
 - ✅ No fixed-position overlays blocking clicks (except lightbox when active)
 - ✅ No high z-index elements covering content (except lightbox when active)
 - ✅ `pointer-events` only used on decorative pseudo-elements and lightbox overlay when not active
@@ -275,6 +292,7 @@ The overlay issues were caused by four separate problems:
 4. **Lightbox Component Included on Gallery Page (Gallery Page Only)**: The lightbox component was included on the gallery page with a very high z-index (9999), blocking all interactions even when not in use.
 
 All four issues have been fixed:
+
 - Body now starts with `opacity: 1`, making all pages always visible
 - Gallery images no longer block pointer events, making gallery items clickable
 - Page transitions use CSS transitions instead of animations, preventing blink effects
