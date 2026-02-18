@@ -1,0 +1,26 @@
+{
+  "name": "Car-folie.pl - Oklejanie aut",
+  "short_name": "Car-folie",
+  "description": "Profesjonalne oklejanie samochodów, zmiana koloru folią, reklama na pojazdach",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#0173ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["automotive", "business"],
+  "lang": "pl",
+  "dir": "ltr"
+}
