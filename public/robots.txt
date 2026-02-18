@@ -1,0 +1,14 @@
+# robots.txt for car-folie.pl
+
+User-agent: *
+Allow: /
+
+# Disallow specific paths if needed
+# Disallow: /private/
+# Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://car-folie.pl/sitemap.xml
+
+# Crawl-delay (optional, adjust as needed)
+# Crawl-delay: 1

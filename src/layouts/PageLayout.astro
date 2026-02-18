@@ -1,13 +1,15 @@
 ---
-import Layout from './Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "./Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
   currentPath?: string;
+  type?: "website" | "article";
+  noIndex?: boolean;
   bannerImage?: string;
   bannerTitle?: string;
   bannerSubtitle?: string;
@@ -17,14 +19,18 @@ const {
   title,
   description,
   image,
-  currentPath = '/',
+  currentPath = "/",
+  type = "website",
+  noIndex = false,
   bannerImage,
   bannerTitle,
-  bannerSubtitle
+  bannerSubtitle,
 } = Astro.props;
 
 // Import Banner component only if banner props are provided
-const Banner = bannerImage ? (await import('../components/Banner.astro')).default : null;
+const Banner = bannerImage
+  ? (await import("../components/Banner.astro")).default
+  : null;
 ---
 
 <Layout
@@ -32,17 +38,21 @@ const Banner = bannerImage ? (await import('../components/Banner.astro')).defaul
   description={description}
   image={image}
   currentPath={currentPath}
+  type={type}
+  noIndex={noIndex}
 >
   <Header currentPath={currentPath} />
 
   <main>
-    {Banner && (
-      <Banner
-        image={bannerImage}
-        title={bannerTitle}
-        subtitle={bannerSubtitle}
-      />
-    )}
+    {
+      Banner && (
+        <Banner
+          image={bannerImage}
+          title={bannerTitle}
+          subtitle={bannerSubtitle}
+        />
+      )
+    }
 
     <div class="page-content">
       <slot />
