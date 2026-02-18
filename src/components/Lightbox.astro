@@ -91,11 +91,13 @@ const { images = [] } = Astro.props;
     transition:
       opacity 0.3s ease,
       visibility 0.3s ease;
+    pointer-events: none;
   }
 
   .lightbox.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .lightbox-overlay {

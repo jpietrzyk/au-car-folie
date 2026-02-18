@@ -82,20 +82,36 @@ export function initSmoothScroll(): void {
 
 // Page transition animations
 export function initPageTransitions(): void {
-  // Add exit animation class when navigating away
+  // Add exit animation class only for real internal navigations
   document.querySelectorAll<HTMLAnchorElement>('a[href]:not([href^="#"]):not([href^="mailto:"]):not([href^="tel:"])').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      // Only apply to internal links
-      const href = link.getAttribute('href');
-      if (href && !href.startsWith('http') && !href.startsWith('//')) {
-        document.body.classList.add('page-exit');
+    link.addEventListener('click', (event) => {
+      // Ignore modified clicks/new tab/download links
+      if (
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey ||
+        link.target === '_blank' ||
+        link.hasAttribute('download')
+      ) {
+        return;
       }
-    });
-  });
 
-  // Add entrance animation on page load
-  window.addEventListener('load', () => {
-    document.body.classList.add('page-enter');
+      // Defer until all handlers run (e.g. lightbox preventDefault)
+      queueMicrotask(() => {
+        if (event.defaultPrevented) return;
+
+        const href = link.getAttribute('href');
+        if (!href) return;
+
+        const isInternal = !href.startsWith('http') && !href.startsWith('//');
+        const isLightboxTrigger = link.classList.contains('gallery-item');
+
+        if (isInternal && !isLightboxTrigger) {
+          document.body.classList.add('page-exit');
+        }
+      });
+    });
   });
 }
 
