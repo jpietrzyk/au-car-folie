@@ -1,6 +1,6 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
-import { Mail, Phone, MapPin } from '@lucide/astro';
+import PageLayout from "../layouts/PageLayout.astro";
+import { Mail, Phone, MapPin } from "@lucide/astro";
 ---
 
 <PageLayout
@@ -48,20 +48,33 @@ import { Mail, Phone, MapPin } from '@lucide/astro';
             <div class="contact-text">
               <h3>Email</h3>
               <p>
-                <a href="mailto:biuro@car-folie.pl" class="contact-link">biuro@car-folie.pl</a>
+                <a href="mailto:biuro@car-folie.pl" class="contact-link"
+                  >biuro@car-folie.pl</a
+                >
               </p>
             </div>
           </div>
         </div>
 
         <div class="contact-note">
-          <p><small>Zapraszamy do skorzystania z naszych usług w siedzibie, w Myślenice</small></p>
+          <p>
+            <small
+              >Zapraszamy do skorzystania z naszych usług w siedzibie, w
+              Myślenice</small
+            >
+          </p>
         </div>
       </div>
 
       <div class="contact-form-wrapper">
         <h2>Wyślij wiadomość</h2>
-        <form class="contact-form" action="/api/contact" method="POST">
+        <form
+          class="contact-form"
+          id="contactForm"
+          name="contact"
+          method="POST"
+          action="/.netlify/functions/contact"
+        >
           <div class="form-group">
             <label for="name">Imię i nazwisko</label>
             <input
@@ -70,7 +83,9 @@ import { Mail, Phone, MapPin } from '@lucide/astro';
               name="name"
               required
               placeholder="Jan Kowalski"
+              minlength="2"
             />
+            <span class="error-message" id="name-error"></span>
           </div>
 
           <div class="form-group">
@@ -82,6 +97,7 @@ import { Mail, Phone, MapPin } from '@lucide/astro';
               required
               placeholder="jan@example.com"
             />
+            <span class="error-message" id="email-error"></span>
           </div>
 
           <div class="form-group">
@@ -91,7 +107,9 @@ import { Mail, Phone, MapPin } from '@lucide/astro';
               id="phone"
               name="phone"
               placeholder="123 456 789"
+              pattern="^[\d\s\-\+\(\)]{9,20}$"
             />
+            <span class="error-message" id="phone-error"></span>
           </div>
 
           <div class="form-group">
@@ -105,6 +123,7 @@ import { Mail, Phone, MapPin } from '@lucide/astro';
               <option value="dystrybucja">Dystrybucja materiałów</option>
               <option value="inne">Inne</option>
             </select>
+            <span class="error-message" id="subject-error"></span>
           </div>
 
           <div class="form-group">
@@ -115,13 +134,23 @@ import { Mail, Phone, MapPin } from '@lucide/astro';
               required
               placeholder="Opisz swoje potrzeby..."
               rows="6"
-            ></textarea>
+              minlength="10"></textarea>
+            <span class="error-message" id="message-error"></span>
           </div>
 
-          <button type="submit" class="button button-full">
-            Wyślij wiadomość
+          <button type="submit" class="button button-full" id="submitBtn">
+            <span class="btn-text">Wyślij wiadomość</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
           </button>
         </form>
+
+        <div
+          id="formMessage"
+          class="form-message"
+          role="alert"
+          aria-live="polite"
+        >
+        </div>
       </div>
     </div>
   </div>
@@ -275,4 +304,240 @@ import { Mail, Phone, MapPin } from '@lucide/astro';
       height: 40px;
     }
   }
+
+  /* Form validation styles */
+  .error-message {
+    display: none;
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+
+  .error-message.visible {
+    display: block;
+  }
+
+  .form-group input:invalid:not(:placeholder-shown),
+  .form-group select:invalid:not(:placeholder-shown),
+  .form-group textarea:invalid:not(:placeholder-shown) {
+    border-color: #ef4444;
+  }
+
+  /* Loading state */
+  .button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .btn-spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-left: 0.5rem;
+  }
+
+  .button.loading .btn-text {
+    display: none;
+  }
+
+  .button.loading .btn-spinner {
+    display: inline-block;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Form message */
+  .form-message {
+    display: none;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .form-message.visible {
+    display: block;
+  }
+
+  .form-message.success {
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid #22c55e;
+    color: #22c55e;
+  }
+
+  .form-message.error {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+  }
 </style>
+
+<script>
+  const form = document.getElementById("contactForm") as HTMLFormElement;
+  const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
+  const formMessage = document.getElementById("formMessage") as HTMLDivElement;
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Clear previous errors and messages
+      clearErrors();
+      hideMessage();
+
+      // Validate form
+      if (!validateForm()) {
+        return;
+      }
+
+      // Show loading state
+      setLoading(true);
+
+      try {
+        const formData = new FormData(form);
+
+        const response = await fetch("/.netlify/functions/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams(formData as any).toString(),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          // Success
+          showMessage("Dziękujemy za wiadomość! Odpowiemy wkrótce.", "success");
+          form.reset();
+        } else {
+          // Error from server
+          if (result.errors && Array.isArray(result.errors)) {
+            // Show field-specific errors
+            result.errors.forEach((error: any) => {
+              showError(error.field, error.message);
+            });
+          }
+          showMessage(
+            result.error || "Wystąpił błąd. Spróbuj ponownie.",
+            "error",
+          );
+        }
+      } catch (error) {
+        console.error("Form submission error:", error);
+        showMessage("Wystąpił błąd połączenia. Spróbuj ponownie.", "error");
+      } finally {
+        setLoading(false);
+      }
+    });
+  }
+
+  function validateForm(): boolean {
+    let isValid = true;
+    const form = document.getElementById("contactForm") as HTMLFormElement;
+
+    // Validate name
+    const name = form.elements.namedItem("name") as HTMLInputElement;
+    if (!name.value.trim() || name.value.trim().length < 2) {
+      showError("name", "Imię musi mieć co najmniej 2 znaki");
+      isValid = false;
+    }
+
+    // Validate email
+    const email = form.elements.namedItem("email") as HTMLInputElement;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.value.trim() || !emailRegex.test(email.value)) {
+      showError("email", "Wprowadź poprawny adres email");
+      isValid = false;
+    }
+
+    // Validate phone (optional but must be valid if provided)
+    const phone = form.elements.namedItem("phone") as HTMLInputElement;
+    if (phone.value.trim()) {
+      const phoneRegex = /^[\d\s\-\+\(\)]{9,20}$/;
+      if (!phoneRegex.test(phone.value)) {
+        showError("phone", "Wprowadź poprawny numer telefonu");
+        isValid = false;
+      }
+    }
+
+    // Validate subject
+    const subject = form.elements.namedItem("subject") as HTMLSelectElement;
+    if (!subject.value) {
+      showError("subject", "Wybierz temat");
+      isValid = false;
+    }
+
+    // Validate message
+    const message = form.elements.namedItem("message") as HTMLTextAreaElement;
+    if (!message.value.trim() || message.value.trim().length < 10) {
+      showError("message", "Wiadomość musi mieć co najmniej 10 znaków");
+      isValid = false;
+    }
+
+    return isValid;
+  }
+
+  function showError(field: string, message: string): void {
+    const errorElement = document.getElementById(
+      `${field}-error`,
+    ) as HTMLSpanElement;
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.classList.add("visible");
+    }
+
+    const inputElement = document.getElementById(field) as
+      | HTMLInputElement
+      | HTMLSelectElement
+      | HTMLTextAreaElement;
+    if (inputElement) {
+      inputElement.setAttribute("aria-invalid", "true");
+    }
+  }
+
+  function clearErrors(): void {
+    const errorElements = document.querySelectorAll(".error-message");
+    errorElements.forEach((element) => {
+      element.classList.remove("visible");
+      element.textContent = "";
+    });
+
+    const inputElements = form.querySelectorAll("input, select, textarea");
+    inputElements.forEach((element) => {
+      element.removeAttribute("aria-invalid");
+    });
+  }
+
+  function showMessage(message: string, type: "success" | "error"): void {
+    if (formMessage) {
+      formMessage.textContent = message;
+      formMessage.className = `form-message ${type} visible`;
+    }
+  }
+
+  function hideMessage(): void {
+    if (formMessage) {
+      formMessage.classList.remove("visible");
+    }
+  }
+
+  function setLoading(loading: boolean): void {
+    if (submitBtn) {
+      submitBtn.disabled = loading;
+      if (loading) {
+        submitBtn.classList.add("loading");
+      } else {
+        submitBtn.classList.remove("loading");
+      }
+    }
+  }
+</script>

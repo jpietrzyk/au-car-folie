@@ -3,8 +3,8 @@
  */
 
 // Intersection Observer for scroll-triggered animations
-export function initScrollAnimations() {
-  const observerOptions = {
+export function initScrollAnimations(): IntersectionObserver {
+  const observerOptions: IntersectionObserverInit = {
     root: null,
     rootMargin: '0px',
     threshold: 0.1
@@ -33,8 +33,8 @@ export function initScrollAnimations() {
 }
 
 // Initialize parallax effect for banner backgrounds
-export function initParallaxEffect() {
-  const parallaxElements = document.querySelectorAll('.parallax');
+export function initParallaxEffect(): void {
+  const parallaxElements = document.querySelectorAll<HTMLElement>('.parallax');
 
   if (parallaxElements.length === 0) return;
 
@@ -46,7 +46,7 @@ export function initParallaxEffect() {
         const scrollY = window.pageYOffset;
 
         parallaxElements.forEach((element) => {
-          const speed = element.dataset.parallaxSpeed || 0.5;
+          const speed = parseFloat(element.dataset.parallaxSpeed || '0.5');
           const offset = scrollY * speed;
           element.style.transform = `translateY(${offset}px)`;
         });
@@ -62,11 +62,13 @@ export function initParallaxEffect() {
 }
 
 // Smooth scroll for anchor links
-export function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+export function initSmoothScroll(): void {
+  document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+      const href = this.getAttribute('href');
+      if (!href) return;
+      const target = document.querySelector(href);
 
       if (target) {
         target.scrollIntoView({
@@ -79,9 +81,9 @@ export function initSmoothScroll() {
 }
 
 // Page transition animations
-export function initPageTransitions() {
+export function initPageTransitions(): void {
   // Add exit animation class when navigating away
-  document.querySelectorAll('a[href]:not([href^="#"]):not([href^="mailto:"]):not([href^="tel:"])').forEach((link) => {
+  document.querySelectorAll<HTMLAnchorElement>('a[href]:not([href^="#"]):not([href^="mailto:"]):not([href^="tel:"])').forEach((link) => {
     link.addEventListener('click', (e) => {
       // Only apply to internal links
       const href = link.getAttribute('href');
@@ -98,21 +100,21 @@ export function initPageTransitions() {
 }
 
 // Staggered animation for lists/grids
-export function initStaggeredAnimations() {
-  const containers = document.querySelectorAll('[data-stagger]');
+export function initStaggeredAnimations(): void {
+  const containers = document.querySelectorAll<HTMLElement>('[data-stagger]');
 
   containers.forEach((container) => {
     const children = container.children;
-    const delay = parseInt(container.dataset.stagger) || 100;
+    const delay = parseInt(container.dataset.stagger || '100', 10);
 
     Array.from(children).forEach((child, index) => {
-      child.style.animationDelay = `${index * delay}ms`;
+      (child as HTMLElement).style.animationDelay = `${index * delay}ms`;
     });
   });
 }
 
 // Initialize all animations
-export function initAnimations() {
+export function initAnimations(): void {
   initScrollAnimations();
   initParallaxEffect();
   initSmoothScroll();
