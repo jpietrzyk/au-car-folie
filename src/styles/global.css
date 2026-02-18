@@ -812,14 +812,7 @@ form textarea:focus {
   animation: slideInUp 0.3s ease-out;
 }
 
-/* Lightbox animations */
-.lightbox {
-  animation: fadeIn 0.3s ease-out;
-}
-
-.lightbox-content {
-  animation: scaleIn 0.3s ease-out;
-}
+/* Lightbox animations - removed as they conflict with component's own transitions */
 
 /* Loading spinner */
 .spinner {
