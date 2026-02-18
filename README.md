@@ -19,37 +19,48 @@ car-folie-astro/
 │   └── img/              # Gallery images
 ├── src/
 │   ├── components/         # Reusable components
-│   │   ├── Header.astro
-│   │   ├── Footer.astro
-│   │   ├── Navigation.astro
 │   │   ├── Banner.astro
+│   │   ├── DarkModeToggle.astro
+│   │   ├── Footer.astro
+│   │   ├── Header.astro
+│   │   ├── Lightbox.astro
+│   │   ├── Navigation.astro
+│   │   ├── OptimizedImage.astro
 │   │   ├── ServiceCard.astro
-│   │   ├── SocialLinks.astro
-│   │   └── Lightbox.astro
+│   │   └── SocialLinks.astro
 │   ├── layouts/           # Page layouts
 │   │   ├── Layout.astro
 │   │   └── PageLayout.astro
 │   ├── pages/             # Page routes
-│   │   ├── index.astro
-│   │   ├── o-nas.astro
-│   │   ├── kontakt.astro
-│   │   ├── o-foliach.astro
-│   │   ├── referencje.astro
-│   │   ├── wycena.astro
-│   │   ├── press.astro
 │   │   ├── drukarnia.astro
-│   │   ├── inspiracje.astro
-│   │   ├── galeria.astro
-│   │   ├── zmiana-koloru.astro
 │   │   ├── dystrybucja.astro
 │   │   ├── floty.astro
 │   │   ├── franchising.astro
+│   │   ├── galeria.astro
+│   │   ├── inspiracje.astro
+│   │   ├── index.astro
+│   │   ├── kontakt.astro
+│   │   ├── o-foliach.astro
+│   │   ├── o-nas.astro
+│   │   ├── press.astro
+│   │   ├── referencje.astro
 │   │   ├── reklamy.astro
+│   │   ├── sitemap.xml.ts
 │   │   ├── szkolenia.astro
-│   │   └── technologia.astro
+│   │   ├── technologia.astro
+│   │   ├── wycena.astro
+│   │   └── zmiana-koloru.astro
+│   ├── scripts/           # JavaScript utilities
+│   │   └── animations.js
 │   └── styles/            # Global styles
 │       └── global.css
-└── package.json
+├── ANIMATIONS.md          # Animation system documentation
+├── ACCESSIBILITY_IMPROVEMENTS.md  # Accessibility documentation
+├── PERFORMANCE_OPTIMIZATION.md     # Performance documentation
+├── README.md              # Project documentation
+├── astro.config.mjs       # Astro configuration
+├── package.json           # Dependencies
+└── tsconfig.json          # TypeScript configuration
 ```
 
 ## Getting Started
@@ -117,6 +128,7 @@ The development server will start at `http://localhost:4321`
 - [x] Performance optimization (WebP conversion, responsive images, lazy loading)
 - [x] High priority accessibility improvements (WCAG AA compliance, color contrast, keyboard navigation)
 - [x] Dark mode support with system preference detection and localStorage persistence
+- [x] Animations and transitions (scroll-triggered, hover effects, page transitions, micro-interactions)
 
 ### 🚧 In Progress
 
@@ -125,7 +137,6 @@ The development server will start at `http://localhost:4321`
 ### 📋 Planned
 
 - [ ] Medium priority accessibility improvements (focus management, ARIA live regions, breadcrumbs)
-- [ ] Animations and transitions
 - [ ] Contact form with Formspree/Netlify Forms
 - [ ] Analytics integration
 
@@ -138,6 +149,21 @@ The development server will start at `http://localhost:4321`
 - [ ] Add page-specific meta descriptions for better SEO targeting
 
 ## Design System
+
+### Animations
+
+The website features a comprehensive animation system including:
+
+- **Scroll-triggered animations**: Elements animate when they enter the viewport using Intersection Observer
+- **Hover effects**: Smooth transitions on cards, buttons, and links
+- **Page transitions**: Fade in/out effects when navigating between pages
+- **Parallax effects**: Banner backgrounds move at different speeds for depth
+- **Micro-interactions**: Button ripples, link underlines, form focus animations
+- **Image loading**: Smooth fade-in when images finish loading
+- **Staggered animations**: Grid items animate with sequential delays
+- **Accessibility**: Full support for `prefers-reduced-motion`
+
+See [`ANIMATIONS.md`](ANIMATIONS.md) for detailed documentation and usage examples.
 
 ### Colors
 
@@ -269,6 +295,7 @@ npm run build
 - ✅ Mobile menu accessibility with focus trap
 - ✅ Lightbox accessibility with dialog role and focus management
 - ✅ Form focus styles for better keyboard navigation
+- ✅ Reduced motion support for accessibility
 
 See [`ACCESSIBILITY_IMPROVEMENTS.md`](ACCESSIBILITY_IMPROVEMENTS.md) for detailed accessibility documentation.
 
@@ -280,7 +307,19 @@ Copyright © 2024 car-folie.pl. All rights reserved.
 
 See [`plans/car-folie-migration-plan.md`](../plans/car-folie-migration-plan.md) for detailed migration documentation.
 
+## Animations Documentation
+
+See [`ANIMATIONS.md`](ANIMATIONS.md) for comprehensive documentation about the animation system, including:
+- Animation utilities and keyframes
+- Scroll-triggered animations
+- Component animations
+- Page transitions
+- Micro-interactions
+- Performance considerations
+- Accessibility features
+- Usage examples
+
 ---
 
 **Last Updated**: 2026-02-18
-**Status**: SEO, performance, high priority accessibility optimizations, and dark mode support completed, ready for deployment
+**Status**: SEO, performance, high priority accessibility optimizations, dark mode support, and animations completed, ready for deployment

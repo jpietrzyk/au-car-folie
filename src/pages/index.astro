@@ -14,13 +14,13 @@ import { ArrowRight, Plus, CircleDot } from "@lucide/astro";
 >
   <div class="container">
     <!-- Services Section -->
-    <section class="section">
+    <section class="section scroll-animate">
       <div class="section-header">
         <h2>Nasze usługi</h2>
         <p class="section-subtitle">Zmiana koloru aut folią</p>
       </div>
 
-      <div class="services-grid">
+      <div class="services-grid" data-stagger="100">
         <ServiceCard
           title="Zmiana koloru"
           description="Zmiana koloru samochodów folią - pełne oklejanie."
@@ -52,8 +52,8 @@ import { ArrowRight, Plus, CircleDot } from "@lucide/astro";
     </section>
 
     <!-- Features Section -->
-    <section class="section">
-      <div class="features-grid">
+    <section class="section scroll-animate">
+      <div class="features-grid" data-stagger="100">
         <div class="feature-card">
           <div class="feature-icon">
             <Plus size={32} />
@@ -111,7 +111,7 @@ import { ArrowRight, Plus, CircleDot } from "@lucide/astro";
     </section>
 
     <!-- About Section -->
-    <section class="section">
+    <section class="section scroll-animate">
       <div class="about-section">
         <h2>Car-folie.pl - Zmiana koloru aut folią</h2>
         <div class="about-content">
