@@ -116,6 +116,7 @@ The development server will start at `http://localhost:4321`
 - [x] SEO optimization (sitemap, robots.txt, meta tags, structured data)
 - [x] Performance optimization (WebP conversion, responsive images, lazy loading)
 - [x] High priority accessibility improvements (WCAG AA compliance, color contrast, keyboard navigation)
+- [x] Dark mode support with system preference detection and localStorage persistence
 
 ### 🚧 In Progress
 
@@ -124,7 +125,6 @@ The development server will start at `http://localhost:4321`
 ### 📋 Planned
 
 - [ ] Medium priority accessibility improvements (focus management, ARIA live regions, breadcrumbs)
-- [ ] Dark mode support
 - [ ] Animations and transitions
 - [ ] Contact form with Formspree/Netlify Forms
 - [ ] Analytics integration
@@ -142,20 +142,40 @@ The development server will start at `http://localhost:4321`
 ### Colors
 
 ```css
+/* Light mode colors (default) */
 --color-primary: #4da6ff;      /* Light blue (WCAG AA compliant) */
 --color-primary-dark: #0066cc; /* Darker blue */
 --color-primary-light: #80c4ff; /* Lighter blue */
 --color-accent: #ccff00;        /* Lime green */
 --color-accent-dark: #b8e600;   /* Darker lime */
---color-bg-dark: #121212;       /* Dark background */
---color-bg-card: #1a1a1a;      /* Card background */
---color-text-main: #e0e0e0;    /* Main text (WCAG AA compliant) */
---color-text-muted: #b0b0b0;   /* Muted text (WCAG AA compliant) */
---color-border: #333333;       /* Border color */
+--color-bg-light: #ffffff;       /* Light background */
+--color-bg-secondary: #f5f5f5;  /* Secondary background */
+--color-bg-card: #ffffff;      /* Card background */
+--color-text-main: #333333;    /* Main text (WCAG AA compliant) */
+--color-text-muted: #666666;   /* Muted text (WCAG AA compliant) */
+--color-border: #e0e0e0;       /* Border color */
 --color-success: #22c55e;      /* Success green */
 --color-error: #ef4444;        /* Error red */
 --color-warning: #f59e0b;      /* Warning orange */
+
+/* Dark mode colors (applied when .dark class is present) */
+--color-bg-light: #121212;       /* Dark background */
+--color-bg-secondary: #1a1a1a;  /* Dark secondary background */
+--color-bg-card: #1a1a1a;      /* Dark card background */
+--color-text-main: #e0e0e0;    /* Light text (WCAG AA compliant) */
+--color-text-muted: #b0b0b0;   /* Light muted text (WCAG AA compliant) */
+--color-border: #333333;       /* Dark border color */
 ```
+
+### Dark Mode
+
+The website supports dark mode with the following features:
+
+- **System preference detection**: Automatically detects user's system color scheme preference
+- **Manual toggle**: Users can manually switch between light and dark modes using the toggle button in the header
+- **LocalStorage persistence**: User's preference is saved and persists across sessions
+- **Smooth transitions**: All color changes have smooth 0.3s transitions for a polished user experience
+- **Accessibility**: Dark mode maintains WCAG AA color contrast standards
 
 ### Typography
 
@@ -263,4 +283,4 @@ See [`plans/car-folie-migration-plan.md`](../plans/car-folie-migration-plan.md) 
 ---
 
 **Last Updated**: 2026-02-18
-**Status**: SEO, performance, and high priority accessibility optimizations completed, ready for deployment
+**Status**: SEO, performance, high priority accessibility optimizations, and dark mode support completed, ready for deployment

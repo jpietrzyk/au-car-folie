@@ -1,5 +1,5 @@
 ---
-import SocialLinks from './SocialLinks.astro';
+import SocialLinks from "./SocialLinks.astro";
 ---
 
 <footer class="footer">
@@ -46,7 +46,10 @@ import SocialLinks from './SocialLinks.astro';
 
     <div class="footer-bottom">
       <div class="footer-copyright">
-        <p>Copyright &copy; {new Date().getFullYear()} car-folie.pl. Wszystkie prawa zastrzeżone.</p>
+        <p>
+          Copyright &copy; {new Date().getFullYear()} car-folie.pl. Wszystkie prawa
+          zastrzeżone.
+        </p>
       </div>
       <SocialLinks />
     </div>
@@ -69,7 +72,7 @@ import SocialLinks from './SocialLinks.astro';
   }
 
   .footer-section h3 {
-    color: white;
+    color: var(--color-text-main);
     font-size: 1.125rem;
     margin-bottom: 1rem;
     font-weight: 600;

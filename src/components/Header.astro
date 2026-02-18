@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Navigation from "./Navigation.astro";
 import SocialLinks from "./SocialLinks.astro";
+import DarkModeToggle from "./DarkModeToggle.astro";
 import { Image } from "astro:assets";
 
 interface Props {
@@ -24,18 +25,24 @@ const { currentPath = "/" } = Astro.props;
       />
     </a>
     <Navigation currentPath={currentPath} />
-    <SocialLinks />
+    <div class="header-actions">
+      <DarkModeToggle />
+      <SocialLinks />
+    </div>
   </div>
 </header>
 
 <style>
   .header {
-    background-color: var(--color-bg-dark);
+    background-color: var(--color-bg-light);
     border-bottom: 1px solid var(--color-border);
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
   }
 
   .container {
@@ -43,6 +50,12 @@ const { currentPath = "/" } = Astro.props;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   .logo {
