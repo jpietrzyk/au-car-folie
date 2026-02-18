@@ -1,19 +1,27 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navigation from './Navigation.astro';
-import SocialLinks from './SocialLinks.astro';
+import Layout from "../layouts/Layout.astro";
+import Navigation from "./Navigation.astro";
+import SocialLinks from "./SocialLinks.astro";
+import { Image } from "astro:assets";
 
 interface Props {
   currentPath?: string;
 }
 
-const { currentPath = '/' } = Astro.props;
+const { currentPath = "/" } = Astro.props;
 ---
 
 <header class="header">
   <div class="container">
     <a href="/" class="logo" aria-label="Car-folie.pl - Strona główna">
-      <img src="/images/logo.png" alt="Car-folie.pl" />
+      <Image
+        src="/images/logo.png"
+        alt="Car-folie.pl"
+        width="200"
+        height="60"
+        loading="eager"
+        format="webp"
+      />
     </a>
     <Navigation currentPath={currentPath} />
     <SocialLinks />

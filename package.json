@@ -6,13 +6,15 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "optimize:images": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "@lucide/astro": "^0.574.0",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",
     "lucide-astro": "^0.556.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.1.18"
   }
 }
