@@ -104,6 +104,7 @@ h1, h2, h3, h4, h5, h6 {
 **Location**: [`src/components/Navigation.astro`](src/components/Navigation.astro)
 
 **Issues**:
+
 - Mobile menu toggle button doesn't have focus-visible styling
 - When menu opens, focus is not moved to first menu item
 - When menu closes, focus is not returned to toggle button
@@ -120,6 +121,7 @@ h1, h2, h3, h4, h5, h6 {
 **Location**: [`src/components/Lightbox.astro`](src/components/Lightbox.astro)
 
 **Issues**:
+
 - Lightbox image doesn't have proper `role="dialog"` or `role="img"`
 - No `aria-modal="true"` attribute
 - Focus trap not implemented when lightbox is open
@@ -520,7 +522,7 @@ Implement breadcrumb navigation for better orientation:
 ## 📊 Accessibility Score Summary
 
 | Category | Current Score | Target Score | Gap |
-|----------|---------------|--------------|-----|
+| :--- | :--- | :--- | :--- |
 | Color Contrast | 3/10 | 10/10 | -7 |
 | Keyboard Navigation | 7/10 | 10/10 | -3 |
 | Screen Reader Support | 6/10 | 10/10 | -4 |
@@ -534,24 +536,28 @@ Implement breadcrumb navigation for better orientation:
 ## 🎯 Implementation Roadmap
 
 ### Phase 1: Critical Fixes (Week 1)
+
 1. ✅ Fix heading colors
 2. ✅ Improve color contrast variables
 3. ✅ Add skip navigation link
 4. ✅ Test with screen readers
 
 ### Phase 2: High Priority (Week 2)
+
 1. ✅ Enhance mobile menu accessibility
 2. ✅ Improve lightbox accessibility
 3. ✅ Enhance form focus styles
 4. ✅ Keyboard navigation testing
 
 ### Phase 3: Medium Priority (Week 3)
+
 1. ✅ Add focus management for page transitions
 2. ✅ Implement ARIA live regions
 3. ✅ Improve service card structure
 4. ✅ Comprehensive accessibility audit
 
 ### Phase 4: Low Priority (Week 4)
+
 1. ✅ Add language switching
 2. ✅ Implement breadcrumbs
 3. ✅ Final testing and refinement
@@ -562,12 +568,14 @@ Implement breadcrumb navigation for better orientation:
 ## 🧪 Testing Recommendations
 
 ### Automated Testing Tools
+
 - **axe DevTools**: Browser extension for quick accessibility testing
 - **Lighthouse**: Built-in Chrome accessibility audit
 - **WAVE**: WebAIM's accessibility evaluation tool
 - **pa11y**: Command-line accessibility testing tool
 
 ### Manual Testing Checklist
+
 - [ ] Navigate entire site using keyboard only (Tab, Shift+Tab, Enter, Escape, Arrow keys)
 - [ ] Test with screen reader (NVDA for Windows, VoiceOver for Mac)
 - [ ] Verify all color contrasts meet WCAG AA standards
@@ -580,6 +588,7 @@ Implement breadcrumb navigation for better orientation:
 - [ ] Test mobile menu with keyboard
 
 ### User Testing
+
 - Recruit users with disabilities for testing
 - Test with various assistive technologies
 - Gather feedback on usability
