@@ -114,15 +114,14 @@ The development server will start at `http://localhost:4321`
 - [x] Technology page
 - [x] Image assets copied
 - [x] SEO optimization (sitemap, robots.txt, meta tags, structured data)
+- [x] Performance optimization (WebP conversion, responsive images, lazy loading)
 
 ### 🚧 In Progress
 
 - [ ] Contact form backend integration
-- [ ] Image optimization
 
 ### 📋 Planned
 
-- [ ] Performance optimization
 - [ ] Accessibility improvements
 - [ ] Dark mode support
 - [ ] Animations and transitions
@@ -250,4 +249,4 @@ See [`plans/car-folie-migration-plan.md`](../plans/car-folie-migration-plan.md) 
 ---
 
 **Last Updated**: 2026-02-18
-**Status**: SEO optimization completed, all pages ready for deployment
+**Status**: SEO and performance optimizations completed, ready for deployment

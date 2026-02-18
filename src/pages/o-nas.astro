@@ -1,5 +1,6 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
+import PageLayout from "../layouts/PageLayout.astro";
+import { Image } from "astro:assets";
 ---
 
 <PageLayout
@@ -15,32 +16,62 @@ import PageLayout from '../layouts/PageLayout.astro';
 
       <div class="about-content">
         <p>
-          Jesteśmy firmą zajmującą się profesjonalnie oklejaniem samochodów. Nasza główna specjalność to zmiana koloru samochodów folią.
+          Jesteśmy firmą zajmującą się profesjonalnie oklejaniem samochodów.
+          Nasza główna specjalność to zmiana koloru samochodów folią.
         </p>
 
         <p>
-          Posiadamy bogatą wiedzę oraz wieloletnie doświadczenie, by w 100% spełnić Państwa wymagania.
+          Posiadamy bogatą wiedzę oraz wieloletnie doświadczenie, by w 100%
+          spełnić Państwa wymagania.
         </p>
 
         <p>
-          Dysponujemy 650m² powierzchnią produkcyjną w Jaworniku, oraz 400m² w Warszawie, gdzie przygotowywujemy materiały do druku, projektujemy, oraz oklejamy samochody.
+          Dysponujemy 650m² powierzchnią produkcyjną w Jaworniku, oraz 400m² w
+          Warszawie, gdzie przygotowywujemy materiały do druku, projektujemy,
+          oraz oklejamy samochody.
         </p>
 
         <p>
-          Zapewniamy najwyższą jakość świadczonych usług. Obsługujemy klientów indywidualnych, firmy, agencje reklamowe, salony samochodowe i wiele innych.
+          Zapewniamy najwyższą jakość świadczonych usług. Obsługujemy klientów
+          indywidualnych, firmy, agencje reklamowe, salony samochodowe i wiele
+          innych.
         </p>
 
         <p>
-          Zajmujemy się również dystrybucją folii samochodowych oraz folii ploterowych, wiodących marek 3M i APA. Zaopatrujemy firmy oklejające samochody i agencje reklamowe, organizujemy też szkolenia z zakresu aplikacji folii.
+          Zajmujemy się również dystrybucją folii samochodowych oraz folii
+          ploterowych, wiodących marek 3M i APA. Zaopatrujemy firmy oklejające
+          samochody i agencje reklamowe, organizujemy też szkolenia z zakresu
+          aplikacji folii.
         </p>
       </div>
 
       <div class="partner-logos">
         <h3>Nasi partnerzy</h3>
         <div class="logos-grid">
-          <img src="/images/apa_min.png" alt="APA" loading="lazy" />
-          <img src="/images/euromaster.jpg" alt="Euromaster" loading="lazy" />
-          <img src="/images/integart.jpg" alt="Integart" loading="lazy" />
+          <Image
+            src="/images/apa_min.png"
+            alt="APA"
+            width="200"
+            height="100"
+            loading="lazy"
+            format="webp"
+          />
+          <Image
+            src="/images/euromaster.jpg"
+            alt="Euromaster"
+            width="200"
+            height="100"
+            loading="lazy"
+            format="webp"
+          />
+          <Image
+            src="/images/integart.jpg"
+            alt="Integart"
+            width="200"
+            height="100"
+            loading="lazy"
+            format="webp"
+          />
         </div>
       </div>
     </div>
