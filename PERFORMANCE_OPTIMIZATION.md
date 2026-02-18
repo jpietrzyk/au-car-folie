@@ -8,7 +8,8 @@ This document outlines the performance optimizations implemented for the Car-fol
 
 ### 1. Image Optimization ✅
 
-#### What Was Done:
+#### What Was Done
+
 - Created [`scripts/optimize-images.js`](scripts/optimize-images.js) - Utility script to convert images to WebP format
 - Installed Sharp library for high-performance image processing
 - Optimized 53 images with average 58% file size reduction
@@ -16,8 +17,9 @@ This document outlines the performance optimizations implemented for the Car-fol
 - Updated [`Header.astro`](src/components/Header.astro) to use Astro's Image component
 - Updated [`o-nas.astro`](src/pages/o-nas.astro) to use Astro's Image component
 
-#### Results:
-```
+#### Results
+
+```plain
 ✓ PW.jpg → PW.webp (73.9% reduction)
 ✓ banner.jpg → banner.webp (39.6% reduction)
 ✓ logo.png → logo.webp (70.3% reduction)
@@ -25,7 +27,8 @@ This document outlines the performance optimizations implemented for the Car-fol
 ... and 49 more images
 ```
 
-#### How to Use:
+#### How to Use
+
 ```bash
 # Optimize all images
 npm run optimize:images
@@ -33,7 +36,8 @@ npm run optimize:images
 # Images are saved to: public/images-optimized/
 ```
 
-#### Benefits:
+#### Image Optimization Benefits
+
 - **File Size Reduction**: 12% - 99% reduction per image
 - **Faster Loading**: WebP loads 25-35% faster than JPEG
 - **Better Compression**: WebP provides superior compression at similar quality
@@ -41,14 +45,16 @@ npm run optimize:images
 
 ### 2. Responsive Images ✅
 
-#### What Was Done:
+#### What Was Done
+
 - Added `width` and `height` attributes to all images
 - Implemented `sizes` attribute for responsive image loading
 - Added `loading="lazy"` for below-the-fold images
 - Added `loading="eager"` for above-the-fold images (logo)
 - Added `decoding="async"` for better performance
 
-#### Implementation:
+#### Implementation
+
 ```astro
 <Image
   src={image}
@@ -61,7 +67,8 @@ npm run optimize:images
 />
 ```
 
-#### Benefits:
+#### Responsive Images Benefits
+
 - **Faster LCP**: Largest Contentful Paint improves with properly sized images
 - **Reduced Bandwidth**: Responsive images prevent loading oversized images
 - **Better UX**: Lazy loading improves initial page load time
@@ -69,12 +76,14 @@ npm run optimize:images
 
 ### 3. Astro Image Configuration ✅
 
-#### What Was Done:
+#### What Was Done
+
 - Configured [`astro.config.mjs`](astro.config.mjs) with image optimization settings
 - Set up Sharp as the image service
 - Defined responsive breakpoints: [640, 768, 1024, 1280, 1536]
 
-#### Configuration:
+#### Configuration
+
 ```javascript
 image: {
   service: {
@@ -84,7 +93,8 @@ image: {
 }
 ```
 
-#### Benefits:
+#### Astro Configuration Benefits
+
 - **Automatic Optimization**: Astro automatically optimizes images at build time
 - **Multiple Formats**: Generates WebP, AVIF, and fallback formats
 - **Responsive Generation**: Creates multiple sizes for different screen sizes
@@ -99,7 +109,8 @@ image: {
 npm install --save-dev @fontsource/inter @fontsource/source-sans-pro
 ```
 
-Benefits:
+#### Font Optimization Benefits
+
 - Self-host fonts for faster loading
 - Subset fonts to include only used characters
 - Use `font-display: swap` for faster text rendering
@@ -146,6 +157,7 @@ jobs:
 ## Performance Targets
 
 Current targets from README.md:
+
 - Lighthouse Score: 90+
 - Core Web Vitals: All "Good"
 - First Contentful Paint: < 1.8s
@@ -155,6 +167,7 @@ Current targets from README.md:
 ## Testing Performance
 
 ### Lighthouse Audit
+
 Run Lighthouse to measure performance:
 
 ```bash
@@ -166,16 +179,19 @@ lighthouse https://your-site.com --view
 ```
 
 ### WebPageTest
+
 Use WebPageTest.org for comprehensive testing:
-https://www.webpagetest.org/
+<https://www.webpagetest.org/>
 
 ### PageSpeed Insights
+
 Google's PageSpeed Insights:
-https://pagespeed.web.dev/
+<https://pagespeed.web.dev/>
 
 ## Maintenance
 
 ### Re-run Optimization
+
 When adding new images, re-run optimization:
 
 ```bash
@@ -183,6 +199,7 @@ npm run optimize:images
 ```
 
 ### Update Components
+
 When creating new components, use the optimized Image component:
 
 ```astro
@@ -208,6 +225,7 @@ import { Image } from 'astro:assets';
 ## Summary
 
 The implemented optimizations provide:
+
 - ✅ 58% average image file size reduction
 - ✅ Responsive image loading
 - ✅ Lazy loading for below-the-fold images
