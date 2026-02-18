@@ -15,9 +15,9 @@
     },
     {
       "src": "/images/logo.png",
-      "sizes": "512x512",
+      "sizes": "350x85",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ],
   "categories": ["automotive", "business"],

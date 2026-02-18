@@ -119,6 +119,3 @@ export function initAnimations() {
   initPageTransitions();
   initStaggeredAnimations();
 }
-
-// Export individual functions for use in components
-export { initScrollAnimations, initParallaxEffect, initSmoothScroll, initPageTransitions, initStaggeredAnimations };
