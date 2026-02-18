@@ -25,6 +25,7 @@ The animation system enhances user experience with smooth, performant animations
 The following utility classes are available in [`src/styles/global.css`](src/styles/global.css):
 
 #### Fade Animations
+
 - `.fade-in` - Simple fade in from opacity 0 to 1
 - `.fade-in-up` - Fade in with upward movement
 - `.fade-in-down` - Fade in with downward movement
@@ -32,9 +33,11 @@ The following utility classes are available in [`src/styles/global.css`](src/sty
 - `.fade-in-right` - Fade in from right to left
 
 #### Scale Animations
+
 - `.scale-in` - Scale from 0.9 to 1
 
 #### Movement Animations
+
 - `.bounce` - Bounce effect
 - `.pulse` - Pulse opacity animation
 - `.shake` - Shake effect
@@ -42,6 +45,7 @@ The following utility classes are available in [`src/styles/global.css`](src/sty
 - `.float` - Floating effect
 
 #### Staggered Animations
+
 - `.stagger-1` through `.stagger-5` - Delay animations by 0.1s to 0.5s
 
 ### JavaScript Animation Functions

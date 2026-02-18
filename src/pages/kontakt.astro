@@ -1,6 +1,6 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
-import { Mail, Phone, MapPin } from '@lucide/astro';
+import PageLayout from "../layouts/PageLayout.astro";
+import { Mail, Phone, MapPin } from "@lucide/astro";
 ---
 
 <PageLayout
@@ -48,20 +48,35 @@ import { Mail, Phone, MapPin } from '@lucide/astro';
             <div class="contact-text">
               <h3>Email</h3>
               <p>
-                <a href="mailto:biuro@car-folie.pl" class="contact-link">biuro@car-folie.pl</a>
+                <a href="mailto:biuro@car-folie.pl" class="contact-link"
+                  >biuro@car-folie.pl</a
+                >
               </p>
             </div>
           </div>
         </div>
 
         <div class="contact-note">
-          <p><small>Zapraszamy do skorzystania z naszych usług w siedzibie, w Myślenice</small></p>
+          <p>
+            <small
+              >Zapraszamy do skorzystania z naszych usług w siedzibie, w
+              Myślenice</small>
+          </p>
         </div>
       </div>
 
       <div class="contact-form-wrapper">
         <h2>Wyślij wiadomość</h2>
-        <form class="contact-form" action="/api/contact" method="POST">
+        <form
+          class="contact-form"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="bot-field" />
+
           <div class="form-group">
             <label for="name">Imię i nazwisko</label>
             <input
@@ -114,8 +129,7 @@ import { Mail, Phone, MapPin } from '@lucide/astro';
               name="message"
               required
               placeholder="Opisz swoje potrzeby..."
-              rows="6"
-            ></textarea>
+              rows="6"></textarea>
           </div>
 
           <button type="submit" class="button button-full">

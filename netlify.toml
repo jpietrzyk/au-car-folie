@@ -1,0 +1,24 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+
+# Redirect API routes to Netlify functions (for future use with custom functions)
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Netlify Forms configuration
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+
+# Form submission handling (for future custom function)
+[[redirects]]
+  from = "/contact"
+  to = "/.netlify/functions/contact"
+  status = 200
+  force = true
+  conditions = {Role = ["admin"]}
