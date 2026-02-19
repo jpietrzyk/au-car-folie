@@ -148,7 +148,13 @@ image: {
 
 Extract and inline critical CSS for above-the-fold content to improve First Contentful Paint (FCP).
 
-### 2. Code Splitting
+### 2. Code Splitting ✅
+
+#### What Was Done: Lazy-loaded Lightbox Logic
+
+- Moved Lightbox runtime logic to [`src/scripts/lightbox.ts`](src/scripts/lightbox.ts)
+- Replaced eager inline Lightbox logic in [`Lightbox.astro`](src/components/Lightbox.astro) with dynamic import
+- Lightbox module now loads only when user clicks `.gallery-item`
 
 Implement dynamic imports for heavy components like Lightbox:
 
@@ -157,6 +163,12 @@ Implement dynamic imports for heavy components like Lightbox:
 const Lightbox = (await import('../components/Lightbox.astro')).default;
 ---
 ```
+
+#### Code Splitting Benefits
+
+- **Smaller Initial JS**: Lightbox logic is excluded from first-load JavaScript
+- **Faster TTI**: Less JS to parse/execute on non-gallery interactions
+- **Behavior Preserved**: Same lightbox UX, loaded on first actual usage
 
 ### 3. Caching Strategy
 
