@@ -100,26 +100,43 @@ image: {
 - **Responsive Generation**: Creates multiple sizes for different screen sizes
 - **Build-time Processing**: No runtime overhead
 
-## Next Steps (Optional)
+### 4. Font Optimization ✅
 
-### 1. Font Optimization
+#### What Was Done: Self-Hosted Fonts
 
-```bash
-# Install font optimization tools
-npm install --save-dev @fontsource/inter @fontsource/source-sans-pro
+- Installed `@fontsource/inter` and `@fontsource/source-sans-pro`
+- Moved font loading from external Google Fonts `<link>` to local CSS imports
+- Kept only required font weights used in the project
+
+#### Implementation
+
+```css
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/source-sans-pro/200.css";
+@import "@fontsource/source-sans-pro/300.css";
+@import "@fontsource/source-sans-pro/400.css";
+@import "@fontsource/source-sans-pro/600.css";
+@import "@fontsource/source-sans-pro/700.css";
+@import "@fontsource/source-sans-pro/900.css";
 ```
 
 #### Font Optimization Benefits
 
-- Self-host fonts for faster loading
-- Subset fonts to include only used characters
-- Use `font-display: swap` for faster text rendering
+- **Fewer External Requests**: Removed dependency on Google Fonts CDN calls
+- **Better Privacy**: No client font requests to third-party font endpoints
+- **Stable Rendering**: Controlled local font assets bundled with the app
+- **Improved Reliability**: Fonts load with site assets even under external CDN issues
 
-### 2. Critical CSS Extraction
+## Next Steps (Optional)
+
+### 1. Critical CSS Extraction
 
 Extract and inline critical CSS for above-the-fold content to improve First Contentful Paint (FCP).
 
-### 3. Code Splitting
+### 2. Code Splitting
 
 Implement dynamic imports for heavy components like Lightbox:
 
@@ -129,7 +146,7 @@ const Lightbox = (await import('../components/Lightbox.astro')).default;
 ---
 ```
 
-### 4. Caching Strategy
+### 3. Caching Strategy
 
 Add service worker for offline support and caching:
 
@@ -139,7 +156,7 @@ const CACHE_NAME = 'car-folie-v1';
 const urlsToCache = ['/images/logo.webp', '/images/banner.webp'];
 ```
 
-### 5. Performance Monitoring
+### 4. Performance Monitoring
 
 Set up Lighthouse CI for automated performance testing:
 

@@ -8,7 +8,7 @@ A modern, responsive static website for Car-folie.pl, built with Astro and Tailw
 - **Tailwind CSS 4.x** - Utility-first CSS framework
 - **TypeScript** - Type-safe development
 - **Lucide Icons** - Modern, lightweight icon library
-- **Google Fonts** - Inter & Source Sans Pro
+- **Fontsource (Self-hosted fonts)** - Inter & Source Sans Pro
 
 ## Project Structure
 
