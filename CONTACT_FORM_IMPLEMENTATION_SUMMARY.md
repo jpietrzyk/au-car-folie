@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-The Car-folie.pl website now has a fully functional, production-ready contact form with professional email delivery, validation, and user experience enhancements.
+The Car-folie.pl website now has a contact form with Netlify Function processing, validation, and user experience enhancements. SendGrid integration has been rolled back and is optional for a future phase.
 
 ## Implementation Status
 
@@ -10,11 +10,11 @@ The Car-folie.pl website now has a fully functional, production-ready contact fo
 |-------|-------------|--------|------|
 | **Phase 1** | Basic Netlify Forms Setup | ✅ Complete | 30 min |
 | **Phase 2** | Netlify Function for Enhanced Processing | ✅ Complete | 2-3 hours |
-| **Phase 3** | Email Service Integration (SendGrid) | ✅ Complete | 1-2 hours |
+| **Phase 3** | Email Service Integration (SendGrid) | ⏸️ Rolled back | optional |
 | **Phase 4** | Form Enhancements | ✅ Complete | 1 hour |
 | **Phase 5** | Testing & Deployment | 🔄 In Progress | 1-2 hours |
 
-**Total Estimated Time**: 5.5 - 8.5 hours
+**Total Estimated Time**: 4 - 6.5 hours (without external email provider)
 
 ## What's Been Implemented
 
@@ -44,25 +44,15 @@ The Car-folie.pl website now has a fully functional, production-ready contact fo
 - Request/response formatting
 - Security measures (XSS prevention)
 
-### ✅ Phase 3: Email Service Integration (SendGrid)
+### ⏸️ Phase 3: Email Service Integration (SendGrid)
 
-**Dependencies:**
-- `@sendgrid/mail@8.1.6` - SendGrid email client
+This phase is intentionally not active in the current implementation.
 
-**Features:**
-- Professional HTML email templates for site owner
-- Professional HTML email templates for auto-reply
-- Plain text email versions for accessibility
-- Email formatting with company branding
-- Automatic timestamp and metadata
-- Reply-to functionality for easy responses
-
-**Email Templates Include:**
-- Owner notification email with all form data
-- Auto-reply confirmation to submitter
-- Contact information in auto-reply
-- Professional styling with gradient headers
-- Mobile-responsive email design
+**Current state:**
+- Netlify Function endpoint remains available
+- Server-side validation remains active
+- Form flow and UX remain active
+- External provider integration can be added later (SendGrid/Resend/Mailgun)
 
 ### ✅ Phase 4: Form Enhancements
 
@@ -128,10 +118,6 @@ Netlify Function receives request
     ↓
 Server-side validation
     ↓
-Send email to site owner (SendGrid)
-    ↓
-Send auto-reply to submitter (SendGrid)
-    ↓
 Return success response
     ↓
 Show success message
@@ -143,7 +129,7 @@ Reset form
 
 - **Frontend**: Astro 4.x
 - **Backend**: Netlify Functions (Node.js)
-- **Email Service**: SendGrid
+- **Email Service**: Not configured (optional)
 - **Styling**: Tailwind CSS
 - **Validation**: Custom JavaScript + HTML5
 - **Type Safety**: TypeScript
@@ -162,7 +148,6 @@ car-folie-astro/
 ├── .env.example               # Environment variables template
 ├── netlify.toml               # Netlify configuration
 ├── CONTACT_FORM_IMPLEMENTATION_PLAN.md
-├── SENDGRID_API_KEY_GUIDE.md
 ├── NETLIFY_FORMS_SETUP.md
 ├── PHASE_5_TESTING_DEPLOYMENT.md
 ├── PHASE_5_CHECKLIST.md
@@ -190,13 +175,8 @@ car-folie-astro/
 - ✅ Screen reader friendly
 
 ### Email Features
-- ✅ Professional HTML templates
-- ✅ Plain text versions
-- ✅ Auto-reply to submitter
-- ✅ Owner notification
-- ✅ Reply-to functionality
-- ✅ Mobile-responsive emails
-- ✅ Company branding
+- ⏸️ External email provider integration is currently disabled
+- ✅ Netlify Function endpoint is ready for future provider integration
 
 ### Performance
 - ✅ Client-side validation reduces server load
@@ -210,18 +190,8 @@ car-folie-astro/
 ### Required Environment Variables
 
 ```env
-SENDGRID_API_KEY=SG.your_actual_api_key_here
-FROM_EMAIL=biuro@car-folie.pl
-TO_EMAIL=biuro@car-folie.pl
 SITE_URL=https://car-folie.pl
 ```
-
-### SendGrid Requirements
-
-- **API Key Type**: Web API Key (NOT SMTP Relay)
-- **Permissions**: Mail → Send, Mail → Mail Send
-- **Sender Verification**: biuro@car-folie.pl must be verified
-- **Free Tier**: 100 emails/day (3,000/month)
 
 ### Netlify Requirements
 
@@ -263,7 +233,6 @@ netlify deploy --prod
 ### Monitoring
 
 - **Netlify Dashboard**: Function logs, submission counts
-- **SendGrid Dashboard**: Email activity, delivery rates
 - **Browser DevTools**: Network requests, console errors
 
 ## Cost Analysis
@@ -274,9 +243,8 @@ netlify deploy --prod
 |---------|-----------|--------------|-------|
 | Netlify Forms | 100 submissions/month | $0 | Contact form only |
 | Netlify Functions | 125,000 invocations/month | $0 | Contact form only |
-| SendGrid | 100 emails/day (3,000/month) | $0 | 2 emails per submission |
 
-**Total Cost**: $0 (free tiers sufficient for most small businesses)
+**Total Cost**: $0 (for current Netlify-based setup)
 
 ### Paid Tiers (if needed)
 
@@ -284,7 +252,6 @@ netlify deploy --prod
 |---------|-----------|--------------|-------------|
 | Netlify Forms | Pro | $19/month | >100 submissions/month |
 | Netlify Functions | Pro | $19/month | >125,000 invocations/month |
-| SendGrid | Basic | $15/month | >3,000 emails/month |
 
 ## Maintenance
 
@@ -295,26 +262,21 @@ netlify deploy --prod
 
 **Weekly:**
 - Check Netlify function logs for errors
-- Review SendGrid email delivery rates
 - Monitor submission volume
 
 **Monthly:**
 - Review spam protection effectiveness
-- Check email templates for updates
-- Verify API key usage is within limits
+- Verify response times and error rates
 
 **Quarterly:**
-- Rotate SendGrid API key (security)
-- Review and update email templates
+- Review function logic and validation rules
 - Test form submission end-to-end
 
 ### Security Best Practices
 
-- ✅ Use restricted access API keys
-- ✅ Rotate API keys every 90 days
-- ✅ Never commit API keys to version control
-- ✅ Monitor API key usage
-- ✅ Use different keys for different environments
+- ✅ Keep secrets in environment variables (if provider is added)
+- ✅ Never commit secrets to version control
+- ✅ Review server-side validation rules regularly
 - ✅ Keep dependencies up to date
 
 ## Documentation
@@ -322,23 +284,19 @@ netlify deploy --prod
 ### Implementation Guides
 
 1. [`CONTACT_FORM_IMPLEMENTATION_PLAN.md`](CONTACT_FORM_IMPLEMENTATION_PLAN.md) - Complete implementation plan
-2. [`SENDGRID_API_KEY_GUIDE.md`](SENDGRID_API_KEY_GUIDE.md) - SendGrid API key setup
-3. [`NETLIFY_FORMS_SETUP.md`](NETLIFY_FORMS_SETUP.md) - Netlify Forms configuration
-4. [`PHASE_5_TESTING_DEPLOYMENT.md`](PHASE_5_TESTING_DEPLOYMENT.md) - Testing and deployment guide
-5. [`PHASE_5_CHECKLIST.md`](PHASE_5_CHECKLIST.md) - Quick reference checklist
+2. [`NETLIFY_FORMS_SETUP.md`](NETLIFY_FORMS_SETUP.md) - Netlify Forms configuration
+3. [`PHASE_5_TESTING_DEPLOYMENT.md`](PHASE_5_TESTING_DEPLOYMENT.md) - Testing and deployment guide
+4. [`PHASE_5_CHECKLIST.md`](PHASE_5_CHECKLIST.md) - Quick reference checklist
 
 ### Reference Documentation
 
 - [Netlify Functions Documentation](https://docs.netlify.com/functions/)
-- [SendGrid API Documentation](https://docs.sendgrid.com/api-reference)
-- [SendGrid Node.js Library](https://github.com/sendgrid/sendgrid-nodejs)
 - [Netlify Environment Variables](https://docs.netlify.com/site-deploys/environment-variables/)
 
 ## Success Criteria
 
 ✅ Contact form successfully submits data
-✅ Email notifications received by site owner
-✅ Auto-reply sent to form submitter
+⏸️ Email notifications via external provider (optional future step)
 ✅ Spam protection working effectively
 ✅ Mobile-friendly submission experience
 ✅ Accessible form with proper validation
@@ -350,9 +308,9 @@ netlify deploy --prod
 ### Immediate (Phase 5)
 - [ ] Complete local testing with Netlify Dev
 - [ ] Deploy to Netlify
-- [ ] Configure environment variables
+- [ ] Configure environment variables (if email provider is enabled)
 - [ ] Test on production
-- [ ] Verify email delivery
+- [ ] Verify function response and logs
 
 ### Short-term (After Deployment)
 - [ ] Monitor form submissions for 1 week
@@ -374,32 +332,30 @@ netlify deploy --prod
 
 | Issue | Solution |
 |-------|----------|
-| Form fails locally | Check `.env` file, verify API key, check Netlify Dev logs |
+| Form fails locally | Check `.env` file and Netlify Dev logs |
 | Form fails on production | Verify Netlify environment variables, redeploy site |
-| No emails received | Check spam folder, verify sender email in SendGrid, check SendGrid Activity |
-| No auto-reply | Check SendGrid Activity for both emails, verify submitter email is valid |
+| No notifications | Expected when no external provider is configured |
 | High spam | Consider adding CAPTCHA, implement rate limiting |
 
 ### Support Resources
 
 1. Check Phase 5 testing guide: [`PHASE_5_TESTING_DEPLOYMENT.md`](PHASE_5_TESTING_DEPLOYMENT.md)
 2. Review Netlify function logs
-3. Check SendGrid Activity dashboard
-4. Review error messages in browser console
+3. Review error messages in browser console
 
 ## Conclusion
 
-The contact form implementation is now complete and ready for deployment. All phases (1-4) have been successfully implemented with professional features, security measures, and user experience enhancements. Phase 5 (Testing & Deployment) is in progress and can be completed by following the provided guides.
+The contact form implementation with Netlify Functions is ready for deployment. SendGrid-specific implementation is intentionally rolled back, while form UX and server-side validation remain in place. Phase 5 (Testing & Deployment) is in progress and can be completed by following the provided guides.
 
 The implementation follows best practices for:
 - Security (XSS prevention, validation, spam protection)
 - User Experience (loading states, error handling, accessibility)
-- Performance (client-side validation, optimized emails)
+- Performance (client-side validation, lightweight server-side handling)
 - Maintainability (clean code, documentation, monitoring)
 
 ---
 
 **Implementation Status**: 🔄 Phase 5 In Progress
-**Overall Progress**: 80% Complete (4/5 phases done)
+**Overall Progress**: 75% Complete (Phase 3 rolled back, 3 core phases active)
 **Estimated Time to Complete**: 1-2 hours
 **Last Updated**: 2026-02-18
