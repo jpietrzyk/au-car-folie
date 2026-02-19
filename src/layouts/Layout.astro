@@ -181,5 +181,16 @@ const structuredData = {
       import { initAnimations } from "../scripts/animations.ts";
       initAnimations();
     </script>
+
+    <!-- Service worker registration -->
+    <script is:inline>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch((error) => {
+            console.warn("Service worker registration failed:", error);
+          });
+        });
+      }
+    </script>
   </body>
 </html>

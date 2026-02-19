@@ -170,7 +170,22 @@ const Lightbox = (await import('../components/Lightbox.astro')).default;
 - **Faster TTI**: Less JS to parse/execute on non-gallery interactions
 - **Behavior Preserved**: Same lightbox UX, loaded on first actual usage
 
-### 3. Caching Strategy
+### 3. Caching Strategy ✅
+
+#### What Was Done: Service Worker Caching MVP
+
+- Added [`public/sw.js`](public/sw.js) with cache versioning and install/activate lifecycle
+- Added service worker registration in [`Layout.astro`](src/layouts/Layout.astro)
+- Implemented cache behavior:
+  - navigation: network-first with cached fallback
+  - images: cache-first
+  - other same-origin GET assets: network-first with cache fallback
+
+#### Caching Strategy Benefits
+
+- **Offline Resilience**: Recently visited pages can still load with cached fallback
+- **Faster Repeat Visits**: Static assets and images are served from cache
+- **Controlled Cache Updates**: Versioned cache and cleanup of old cache entries
 
 Add service worker for offline support and caching:
 
@@ -180,7 +195,29 @@ const CACHE_NAME = 'car-folie-v1';
 const urlsToCache = ['/images/logo.webp', '/images/banner.webp'];
 ```
 
-### 4. Performance Monitoring
+### 4. Performance Monitoring ✅
+
+#### What Was Done: Lighthouse CI Automation
+
+- Added GitHub Actions workflow: [`.github/workflows/lighthouse.yml`](.github/workflows/lighthouse.yml)
+- Added Lighthouse CI config: [`.lighthouserc.json`](.lighthouserc.json)
+- Configured Action-based execution with `treosh/lighthouse-ci-action`
+- Removed local `@lhci/cli` dependency to reduce vulnerable transitive packages
+
+#### Monitoring Coverage
+
+- Runs on `push` and `pull_request`
+- Audits selected routes:
+  - `http://localhost/`
+  - `http://localhost/kontakt/`
+  - `http://localhost/galeria/`
+- Uses `lighthouse:recommended` assertions with warning thresholds
+
+#### Performance Monitoring Benefits
+
+- **Automated Regression Checks**: Performance changes are validated in CI
+- **Consistent Baseline**: Same routes and assertions on every run
+- **Actionable Reports**: Temporary public Lighthouse reports available per run
 
 Set up Lighthouse CI for automated performance testing:
 
