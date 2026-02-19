@@ -100,26 +100,61 @@ image: {
 - **Responsive Generation**: Creates multiple sizes for different screen sizes
 - **Build-time Processing**: No runtime overhead
 
-## Next Steps (Optional)
+### 4. Font Optimization ✅
 
-### 1. Font Optimization
+#### What Was Done: Self-Hosted Fonts
 
-```bash
-# Install font optimization tools
-npm install --save-dev @fontsource/inter @fontsource/source-sans-pro
+- Installed `@fontsource/inter` and `@fontsource/source-sans-pro`
+- Moved font loading from external Google Fonts `<link>` to local CSS imports
+- Kept only required font weights used in the project
+
+#### Implementation
+
+```css
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/source-sans-pro/200.css";
+@import "@fontsource/source-sans-pro/300.css";
+@import "@fontsource/source-sans-pro/400.css";
+@import "@fontsource/source-sans-pro/600.css";
+@import "@fontsource/source-sans-pro/700.css";
+@import "@fontsource/source-sans-pro/900.css";
 ```
 
 #### Font Optimization Benefits
 
-- Self-host fonts for faster loading
-- Subset fonts to include only used characters
-- Use `font-display: swap` for faster text rendering
+- **Fewer External Requests**: Removed dependency on Google Fonts CDN calls
+- **Better Privacy**: No client font requests to third-party font endpoints
+- **Stable Rendering**: Controlled local font assets bundled with the app
+- **Improved Reliability**: Fonts load with site assets even under external CDN issues
 
-### 2. Critical CSS Extraction
+## Next Steps (Optional)
+
+### 1. Critical CSS Extraction ✅
+
+#### What Was Done: Manual Critical CSS
+
+- Added [`src/styles/critical.css`](src/styles/critical.css) with above-the-fold base styles
+- Inlined critical CSS in [`Layout.astro`](src/layouts/Layout.astro) `<head>` using `?raw` import
+- Kept full stylesheet loading via `global.css` for complete styling after first paint
+
+#### Critical CSS Benefits
+
+- **Faster First Paint**: Core layout and typography are available immediately
+- **Better FCP/LCP Stability**: Reduces flash of unstyled content before full CSS loads
+- **Low-Risk Rollout**: Minimal and controlled critical subset, no bundler rewrites
 
 Extract and inline critical CSS for above-the-fold content to improve First Contentful Paint (FCP).
 
-### 3. Code Splitting
+### 2. Code Splitting ✅
+
+#### What Was Done: Lazy-loaded Lightbox Logic
+
+- Moved Lightbox runtime logic to [`src/scripts/lightbox.ts`](src/scripts/lightbox.ts)
+- Replaced eager inline Lightbox logic in [`Lightbox.astro`](src/components/Lightbox.astro) with dynamic import
+- Lightbox module now loads only when user clicks `.gallery-item`
 
 Implement dynamic imports for heavy components like Lightbox:
 
@@ -129,7 +164,28 @@ const Lightbox = (await import('../components/Lightbox.astro')).default;
 ---
 ```
 
-### 4. Caching Strategy
+#### Code Splitting Benefits
+
+- **Smaller Initial JS**: Lightbox logic is excluded from first-load JavaScript
+- **Faster TTI**: Less JS to parse/execute on non-gallery interactions
+- **Behavior Preserved**: Same lightbox UX, loaded on first actual usage
+
+### 3. Caching Strategy ✅
+
+#### What Was Done: Service Worker Caching MVP
+
+- Added [`public/sw.js`](public/sw.js) with cache versioning and install/activate lifecycle
+- Added service worker registration in [`Layout.astro`](src/layouts/Layout.astro)
+- Implemented cache behavior:
+  - navigation: network-first with cached fallback
+  - images: cache-first
+  - other same-origin GET assets: network-first with cache fallback
+
+#### Caching Strategy Benefits
+
+- **Offline Resilience**: Recently visited pages can still load with cached fallback
+- **Faster Repeat Visits**: Static assets and images are served from cache
+- **Controlled Cache Updates**: Versioned cache and cleanup of old cache entries
 
 Add service worker for offline support and caching:
 
@@ -139,7 +195,29 @@ const CACHE_NAME = 'car-folie-v1';
 const urlsToCache = ['/images/logo.webp', '/images/banner.webp'];
 ```
 
-### 5. Performance Monitoring
+### 4. Performance Monitoring ✅
+
+#### What Was Done: Lighthouse CI Automation
+
+- Added GitHub Actions workflow: [`.github/workflows/lighthouse.yml`](.github/workflows/lighthouse.yml)
+- Added Lighthouse CI config: [`.lighthouserc.json`](.lighthouserc.json)
+- Configured Action-based execution with `treosh/lighthouse-ci-action`
+- Removed local `@lhci/cli` dependency to reduce vulnerable transitive packages
+
+#### Monitoring Coverage
+
+- Runs on `push` and `pull_request`
+- Audits selected routes:
+  - `http://localhost/`
+  - `http://localhost/kontakt/`
+  - `http://localhost/galeria/`
+- Uses `lighthouse:recommended` assertions with warning thresholds
+
+#### Performance Monitoring Benefits
+
+- **Automated Regression Checks**: Performance changes are validated in CI
+- **Consistent Baseline**: Same routes and assertions on every run
+- **Actionable Reports**: Temporary public Lighthouse reports available per run
 
 Set up Lighthouse CI for automated performance testing:
 

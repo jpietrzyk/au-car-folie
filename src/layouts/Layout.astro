@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import criticalCss from "../styles/critical.css?raw";
 
 interface Props {
   title?: string;
@@ -114,13 +115,8 @@ const structuredData = {
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#0173ff" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Critical CSS -->
+    <style is:inline set:html={criticalCss}></style>
 
     <!-- Structured Data (JSON-LD) -->
     <script
@@ -184,6 +180,17 @@ const structuredData = {
     <script>
       import { initAnimations } from "../scripts/animations.ts";
       initAnimations();
+    </script>
+
+    <!-- Service worker registration -->
+    <script is:inline>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch((error) => {
+            console.warn("Service worker registration failed:", error);
+          });
+        });
+      }
     </script>
   </body>
 </html>

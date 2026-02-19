@@ -1,0 +1,49 @@
+:root {
+  --color-primary: #4da6ff;
+  --color-bg-light: #ffffff;
+  --color-text-main: #333333;
+}
+
+:root.dark {
+  --color-bg-light: #121212;
+  --color-text-main: #e0e0e0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-main);
+  font-family: "Source Sans Pro", "Inter", sans-serif;
+  line-height: 1.6;
+}
+
+main {
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+}
