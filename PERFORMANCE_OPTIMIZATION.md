@@ -132,7 +132,19 @@ image: {
 
 ## Next Steps (Optional)
 
-### 1. Critical CSS Extraction
+### 1. Critical CSS Extraction ✅
+
+#### What Was Done: Manual Critical CSS
+
+- Added [`src/styles/critical.css`](src/styles/critical.css) with above-the-fold base styles
+- Inlined critical CSS in [`Layout.astro`](src/layouts/Layout.astro) `<head>` using `?raw` import
+- Kept full stylesheet loading via `global.css` for complete styling after first paint
+
+#### Critical CSS Benefits
+
+- **Faster First Paint**: Core layout and typography are available immediately
+- **Better FCP/LCP Stability**: Reduces flash of unstyled content before full CSS loads
+- **Low-Risk Rollout**: Minimal and controlled critical subset, no bundler rewrites
 
 Extract and inline critical CSS for above-the-fold content to improve First Contentful Paint (FCP).
 
