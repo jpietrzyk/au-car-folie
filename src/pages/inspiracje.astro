@@ -1,6 +1,7 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
-import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
+import PageLayout from "../layouts/PageLayout.astro";
+import { Lightbulb, Star, Palette, Image as ImageIcon } from "@lucide/astro";
+import Lightbox from "../components/Lightbox.astro";
 ---
 
 <PageLayout
@@ -16,7 +17,230 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
 
       <div class="content-section">
         <p>
-          Zobacz nasze realizacje i znajdź inspirację dla swojego projektu. Prezentujemy różne style, kolory i zastosowania folii samochodowych.
+          Inspiracje samochodów oklejonych folią APA. Jesteśmy jedynym
+          oficjalnym dystrybutorem tej włoskiej folii w Polsce.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h3>Galeria inspiracji</h3>
+        <div class="inspiracje-gallery">
+          <a
+            href="/images/image-1.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 1"
+          >
+            <img
+              src="/images/thumb-1.jpg"
+              alt="Inspiracja 1"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-2.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 2"
+          >
+            <img
+              src="/images/thumb-2.jpg"
+              alt="Inspiracja 2"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-3.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 3"
+          >
+            <img
+              src="/images/thumb-3.jpg"
+              alt="Inspiracja 3"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-4.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 4"
+          >
+            <img
+              src="/images/thumb-4.jpg"
+              alt="Inspiracja 4"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-5.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 5"
+          >
+            <img
+              src="/images/thumb-5.jpg"
+              alt="Inspiracja 5"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-6.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 6"
+          >
+            <img
+              src="/images/thumb-6.jpg"
+              alt="Inspiracja 6"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-7.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 7"
+          >
+            <img
+              src="/images/thumb-7.jpg"
+              alt="Inspiracja 7"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-8.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 8"
+          >
+            <img
+              src="/images/thumb-8.jpg"
+              alt="Inspiracja 8"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-9.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 9"
+          >
+            <img
+              src="/images/thumb-9.jpg"
+              alt="Inspiracja 9"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-10.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 10"
+          >
+            <img
+              src="/images/thumb-10.jpg"
+              alt="Inspiracja 10"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-11.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 11"
+          >
+            <img
+              src="/images/thumb-11.jpg"
+              alt="Inspiracja 11"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-12.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 12"
+          >
+            <img
+              src="/images/thumb-12.jpg"
+              alt="Inspiracja 12"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-13.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 13"
+          >
+            <img
+              src="/images/thumb-13.jpg"
+              alt="Inspiracja 13"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-14.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 14"
+          >
+            <img
+              src="/images/thumb-14.jpg"
+              alt="Inspiracja 14"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-15.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 15"
+          >
+            <img
+              src="/images/thumb-15.jpg"
+              alt="Inspiracja 15"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-16.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 16"
+          >
+            <img
+              src="/images/thumb-16.jpg"
+              alt="Inspiracja 16"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-17.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 17"
+          >
+            <img
+              src="/images/thumb-17.jpg"
+              alt="Inspiracja 17"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-18.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 18"
+          >
+            <img
+              src="/images/thumb-18.jpg"
+              alt="Inspiracja 18"
+              class="inspiracje-image"
+            />
+          </a>
+          <a
+            href="/images/image-19.jpg"
+            class="gallery-item"
+            data-title="Inspiracja 19"
+          >
+            <img
+              src="/images/thumb-19.jpg"
+              alt="Inspiracja 19"
+              class="inspiracje-image"
+            />
+          </a>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <p>
+          Zobacz nasze realizacje i znajdź inspirację dla swojego projektu.
+          Prezentujemy różne style, kolory i zastosowania folii samochodowych.
         </p>
       </div>
 
@@ -25,57 +249,80 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
         <div class="styles-grid">
           <div class="style-card">
             <div class="style-preview">
-              <div class="style-color" style="background: linear-gradient(135deg, #1a1a2e, #16213e);"></div>
+              <div
+                class="style-color"
+                style="background: linear-gradient(135deg, #1a1a2e, #16213e);"
+              >
+              </div>
             </div>
             <h4>Matowe wykończenia</h4>
             <p>
-              Eleganckie, satynowe wykończenie bez połysku. Idealne dla luksusowych i sportowych samochodów.
+              Eleganckie, satynowe wykończenie bez połysku. Idealne dla
+              luksusowych i sportowych samochodów.
             </p>
           </div>
 
           <div class="style-card">
             <div class="style-preview">
-              <div class="style-color" style="background: linear-gradient(135deg, #2563eb, #1d4ed8);"></div>
+              <div
+                class="style-color"
+                style="background: linear-gradient(135deg, #2563eb, #1d4ed8);"
+              >
+              </div>
             </div>
             <h4>Błyszczące wykończenia</h4>
             <p>
-              Klasyczne, lśniące wykończenie. Najpopularniejszy wybór dla większości kolorów.
+              Klasyczne, lśniące wykończenie. Najpopularniejszy wybór dla
+              większości kolorów.
             </p>
           </div>
 
           <div class="style-card">
             <div class="style-preview">
-              <div class="style-color" style="background: linear-gradient(135deg, #7c3aed, #64b5f6);"></div>
+              <div
+                class="style-color"
+                style="background: linear-gradient(135deg, #7c3aed, #64b5f6);"
+              >
+              </div>
             </div>
             <h4>Metaliczne efekty</h4>
-            <p>
-              Z drobinkami metalicznymi, tworzącymi efekt głębi i połysku.
-            </p>
+            <p>Z drobinkami metalicznymi, tworzącymi efekt głębi i połysku.</p>
           </div>
 
           <div class="style-card">
             <div class="style-preview">
-              <div class="style-color" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
+              <div
+                class="style-color"
+                style="background: linear-gradient(135deg, #f093fb, #f5576c);"
+              >
+              </div>
             </div>
             <h4>Perłowe wykończenia</h4>
             <p>
-              Delikatny perłowy blask, który zmienia się w zależności od kąta padania światła.
+              Delikatny perłowy blask, który zmienia się w zależności od kąta
+              padania światła.
             </p>
           </div>
 
           <div class="style-card">
             <div class="style-preview">
-              <div class="style-color" style="background: linear-gradient(135deg, #c0c0c0, #1a1a1a);"></div>
+              <div
+                class="style-color"
+                style="background: linear-gradient(135deg, #c0c0c0, #1a1a1a);"
+              >
+              </div>
             </div>
             <h4>Chromowane efekty</h4>
-            <p>
-              Efekt lustrzanego chromu. Idealne do akcentów i detali.
-            </p>
+            <p>Efekt lustrzanego chromu. Idealne do akcentów i detali.</p>
           </div>
 
           <div class="style-card">
             <div class="style-preview">
-              <div class="style-color" style="background: linear-gradient(135deg, #2d3436, #000000);"></div>
+              <div
+                class="style-color"
+                style="background: linear-gradient(135deg, #2d3436, #000000);"
+              >
+              </div>
             </div>
             <h4>Carbonowe wykończenia</h4>
             <p>
@@ -99,49 +346,37 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
           <div class="color-item">
             <div class="color-swatch" style="background: #ffffff;"></div>
             <h4>Biały perłowy</h4>
-            <p>
-              Elegancki biały z subtelnym perłowym efektem.
-            </p>
+            <p>Elegancki biały z subtelnym perłowym efektem.</p>
           </div>
 
           <div class="color-item">
             <div class="color-swatch" style="background: #c0c0c0;"></div>
             <h4>Szary metaliczny</h4>
-            <p>
-              Nowoczesny szary z metalicznym efektem.
-            </p>
+            <p>Nowoczesny szary z metalicznym efektem.</p>
           </div>
 
           <div class="color-item">
             <div class="color-swatch" style="background: #dc2626;"></div>
             <h4>Czerwony błyszczący</h4>
-            <p>
-              Wyrazisty kolor, który przyciąga uwagę.
-            </p>
+            <p>Wyrazisty kolor, który przyciąga uwagę.</p>
           </div>
 
           <div class="color-item">
             <div class="color-swatch" style="background: #2563eb;"></div>
             <h4>Niebieski metaliczny</h4>
-            <p>
-              Sportowy, dynamiczny kolor z efektem głębi.
-            </p>
+            <p>Sportowy, dynamiczny kolor z efektem głębi.</p>
           </div>
 
           <div class="color-item">
             <div class="color-swatch" style="background: #f59e0b;"></div>
             <h4>Złoty metaliczny</h4>
-            <p>
-              Luksusowy, elegancki kolor z subtelnym połyskiem.
-            </p>
+            <p>Luksusowy, elegancki kolor z subtelnym połyskiem.</p>
           </div>
 
           <div class="color-item">
             <div class="color-swatch" style="background: #10b981;"></div>
             <h4>Zielony matowy</h4>
-            <p>
-              Unikalny, ekologiczny kolor. Rzadko spotykany na drogach.
-            </p>
+            <p>Unikalny, ekologiczny kolor. Rzadko spotykany na drogach.</p>
           </div>
         </div>
       </div>
@@ -155,7 +390,8 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
             </div>
             <h4>Pełne oklejanie</h4>
             <p>
-              Zmiana koloru całego pojazdu. Maksymalna ochrona lakieru i nowy wygląd.
+              Zmiana koloru całego pojazdu. Maksymalna ochrona lakieru i nowy
+              wygląd.
             </p>
           </div>
 
@@ -184,9 +420,7 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
               <Star size={32} />
             </div>
             <h4>Floty pojazdów</h4>
-            <p>
-              Spójny wizerunek marki na całej flocie pojazdów.
-            </p>
+            <p>Spójny wizerunek marki na całej flocie pojazdów.</p>
           </div>
         </div>
       </div>
@@ -201,7 +435,8 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
             <div class="trend-content">
               <h4>Matowe wykończenia</h4>
               <p>
-                Coraz większa popularność matowych wykończeń. Elegancja i subtelność zyskują na znaczeniu.
+                Coraz większa popularność matowych wykończeń. Elegancja i
+                subtelność zyskują na znaczeniu.
               </p>
             </div>
           </div>
@@ -213,7 +448,8 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
             <div class="trend-content">
               <h4>Dwukolorowe projekty</h4>
               <p>
-                Kreatywne łączenie dwóch kolorów na jednym pojeździe. Unikalne i przyciągające wzory.
+                Kreatywne łączenie dwóch kolorów na jednym pojeździe. Unikalne i
+                przyciągające wzory.
               </p>
             </div>
           </div>
@@ -225,7 +461,8 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
             <div class="trend-content">
               <h4>Chromowane akcenty</h4>
               <p>
-                Subtelne chromowane elementy na ciemnych kolorach. Luksusowy i nowoczesny efekt.
+                Subtelne chromowane elementy na ciemnych kolorach. Luksusowy i
+                nowoczesny efekt.
               </p>
             </div>
           </div>
@@ -237,7 +474,8 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
             <div class="trend-content">
               <h4>Carbonowe wnętrza</h4>
               <p>
-                Wzór włókna węglowego na wnętrznych elementach. Sportowy i dynamiczny charakter.
+                Wzór włókna węglowego na wnętrznych elementach. Sportowy i
+                dynamiczny charakter.
               </p>
             </div>
           </div>
@@ -248,11 +486,15 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
         <div class="cta-section">
           <h3>Zainspirowany?</h3>
           <p>
-            Zobacz naszą galerię realizacji lub skontaktuj się z nami, aby omówić swój projekt.
+            Zobacz naszą galerię realizacji lub skontaktuj się z nami, aby
+            omówić swój projekt.
           </p>
           <div class="cta-buttons">
             <a href="/galeria" class="button">
-              <ImageIcon size={20} style="display: inline; vertical-align: middle;" />
+              <ImageIcon
+                size={20}
+                style="display: inline; vertical-align: middle;"
+              />
               Zobacz galerię
             </a>
             <a href="/kontakt" class="button button-secondary">
@@ -263,6 +505,7 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
       </div>
     </div>
   </div>
+  <Lightbox />
 </PageLayout>
 
 <style>
@@ -294,6 +537,36 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--color-primary);
+  }
+
+  .inspiracje-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .gallery-item {
+    display: block;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.05);
+  }
+
+  .inspiracje-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease;
+  }
+
+  .gallery-item:hover .inspiracje-image {
+    opacity: 0.8;
   }
 
   .styles-grid {
@@ -463,7 +736,11 @@ import { Lightbulb, Star, Palette, Image as ImageIcon } from '@lucide/astro';
   }
 
   .cta-section {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-primary-dark)
+    );
     border-radius: 0.5rem;
     padding: 3rem;
     text-align: center;
