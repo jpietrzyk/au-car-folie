@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-The Car-folie.pl website now has a contact form with Netlify Function processing, validation, and user experience enhancements. SendGrid integration has been rolled back and is optional for a future phase.
+The Car-folie.pl website now has a contact form with Netlify Function processing, server-side validation, Airtable persistence, idempotency (duplicate protection), fallback logging, and response-code-based UX handling.
 
 ## Implementation Status
 
@@ -10,180 +10,136 @@ The Car-folie.pl website now has a contact form with Netlify Function processing
 |-------|-------------|--------|------|
 | **Phase 1** | Basic Netlify Forms Setup | ✅ Complete | 30 min |
 | **Phase 2** | Netlify Function for Enhanced Processing | ✅ Complete | 2-3 hours |
-| **Phase 3** | Email Service Integration (SendGrid) | ⏸️ Rolled back | optional |
+| **Phase 3** | Airtable Integration (Core) | ✅ Complete | 6-9 hours |
 | **Phase 4** | Form Enhancements | ✅ Complete | 1 hour |
-| **Phase 5** | Testing & Deployment | 🔄 In Progress | 1-2 hours |
+| **Phase 5** | Testing & Rollout (Airtable) | 🔄 In Progress | 2-4 hours |
 
-**Total Estimated Time**: 4 - 6.5 hours (without external email provider)
+**Total Estimated Time**: 11 - 17 hours (including Airtable integration and rollout)
 
 ## What's Been Implemented
 
 ### ✅ Phase 1: Basic Netlify Forms Setup
 
 **Files Created/Modified:**
-- [`src/pages/kontakt.astro`](src/pages/kontakt.astro) - Contact form with Netlify attributes
+- [`src/pages/kontakt.astro`](src/pages/kontakt.astro) - Contact form page
 - [`netlify.toml`](netlify.toml) - Netlify configuration
 - [`.env.example`](.env.example) - Environment variables template
 
 **Features:**
-- Netlify Forms integration with `data-netlify="true"`
-- Honeypot spam protection with `netlify-honeypot="bot-field"`
-- Hidden form-name field for form identification
-- Netlify configuration for functions directory
+- Netlify Forms integration (`data-netlify="true"`)
+- Honeypot spam protection (`netlify-honeypot="bot-field"`)
+- Hidden form-name field
+- Netlify functions directory configuration
 
 ### ✅ Phase 2: Netlify Function for Enhanced Processing
 
-**Files Created:**
-- [`netlify/functions/contact.ts`](netlify/functions/contact.ts) - Serverless function (450 lines)
+**Files Created/Modified:**
+- [`netlify/functions/contact.ts`](netlify/functions/contact.ts)
 
 **Features:**
-- Custom form processing logic
+- Custom form processing endpoint (`/.netlify/functions/contact`)
 - Server-side validation
-- Error handling with detailed error messages
-- CORS support for cross-origin requests
-- Request/response formatting
-- Security measures (XSS prevention)
+- Unified API response shape
+- CORS handling
+- Input sanitization and error handling
 
-### ⏸️ Phase 3: Email Service Integration (SendGrid)
+### ✅ Phase 3: Airtable Integration (Core)
 
-This phase is intentionally not active in the current implementation.
+**Files Created/Modified:**
+- [`netlify/functions/contact.ts`](netlify/functions/contact.ts)
+- [`.env.example`](.env.example)
+- [`AIRTABLE_INTEGRATION_PLAN.md`](AIRTABLE_INTEGRATION_PLAN.md)
+- [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)
 
-**Current state:**
-- Netlify Function endpoint remains available
-- Server-side validation remains active
-- Form flow and UX remain active
-- External provider integration can be added later (SendGrid/Resend/Mailgun)
+**Features:**
+- Airtable write integration with timeout and retry
+- Deterministic `submissionId` for idempotency
+- Duplicate detection (`accepted_duplicate`)
+- Fallback dead-letter structured logs (`accepted_queued`) when Airtable is unavailable
+- Error mapping for Airtable conditions (`airtable_auth`, `airtable_rate_limit`, `airtable_timeout`, `airtable_unavailable`)
+- Feature-flag control via `AIRTABLE_ENABLED`
 
 ### ✅ Phase 4: Form Enhancements
 
 **Files Modified:**
-- [`src/pages/kontakt.astro`](src/pages/kontakt.astro) - Enhanced form functionality
+- [`src/pages/kontakt.astro`](src/pages/kontakt.astro)
 
-**Client-Side Validation:**
-- Real-time email validation with regex
-- Phone number format validation
-- Required field validation
-- Character limits (name: 2+ chars, message: 10+ chars)
-- Subject selection validation
-- Field-specific error messages
+**Features:**
+- Client-side field validation
+- Loading state and submit lock
+- Response-code-aware UX messages (`accepted`, `accepted_duplicate`, `accepted_queued`, `validation_error`)
+- Improved accessibility (`aria-live`, field-level errors)
 
-**Loading States:**
-- Spinner animation during submission
-- Submit button disabled while processing
-- Visual feedback for user
+### 🔄 Phase 5: Testing & Rollout
 
-**Success/Error Handling:**
-- Success message with confirmation
-- Error messages with retry option
-- Form reset on success
-- ARIA attributes for accessibility
-- Error message display/hide functionality
+**Documentation Created/Updated:**
+- [`PHASE_5_TESTING_DEPLOYMENT.md`](PHASE_5_TESTING_DEPLOYMENT.md)
+- [`PHASE_5_CHECKLIST.md`](PHASE_5_CHECKLIST.md)
+- [`AIRTABLE_INTEGRATION_PLAN.md`](AIRTABLE_INTEGRATION_PLAN.md)
+- [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)
 
-**Accessibility Features:**
-- Proper ARIA labels and roles
-- Keyboard navigation support
-- Screen reader friendly error messages
-- Focus management
-- `aria-live` regions for dynamic content
-
-### 🔄 Phase 5: Testing & Deployment
-
-**Documentation Created:**
-- [`PHASE_5_TESTING_DEPLOYMENT.md`](PHASE_5_TESTING_DEPLOYMENT.md) - Comprehensive testing guide
-- [`PHASE_5_CHECKLIST.md`](PHASE_5_CHECKLIST.md) - Quick reference checklist
-
-**Testing Coverage:**
+**Testing Coverage (target):**
 - Local testing with Netlify Dev
-- Production deployment testing
-- Email delivery verification
-- Performance testing
-- Mobile responsiveness testing
-- Accessibility testing
-- Spam protection testing
+- Preview and production rollout checks
+- API contract verification (`success`, `code`, `message`, `submissionId`)
+- Scenario matrix verification (`accepted`, `accepted_duplicate`, `accepted_queued`, `validation_error`)
+- Fallback and observability verification in logs
 
 ## Technical Architecture
 
 ### Form Submission Flow
 
-```
+```text
 User submits form
     ↓
-Client-side validation (JavaScript)
+Client-side validation
     ↓
-Show loading state
-    ↓
-Send POST to /.netlify/functions/contact
-    ↓
-Netlify Function receives request
+POST /.netlify/functions/contact
     ↓
 Server-side validation
     ↓
-Return success response
+Generate deterministic submissionId
     ↓
-Show success message
+Check duplicate in Airtable
     ↓
-Reset form
+Create record in Airtable (timeout + retry)
+    ↓
+Fallback to queued flow when Airtable is unavailable
+    ↓
+Return API response code
+    ↓
+Show user message + reset form (on success)
 ```
 
 ### Technology Stack
 
-- **Frontend**: Astro 4.x
+- **Frontend**: Astro 5.x
 - **Backend**: Netlify Functions (Node.js)
-- **Email Service**: Not configured (optional)
+- **Data Store**: Airtable REST API
 - **Styling**: Tailwind CSS
-- **Validation**: Custom JavaScript + HTML5
+- **Validation**: Custom JavaScript + HTML5 + server-side validation
 - **Type Safety**: TypeScript
-
-### File Structure
-
-```
-car-folie-astro/
-├── netlify/
-│   └── functions/
-│       └── contact.ts          # Netlify function (450 lines)
-├── src/
-│   └── pages/
-│       └── kontakt.astro       # Contact form (543 lines)
-├── .env                        # Environment variables (gitignored)
-├── .env.example               # Environment variables template
-├── netlify.toml               # Netlify configuration
-├── CONTACT_FORM_IMPLEMENTATION_PLAN.md
-├── NETLIFY_FORMS_SETUP.md
-├── PHASE_5_TESTING_DEPLOYMENT.md
-├── PHASE_5_CHECKLIST.md
-└── CONTACT_FORM_IMPLEMENTATION_SUMMARY.md
-```
 
 ## Key Features
 
 ### Security
-- ✅ XSS prevention with HTML escaping
 - ✅ Server-side validation
+- ✅ Basic input sanitization
 - ✅ Honeypot spam protection
-- ✅ HTTPS enforced (automatic on Netlify)
-- ✅ Environment variables for sensitive data
-- ✅ CORS configuration
-- ✅ Rate limiting ready (can be added)
+- ✅ Secrets in environment variables
+- ✅ No sensitive values in repository
+
+### Reliability
+- ✅ Idempotency via deterministic `submissionId`
+- ✅ Duplicate protection
+- ✅ Airtable timeout + retry
+- ✅ Fallback dead-letter logs to avoid lead loss in transient outages
 
 ### User Experience
 - ✅ Real-time validation feedback
-- ✅ Loading states with spinner
-- ✅ Success/error messages
-- ✅ Form reset after success
-- ✅ Mobile-responsive design
-- ✅ Keyboard accessible
-- ✅ Screen reader friendly
-
-### Email Features
-- ⏸️ External email provider integration is currently disabled
-- ✅ Netlify Function endpoint is ready for future provider integration
-
-### Performance
-- ✅ Client-side validation reduces server load
-- ✅ Optimized email templates
-- ✅ Fast form submission (< 3 seconds)
-- ✅ Lazy loading support
-- ✅ Minimal dependencies
+- ✅ Loading states
+- ✅ Contextual success/error messaging
+- ✅ Accessible form interactions
 
 ## Configuration
 
@@ -191,171 +147,77 @@ car-folie-astro/
 
 ```env
 SITE_URL=https://car-folie.pl
+AIRTABLE_ENABLED=false
+AIRTABLE_API_KEY=your_airtable_api_key_here
+AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
+AIRTABLE_TABLE_NAME=ContactSubmissions
+AIRTABLE_TIMEOUT_MS=4500
+AIRTABLE_MAX_RETRIES=1
 ```
-
-### Netlify Requirements
-
-- **Account**: Free Netlify account
-- **Environment Variables**: Configure in Netlify dashboard
-- **Functions**: Automatically deployed from `netlify/functions/`
-- **Build Command**: `npm run build`
-- **Publish Directory**: `dist`
 
 ## Testing
 
 ### Local Testing
 
 ```bash
-# Start Netlify Dev server
 netlify dev
-
-# Navigate to
-http://localhost:8888/kontakt
-
-# Submit test form
-# Check email inbox
-# Verify success message
+# open http://localhost:8888/kontakt
+# submit test data and verify response code + logs
 ```
 
-### Production Deployment
+### Production / Preview Validation
 
 ```bash
-# Build project
 npm run build
-
-# Deploy to Netlify
 netlify deploy --prod
-
-# Configure environment variables in Netlify dashboard
-# Redeploy after adding variables
 ```
 
-### Monitoring
-
-- **Netlify Dashboard**: Function logs, submission counts
-- **Browser DevTools**: Network requests, console errors
-
-## Cost Analysis
-
-### Free Tier Usage
-
-| Service | Free Tier | Monthly Cost | Usage |
-|---------|-----------|--------------|-------|
-| Netlify Forms | 100 submissions/month | $0 | Contact form only |
-| Netlify Functions | 125,000 invocations/month | $0 | Contact form only |
-
-**Total Cost**: $0 (for current Netlify-based setup)
-
-### Paid Tiers (if needed)
-
-| Service | Paid Tier | Monthly Cost | When Needed |
-|---------|-----------|--------------|-------------|
-| Netlify Forms | Pro | $19/month | >100 submissions/month |
-| Netlify Functions | Pro | $19/month | >125,000 invocations/month |
-
-## Maintenance
-
-### Regular Tasks
-
-**Daily:**
-- Monitor form submissions (check for spam)
-
-**Weekly:**
-- Check Netlify function logs for errors
-- Monitor submission volume
-
-**Monthly:**
-- Review spam protection effectiveness
-- Verify response times and error rates
-
-**Quarterly:**
-- Review function logic and validation rules
-- Test form submission end-to-end
-
-### Security Best Practices
-
-- ✅ Keep secrets in environment variables (if provider is added)
-- ✅ Never commit secrets to version control
-- ✅ Review server-side validation rules regularly
-- ✅ Keep dependencies up to date
+Use the scenario matrix from [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md).
 
 ## Documentation
 
-### Implementation Guides
+### Core Guides
 
-1. [`CONTACT_FORM_IMPLEMENTATION_PLAN.md`](CONTACT_FORM_IMPLEMENTATION_PLAN.md) - Complete implementation plan
-2. [`NETLIFY_FORMS_SETUP.md`](NETLIFY_FORMS_SETUP.md) - Netlify Forms configuration
-3. [`PHASE_5_TESTING_DEPLOYMENT.md`](PHASE_5_TESTING_DEPLOYMENT.md) - Testing and deployment guide
-4. [`PHASE_5_CHECKLIST.md`](PHASE_5_CHECKLIST.md) - Quick reference checklist
-
-### Reference Documentation
-
-- [Netlify Functions Documentation](https://docs.netlify.com/functions/)
-- [Netlify Environment Variables](https://docs.netlify.com/site-deploys/environment-variables/)
+1. [`CONTACT_FORM_IMPLEMENTATION_PLAN.md`](CONTACT_FORM_IMPLEMENTATION_PLAN.md)
+2. [`AIRTABLE_INTEGRATION_PLAN.md`](AIRTABLE_INTEGRATION_PLAN.md)
+3. [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)
+4. [`PHASE_5_TESTING_DEPLOYMENT.md`](PHASE_5_TESTING_DEPLOYMENT.md)
+5. [`PHASE_5_CHECKLIST.md`](PHASE_5_CHECKLIST.md)
 
 ## Success Criteria
 
-✅ Contact form successfully submits data
-⏸️ Email notifications via external provider (optional future step)
-✅ Spam protection working effectively
-✅ Mobile-friendly submission experience
-✅ Accessible form with proper validation
-✅ Error handling and user feedback
-✅ Performance optimized (submits in < 3 seconds)
+- ✅ Contact form submits successfully
+- ✅ Airtable records are created for valid submissions
+- ✅ Duplicates are handled without creating extra records
+- ✅ Fallback path is available (`accepted_queued`) when Airtable fails
+- ✅ Accessible, mobile-friendly UX is preserved
 
 ## Next Steps
 
 ### Immediate (Phase 5)
-- [ ] Complete local testing with Netlify Dev
-- [ ] Deploy to Netlify
-- [ ] Configure environment variables (if email provider is enabled)
-- [ ] Test on production
-- [ ] Verify function response and logs
+- [ ] Validate Airtable schema and operational views
+- [ ] Complete local matrix tests A-G
+- [ ] Run preview rollout checks
+- [ ] Verify production logs and response codes
 
-### Short-term (After Deployment)
-- [ ] Monitor form submissions for 1 week
-- [ ] Collect user feedback
-- [ ] Document any issues
-- [ ] Optimize based on usage patterns
+### Short-term (After Rollout)
+- [ ] Monitor submissions and queued events for 1 week
+- [ ] Document incident handling outcomes
+- [ ] Tune timeout/retry values if needed
 
-### Long-term (Optional Enhancements)
-- [ ] Add CAPTCHA (reCAPTCHA v3) for enhanced spam protection
-- [ ] Implement rate limiting in Netlify function
-- [ ] Add file upload capability
-- [ ] Integrate with CRM system
-- [ ] Add analytics integration
-- [ ] Multi-language support
-
-## Troubleshooting
-
-### Common Issues
-
-| Issue | Solution |
-|-------|----------|
-| Form fails locally | Check `.env` file and Netlify Dev logs |
-| Form fails on production | Verify Netlify environment variables, redeploy site |
-| No notifications | Expected when no external provider is configured |
-| High spam | Consider adding CAPTCHA, implement rate limiting |
-
-### Support Resources
-
-1. Check Phase 5 testing guide: [`PHASE_5_TESTING_DEPLOYMENT.md`](PHASE_5_TESTING_DEPLOYMENT.md)
-2. Review Netlify function logs
-3. Review error messages in browser console
+### Long-term (Optional)
+- [ ] Add CAPTCHA for stronger spam protection
+- [ ] Add rate limiting
+- [ ] Add secondary notification channel (email/webhook)
+- [ ] Integrate CRM workflow
 
 ## Conclusion
 
-The contact form implementation with Netlify Functions is ready for deployment. SendGrid-specific implementation is intentionally rolled back, while form UX and server-side validation remain in place. Phase 5 (Testing & Deployment) is in progress and can be completed by following the provided guides.
-
-The implementation follows best practices for:
-- Security (XSS prevention, validation, spam protection)
-- User Experience (loading states, error handling, accessibility)
-- Performance (client-side validation, lightweight server-side handling)
-- Maintainability (clean code, documentation, monitoring)
+The contact form implementation is in a strong production-ready state for controlled rollout. Core Airtable integration, duplicate protection, fallback strategy, and frontend code mapping are complete. Remaining work is focused on rollout verification and operational monitoring.
 
 ---
 
 **Implementation Status**: 🔄 Phase 5 In Progress
-**Overall Progress**: 75% Complete (Phase 3 rolled back, 3 core phases active)
-**Estimated Time to Complete**: 1-2 hours
-**Last Updated**: 2026-02-18
+**Overall Progress**: 90% Complete
+**Estimated Time to Complete**: 2-4 hours
+**Last Updated**: 2026-02-19

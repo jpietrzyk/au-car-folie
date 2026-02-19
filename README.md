@@ -90,6 +90,39 @@ npm run preview
 
 The development server will start at `http://localhost:4321`
 
+## Airtable Quick Start (Contact Form)
+
+Jeśli chcesz szybko uruchomić zapis formularza kontaktowego do Airtable:
+
+1. Utwórz w Airtable tabelę `ContactSubmissions` zgodnie z checklistą:
+  - [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)
+2. Skonfiguruj zmienne środowiskowe lokalnie i na Netlify:
+
+```env
+AIRTABLE_ENABLED=true
+AIRTABLE_API_KEY=your_airtable_api_key_here
+AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
+AIRTABLE_TABLE_NAME=ContactSubmissions
+AIRTABLE_TIMEOUT_MS=4500
+AIRTABLE_MAX_RETRIES=1
+```
+
+3. Uruchom lokalnie funkcje Netlify:
+
+```bash
+netlify dev
+```
+
+4. Wejdź na `http://localhost:8888/kontakt` i wyślij formularz testowy.
+5. Zweryfikuj wynik:
+  - poprawny submit: HTTP `202` + `code=accepted`
+  - duplikat: HTTP `202` + `code=accepted_duplicate`
+  - fallback przy problemach z Airtable: HTTP `202` + `code=accepted_queued`
+  - walidacja: HTTP `400` + `code=validation_error`
+6. Do pełnego rolloutu użyj planu i checklisty:
+  - [`AIRTABLE_INTEGRATION_PLAN.md`](AIRTABLE_INTEGRATION_PLAN.md)
+  - [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)
+
 ## Features
 
 ### ✅ Completed
@@ -329,5 +362,5 @@ See [`ANIMATIONS.md`](ANIMATIONS.md) for comprehensive documentation about the a
 
 ---
 
-**Last Updated**: 2026-02-18
+**Last Updated**: 2026-02-19
 **Status**: SEO, performance, high priority accessibility optimizations, dark mode support, animations, and Netlify Functions contact backend completed, ready for deployment

@@ -317,3 +317,7 @@ Każdy etap kończymy krótkim checkpointem:
 - Etap 6-8: 3-5h
 
 Łącznie: około 11-17h spokojnej implementacji z testami i rollback checkpoints.
+
+## 11) Dokumenty operacyjne
+
+- Szczegółowa checklista schematu Airtable i testów: [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)
