@@ -1,6 +1,7 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
-import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
+import PageLayout from "../layouts/PageLayout.astro";
+import { Newspaper, Calendar, ExternalLink } from "@lucide/astro";
+import Lightbox from "../components/Lightbox.astro";
 ---
 
 <PageLayout
@@ -16,8 +17,48 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
 
       <div class="content-section">
         <p>
-          Jesteśmy dumni z tego, że nasza praca jest zauważana przez media. Oto niektóre publikacje i artykuły o naszej firmie.
+          Jesteśmy dumni z tego, że nasza praca jest zauważana przez media. Oto
+          niektóre publikacje i artykuły o naszej firmie.
         </p>
+      </div>
+
+      <div class="content-section">
+        <h3>Artykuły w prasie</h3>
+        <div class="press-gallery">
+          <a
+            href="/images/success_story.jpg"
+            class="gallery-item"
+            data-title="Naciśnij gdziekolwiek, albo na znak X aby zamknąć."
+          >
+            <img
+              src="/images/success.thumb.jpg"
+              alt="Success Story"
+              class="press-image"
+            />
+          </a>
+          <a
+            href="/images/signs.jpg"
+            class="gallery-item"
+            data-title="Naciśnij gdziekolwiek, albo na znak X aby zamknąć."
+          >
+            <img
+              src="/images/signs.thumb.jpg"
+              alt="Signs"
+              class="press-image"
+            />
+          </a>
+          <a
+            href="/images/integart.jpg"
+            class="gallery-item"
+            data-title="Naciśnij gdziekolwiek, albo na znak X aby zamknąć."
+          >
+            <img
+              src="/images/integart.thumb.jpg"
+              alt="Integart"
+              class="press-image"
+            />
+          </a>
+        </div>
       </div>
 
       <div class="content-section">
@@ -35,7 +76,9 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
             <div class="article-content">
               <h4>Car-folie.pl: Profesjonalne oklejanie samochodów</h4>
               <p>
-                Artykuł o naszej firmie i usługach oklejania pojazdów. Opisujemy proces zmiany koloru folią, zalety tej metody oraz prezentujemy nasze realizacje.
+                Artykuł o naszej firmie i usługach oklejania pojazdów. Opisujemy
+                proces zmiany koloru folią, zalety tej metody oraz prezentujemy
+                nasze realizacje.
               </p>
               <a href="#" class="article-link">
                 Przeczytaj artykuł
@@ -56,7 +99,9 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
             <div class="article-content">
               <h4>Floty pojazdów: Jak zwiększyć rozpoznawalność marki?</h4>
               <p>
-                Wywiad z właścicielem Car-folie.pl o oklejaniu flot pojazdów. Omawiamy zalety mobilnej reklamy i znaczenie spójnego wizerunku marki.
+                Wywiad z właścicielem Car-folie.pl o oklejaniu flot pojazdów.
+                Omawiamy zalety mobilnej reklamy i znaczenie spójnego wizerunku
+                marki.
               </p>
               <a href="#" class="article-link">
                 Przeczytaj artykuł
@@ -77,7 +122,9 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
             <div class="article-content">
               <h4>Reklama na pojazdach: Skuteczna mobilna promocja</h4>
               <p>
-                Artykuł o skuteczności reklamy mobilnej. Porównujemy z tradycyjnymi formami reklamy i prezentujemy korzyści oklejania pojazdów.
+                Artykuł o skuteczności reklamy mobilnej. Porównujemy z
+                tradycyjnymi formami reklamy i prezentujemy korzyści oklejania
+                pojazdów.
               </p>
               <a href="#" class="article-link">
                 Przeczytaj artykuł
@@ -98,7 +145,8 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
             <div class="article-content">
               <h4>Zmiana koloru aut folią: Nowe możliwości dla właścicieli</h4>
               <p>
-                Przegląd najnowszych technologii folii samochodowych. Opisujemy różne rodzaje folii, ich właściwości oraz zastosowania.
+                Przegląd najnowszych technologii folii samochodowych. Opisujemy
+                różne rodzaje folii, ich właściwości oraz zastosowania.
               </p>
               <a href="#" class="article-link">
                 Przeczytaj artykuł
@@ -115,29 +163,27 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
           <div class="award-card">
             <h4>Partner Roku 2023</h4>
             <p>
-              Wyróżnienie dla najlepszego partnera w dziedzinie oklejania pojazdów w Polsce.
+              Wyróżnienie dla najlepszego partnera w dziedzinie oklejania
+              pojazdów w Polsce.
             </p>
           </div>
 
           <div class="award-card">
             <h4>Certyfikat Jakości</h4>
-            <p>
-              Potwierdzenie wysokiej jakości naszych usług i materiałów.
-            </p>
+            <p>Potwierdzenie wysokiej jakości naszych usług i materiałów.</p>
           </div>
 
           <div class="award-card">
             <h4>Lider Branży</h4>
             <p>
-              Uznanie za lidera w dziedzinie profesjonalnego oklejania samochodów.
+              Uznanie za lidera w dziedzinie profesjonalnego oklejania
+              samochodów.
             </p>
           </div>
 
           <div class="award-card">
             <h4>Zaufany Partner</h4>
-            <p>
-              Certyfikat zaufanego partnera dla wiodących marek 3M i APA.
-            </p>
+            <p>Certyfikat zaufanego partnera dla wiodących marek 3M i APA.</p>
           </div>
         </div>
       </div>
@@ -148,9 +194,15 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
           <div class="media-item">
             <h4>Motoryzacja.pl</h4>
             <p>
-              Portal informacyjny dla miłośników motoryzacji. Publikujemy artykuły o nowościach, testach i poradach.
+              Portal informacyjny dla miłośników motoryzacji. Publikujemy
+              artykuły o nowościach, testach i poradach.
             </p>
-            <a href="https://motoryzacja.pl" target="_blank" rel="noopener noreferrer" class="media-link">
+            <a
+              href="https://motoryzacja.pl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="media-link"
+            >
               Odwiedź portal
               <ExternalLink size={16} />
             </a>
@@ -159,9 +211,15 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
           <div class="media-item">
             <h4>Biznes Motoryzacyjny</h4>
             <p>
-              Magazyn dla profesjonalistów z branży motoryzacyjnej. Artykuły o trendach, technologii i biznesie.
+              Magazyn dla profesjonalistów z branży motoryzacyjnej. Artykuły o
+              trendach, technologii i biznesie.
             </p>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="media-link">
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="media-link"
+            >
               Odwiedź magazyn
               <ExternalLink size={16} />
             </a>
@@ -170,9 +228,15 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
           <div class="media-item">
             <h4>Reklama i Promocja</h4>
             <p>
-              Magazyn o marketingu i reklamie. Poradniki dla marketerów i właścicieli firm.
+              Magazyn o marketingu i reklamie. Poradniki dla marketerów i
+              właścicieli firm.
             </p>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="media-link">
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="media-link"
+            >
               Odwiedź magazyn
               <ExternalLink size={16} />
             </a>
@@ -184,15 +248,15 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
         <div class="cta-section">
           <h3>Jesteś z mediów?</h3>
           <p>
-            Jesteś zainteresowany napisaniem artykułu o naszej firmie? Skontaktuj się z nami, aby omówić szczegóły.
+            Jesteś zainteresowany napisaniem artykułu o naszej firmie?
+            Skontaktuj się z nami, aby omówić szczegóły.
           </p>
-          <a href="/kontakt" class="button">
-            Skontaktuj się z nami
-          </a>
+          <a href="/kontakt" class="button"> Skontaktuj się z nami </a>
         </div>
       </div>
     </div>
   </div>
+  <Lightbox />
 </PageLayout>
 
 <style>
@@ -224,6 +288,37 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--color-primary);
+  }
+
+  .press-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .gallery-item {
+    display: block;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.05);
+  }
+
+  .press-image {
+    width: 150px;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease;
+  }
+
+  .gallery-item:hover .press-image {
+    opacity: 0.8;
   }
 
   .articles-grid {
@@ -383,7 +478,11 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
   }
 
   .cta-section {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-primary-dark)
+    );
     border-radius: 0.5rem;
     padding: 3rem;
     text-align: center;
@@ -404,6 +503,15 @@ import { Newspaper, Calendar, ExternalLink } from '@lucide/astro';
   @media (max-width: 768px) {
     .content-section > p {
       font-size: 1rem;
+    }
+
+    .press-gallery {
+      gap: 1rem;
+    }
+
+    .press-image {
+      width: 120px;
+      height: 440px;
     }
 
     .articles-grid,
