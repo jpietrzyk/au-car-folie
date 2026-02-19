@@ -1,6 +1,7 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
-import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
+import PageLayout from "../layouts/PageLayout.astro";
+import { Megaphone, Target, Eye, TrendingUp } from "@lucide/astro";
+import Lightbox from "../components/Lightbox.astro";
 ---
 
 <PageLayout
@@ -16,7 +17,279 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
 
       <div class="content-section">
         <p>
-          Mobilna przestrzeń reklamowa, jaką jest Twój samochód. Reklama na pojazdach to skuteczny sposób na promocję Twojej firmy, docierający do tysięcy potencjalnych klientów każdego dnia.
+          Twój samochód, to doskonała, mobilna, a co najważniejsze- darmowa
+          powierzchnia reklamowa. Oklejając samochód w naszej firmie, zyskujecie
+          Państwo dostęp do niezliczonej rzeszy potencjalnych klientów, oraz
+          otrzymujecie gwarancję skutecznej, fachowej i rzetelnej reklamy na
+          lata. Przygotowujemy projekt, materiały do druku, oraz zajmujemy się
+          aplikacją folii.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h3>Galeria realizacji</h3>
+        <div class="reklamy-gallery">
+          <a
+            href="/images/image-1.jpg"
+            class="gallery-item"
+            data-title="Reklama 1"
+          >
+            <img
+              src="/images/image-1.jpg"
+              alt="Reklama 1"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-2.jpg"
+            class="gallery-item"
+            data-title="Reklama 2"
+          >
+            <img
+              src="/images/image-2.jpg"
+              alt="Reklama 2"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-3.jpg"
+            class="gallery-item"
+            data-title="Reklama 3"
+          >
+            <img
+              src="/images/image-3.jpg"
+              alt="Reklama 3"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-4.jpg"
+            class="gallery-item"
+            data-title="Reklama 4"
+          >
+            <img
+              src="/images/image-4.jpg"
+              alt="Reklama 4"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-5.jpg"
+            class="gallery-item"
+            data-title="Reklama 5"
+          >
+            <img
+              src="/images/image-5.jpg"
+              alt="Reklama 5"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-6.jpg"
+            class="gallery-item"
+            data-title="Reklama 6"
+          >
+            <img
+              src="/images/image-6.jpg"
+              alt="Reklama 6"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-7.jpg"
+            class="gallery-item"
+            data-title="Reklama 7"
+          >
+            <img
+              src="/images/image-7.jpg"
+              alt="Reklama 7"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-8.jpg"
+            class="gallery-item"
+            data-title="Reklama 8"
+          >
+            <img
+              src="/images/image-8.jpg"
+              alt="Reklama 8"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-9.jpg"
+            class="gallery-item"
+            data-title="Reklama 9"
+          >
+            <img
+              src="/images/image-9.jpg"
+              alt="Reklama 9"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-10.jpg"
+            class="gallery-item"
+            data-title="Reklama 10"
+          >
+            <img
+              src="/images/image-10.jpg"
+              alt="Reklama 10"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-11.jpg"
+            class="gallery-item"
+            data-title="Reklama 11"
+          >
+            <img
+              src="/images/image-11.jpg"
+              alt="Reklama 11"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-12.jpg"
+            class="gallery-item"
+            data-title="Reklama 12"
+          >
+            <img
+              src="/images/image-12.jpg"
+              alt="Reklama 12"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-13.jpg"
+            class="gallery-item"
+            data-title="Reklama 13"
+          >
+            <img
+              src="/images/image-13.jpg"
+              alt="Reklama 13"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-14.jpg"
+            class="gallery-item"
+            data-title="Reklama 14"
+          >
+            <img
+              src="/images/image-14.jpg"
+              alt="Reklama 14"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-15.jpg"
+            class="gallery-item"
+            data-title="Reklama 15"
+          >
+            <img
+              src="/images/image-15.jpg"
+              alt="Reklama 15"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-16.jpg"
+            class="gallery-item"
+            data-title="Reklama 16"
+          >
+            <img
+              src="/images/image-16.jpg"
+              alt="Reklama 16"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-17.jpg"
+            class="gallery-item"
+            data-title="Reklama 17"
+          >
+            <img
+              src="/images/image-17.jpg"
+              alt="Reklama 17"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-18.jpg"
+            class="gallery-item"
+            data-title="Reklama 18"
+          >
+            <img
+              src="/images/image-18.jpg"
+              alt="Reklama 18"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-19.jpg"
+            class="gallery-item"
+            data-title="Reklama 19"
+          >
+            <img
+              src="/images/image-19.jpg"
+              alt="Reklama 19"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-20.jpg"
+            class="gallery-item"
+            data-title="Reklama 20"
+          >
+            <img
+              src="/images/image-20.jpg"
+              alt="Reklama 20"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-21.jpg"
+            class="gallery-item"
+            data-title="Reklama 21"
+          >
+            <img
+              src="/images/image-21.jpg"
+              alt="Reklama 21"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-22.jpg"
+            class="gallery-item"
+            data-title="Reklama 22"
+          >
+            <img
+              src="/images/image-22.jpg"
+              alt="Reklama 22"
+              class="reklamy-image"
+            />
+          </a>
+          <a
+            href="/images/image-23.jpg"
+            class="gallery-item"
+            data-title="Reklama 23"
+          >
+            <img
+              src="/images/image-23.jpg"
+              alt="Reklama 23"
+              class="reklamy-image"
+            />
+          </a>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <p>
+          Mobilna przestrzeń reklamowa, jaką jest Twój samochód. Reklama na
+          pojazdach to skuteczny sposób na promocję Twojej firmy, docierający do
+          tysięcy potencjalnych klientów każdego dnia.
         </p>
       </div>
 
@@ -29,7 +302,8 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
             </div>
             <h4>Wielka widoczność</h4>
             <p>
-              Pojazd jest widoczny przez tysięcy ludzi każdego dnia podczas jazdy.
+              Pojazd jest widoczny przez tysięcy ludzi każdego dnia podczas
+              jazdy.
             </p>
           </div>
 
@@ -39,7 +313,8 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
             </div>
             <h4>Dokierowanie</h4>
             <p>
-              Możliwość docierania do konkretnej grupy odbiorców w wybranych lokalizacjach.
+              Możliwość docierania do konkretnej grupy odbiorców w wybranych
+              lokalizacjach.
             </p>
           </div>
 
@@ -58,9 +333,7 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
               <Megaphone size={32} />
             </div>
             <h4>Bezpłatna powierzchnia</h4>
-            <p>
-              Wykorzystaj powierzchni reklamowej, którą już posiadasz.
-            </p>
+            <p>Wykorzystaj powierzchni reklamowej, którą już posiadasz.</p>
           </div>
         </div>
       </div>
@@ -71,7 +344,8 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
           <div class="type-card">
             <h4>Full wrap</h4>
             <p>
-              Pełne oklejanie pojazdu grafiką reklamową. Maksymalna powierzchnia reklamowa.
+              Pełne oklejanie pojazdu grafiką reklamową. Maksymalna powierzchnia
+              reklamowa.
             </p>
             <ul>
               <li>Największa powierzchnia reklamowa</li>
@@ -84,7 +358,8 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
           <div class="type-card">
             <h4>Partial wrap</h4>
             <p>
-              Częściowe oklejanie wybranych elementów pojazdu. Ekonomiczne rozwiązanie.
+              Częściowe oklejanie wybranych elementów pojazdu. Ekonomiczne
+              rozwiązanie.
             </p>
             <ul>
               <li>Niższe koszty</li>
@@ -96,9 +371,7 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
 
           <div class="type-card">
             <h4>Fleet branding</h4>
-            <p>
-              Spójny wizerunek dla całej floty pojazdów. Idealne dla firm.
-            </p>
+            <p>Spójny wizerunek dla całej floty pojazdów. Idealne dla firm.</p>
             <ul>
               <li>Spójna tożsamość marki</li>
               <li>Profesjonalny wizerunek</li>
@@ -110,7 +383,8 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
           <div class="type-card">
             <h4>Decals</h4>
             <p>
-              Małe elementy graficzne na pojazdach. Idealne do akcentów i detali.
+              Małe elementy graficzne na pojazdach. Idealne do akcentów i
+              detali.
             </p>
             <ul>
               <li>Niskie koszty</li>
@@ -128,9 +402,7 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
           <div class="process-step">
             <div class="step-number">1</div>
             <h4>Konsultacja</h4>
-            <p>
-              Omawiamy cele reklamowe, grupę docelową i budżet.
-            </p>
+            <p>Omawiamy cele reklamowe, grupę docelową i budżet.</p>
           </div>
 
           <div class="process-step">
@@ -144,25 +416,19 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
           <div class="process-step">
             <div class="step-number">3</div>
             <h4>Druk</h4>
-            <p>
-              Drukujemy grafikę na wysokiej jakości folii ploterowej.
-            </p>
+            <p>Drukujemy grafikę na wysokiej jakości folii ploterowej.</p>
           </div>
 
           <div class="process-step">
             <div class="step-number">4</div>
             <h4>Aplikacja</h4>
-            <p>
-              Profesjonalne oklejanie pojazdu zgodnie z projektem.
-            </p>
+            <p>Profesjonalne oklejanie pojazdu zgodnie z projektem.</p>
           </div>
 
           <div class="process-step">
             <div class="step-number">5</div>
             <h4>Odbiór</h4>
-            <p>
-              Przekazanie pojazdu z gotową reklamą.
-            </p>
+            <p>Przekazanie pojazdu z gotową reklamą.</p>
           </div>
         </div>
       </div>
@@ -174,9 +440,7 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
             <div class="reason-check">✓</div>
             <div class="reason-text">
               <strong>Doświadczenie</strong>
-              <p>
-                Wiele lat doświadczenia w tworzeniu reklam na pojazdach.
-              </p>
+              <p>Wiele lat doświadczenia w tworzeniu reklam na pojazdach.</p>
             </div>
           </div>
 
@@ -184,9 +448,7 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
             <div class="reason-check">✓</div>
             <div class="reason-text">
               <strong>Profesjonalizm</strong>
-              <p>
-                Terminowość i wysoka jakość wykonania.
-              </p>
+              <p>Terminowość i wysoka jakość wykonania.</p>
             </div>
           </div>
 
@@ -194,9 +456,7 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
             <div class="reason-check">✓</div>
             <div class="reason-text">
               <strong>Wysokiej jakości materiały</strong>
-              <p>
-                Używamy tylko najlepsze folie 3M i APA.
-              </p>
+              <p>Używamy tylko najlepsze folie 3M i APA.</p>
             </div>
           </div>
 
@@ -204,9 +464,7 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
             <div class="reason-check">✓</div>
             <div class="reason-text">
               <strong>Konkurencyjne ceny</strong>
-              <p>
-                Atrakcyjne ceny przy zachowaniu wysokiej jakości.
-              </p>
+              <p>Atrakcyjne ceny przy zachowaniu wysokiej jakości.</p>
             </div>
           </div>
 
@@ -214,9 +472,7 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
             <div class="reason-check">✓</div>
             <div class="reason-text">
               <strong>Kompleksowa obsługa</strong>
-              <p>
-                Od projektu po realizację i serwis.
-              </p>
+              <p>Od projektu po realizację i serwis.</p>
             </div>
           </div>
 
@@ -224,9 +480,7 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
             <div class="reason-check">✓</div>
             <div class="reason-text">
               <strong>Elastyczność</strong>
-              <p>
-                Dostosowujemy się do indywidualnych potrzeb klienta.
-              </p>
+              <p>Dostosowujemy się do indywidualnych potrzeb klienta.</p>
             </div>
           </div>
         </div>
@@ -235,17 +489,14 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
       <div class="content-section">
         <div class="cta-section">
           <h3>Zainteresowany reklamą na pojazdach?</h3>
-          <p>
-            Skontaktuj się z nami, aby omówić projekt i otrzymać wycenę.
-          </p>
-          <a href="/kontakt" class="button">
-            Skontaktuj się z nami
-          </a>
+          <p>Skontaktuj się z nami, aby omówić projekt i otrzymać wycenę.</p>
+          <a href="/kontakt" class="button"> Skontaktuj się z nami </a>
         </div>
       </div>
     </div>
   </div>
 </PageLayout>
+<Lightbox />
 
 <style>
   .content-page {
@@ -276,6 +527,36 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--color-primary);
+  }
+
+  .reklamy-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .gallery-item {
+    display: block;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.05);
+  }
+
+  .reklamy-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease;
+  }
+
+  .gallery-item:hover .reklamy-image {
+    opacity: 0.8;
   }
 
   .benefits-grid {
@@ -362,7 +643,7 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
   }
 
   .type-card li::before {
-    content: '✓';
+    content: "✓";
     position: absolute;
     left: 0;
     color: var(--color-accent);
@@ -462,7 +743,11 @@ import { Megaphone, Target, Eye, TrendingUp } from '@lucide/astro';
   }
 
   .cta-section {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-primary-dark)
+    );
     border-radius: 0.5rem;
     padding: 3rem;
     text-align: center;
