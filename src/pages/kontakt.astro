@@ -381,6 +381,23 @@ import { Mail, Phone, MapPin } from "@lucide/astro";
 </style>
 
 <script>
+  const responseMessages: Record<string, string> = {
+    accepted: "Dziękujemy za wiadomość! Odpowiemy wkrótce.",
+    accepted_duplicate:
+      "Ta wiadomość została już wcześniej przyjęta. Skontaktujemy się z Tobą wkrótce.",
+    accepted_queued:
+      "Wiadomość została przyjęta. Przetworzymy ją niezwłocznie.",
+    validation_error: "Niektóre pola formularza wymagają poprawy.",
+    airtable_auth:
+      "Wystąpił problem techniczny po naszej stronie. Spróbuj ponownie później.",
+    airtable_rate_limit:
+      "Mamy chwilowo zwiększony ruch. Spróbuj ponownie za moment.",
+    airtable_timeout: "Połączenie trwało zbyt długo. Spróbuj ponownie.",
+    airtable_unavailable:
+      "Usługa jest chwilowo niedostępna. Spróbuj ponownie za chwilę.",
+    internal_error: "Wystąpił błąd. Spróbuj ponownie później.",
+  };
+
   const form = document.getElementById("contactForm") as HTMLFormElement;
   const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
   const formMessage = document.getElementById("formMessage") as HTMLDivElement;
@@ -415,8 +432,9 @@ import { Mail, Phone, MapPin } from "@lucide/astro";
         const result = await response.json();
 
         if (response.ok) {
-          // Success
-          showMessage("Dziękujemy za wiadomość! Odpowiemy wkrótce.", "success");
+          const successMessage =
+            responseMessages[result.code] || result.message;
+          showMessage(successMessage || responseMessages.accepted, "success");
           form.reset();
         } else {
           // Error from server
@@ -426,10 +444,14 @@ import { Mail, Phone, MapPin } from "@lucide/astro";
               showError(error.field, error.message);
             });
           }
-          showMessage(
-            result.error || "Wystąpił błąd. Spróbuj ponownie.",
-            "error",
-          );
+
+          const errorMessage =
+            responseMessages[result.code] ||
+            result.message ||
+            result.error ||
+            "Wystąpił błąd. Spróbuj ponownie.";
+
+          showMessage(errorMessage, "error");
         }
       } catch (error) {
         console.error("Form submission error:", error);
