@@ -1,6 +1,5 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
-import { Star, Quote } from '@lucide/astro';
+import PageLayout from "../layouts/PageLayout.astro";
 ---
 
 <PageLayout
@@ -16,141 +15,99 @@ import { Star, Quote } from '@lucide/astro';
 
       <div class="content-section">
         <p>
-          Z dumą prezentujemy referencje naszych klientów. Wiele lat doświadczenia i setki zadowolonych klientów świadczą o wysokiej jakości naszych usług.
+          Okleiliśmy już ponad 1000 aut, w tym floty powyżej 100 sztuk.
+          Najwyższą jakość naszych usług potwierdzamy udzielając gwarancji.
+          Okleiliśmy auta takich firm jak: MediaMarkt, Euromaster Polska, BP,
+          Coca-Cola, JetAlliance, Telekom Austria, Radio Oe3. Znakowaliśmy
+          również samochody dla policji, straży itp.
         </p>
       </div>
 
       <div class="content-section">
-        <h3>Opinie klientów</h3>
-        <div class="testimonials-grid">
-          <div class="testimonial-card">
-            <div class="testimonial-header">
-              <div class="testimonial-rating">
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-              </div>
-              <div class="testimonial-client">
-                <h4>Jan Kowalski</h4>
-                <p class="client-company">Właściciel salonu samochodowego</p>
-              </div>
-            </div>
-            <div class="testimonial-content">
-              <Quote size={24} class="quote-icon" />
-              <p>
-                "Profesjonalne podejście od początku do końca. Zmiana koloru mojego BMW wykonana była perfekcyjnie. Folia wysokiej jakości, a aplikacja bez zarzutów. Polecam każdemu!"
+        <h3>Realizacje</h3>
+
+        <div class="achievement-card">
+          <div class="achievement-content">
+            <h4>Flota autobusów - Mistrzostwa Europy</h4>
+            <p>
+              <strong
+                >We współpracy z firmą ICON z siedzibą w Londynie, okleiliśmy
+                flotę autobusów na Mistrzostwa Europy.</strong
+              >
+            </p>
+          </div>
+        </div>
+
+        <div class="achievement-card">
+          <div class="achievement-content">
+            <h4>PositiveWays to Monte Carlo - 2014</h4>
+            <p>
+              Jako oficjalny partner techniczny wyprawy PositiveWays to Monte
+              Carlo, okleiliśmy 24 luksusowe samochody uczestników!
+            </p>
+          </div>
+          <div class="achievement-images">
+            <img
+              src="/images/PW.jpg"
+              alt="PositiveWays to Monte Carlo"
+              class="achievement-image"
+            />
+            <img
+              src="/images/dyplom2.jpg"
+              alt="Dyplom PositiveWays"
+              class="achievement-image"
+            />
+          </div>
+        </div>
+
+        <div class="achievement-card">
+          <div class="achievement-content">
+            <h4>5th Polish Car Wrap Championship</h4>
+            <p>
+              <strong
+                >Z przyjemnością informujemy, że zdobyliśmy tytuł I-vice-mistrza
+                w zawodach 5th PolishCarWrap Championship, które odbywały się w
+                Poznaniu podczas targów MotrShow.</strong
+              >
+            </p>
+            <p>
+              Uczestniczyliśmy również w próbie pobicia rekordu świata w
+              oklejaniu Audi A6 (zmiana koloru), który pobiliśmy i ustanowiliśmy
+              na 29 minut 59 sekund!
+            </p>
+          </div>
+        </div>
+
+        <div class="achievement-card">
+          <div class="achievement-content">
+            <h4>2nd Polish Car Wrap Championship</h4>
+            <p>
+              Nasza firma potwierdziła, iż jesteśmy jedną z najlepszych firm
+              zajmujących się aplikacją folii na samochodach w Polsce, pokonując
+              wszystkie firmy w 3. turze zawodów "2nd Polish CarWrap
+              Championship", odbywających się podczas trwania Międzynarodowych
+              Targów Poznańskich.
+            </p>
+            <div class="quote-box">
+              <p class="quote-text">
+                "[...] aplikacja końcowa na dostarczonych przez organizatora
+                foliach i layoutach, najlepiej prezentowała się w wykonaniu
+                firmy Car-folie."
               </p>
-            </div>
-            <div class="testimonial-footer">
-              <span class="testimonial-date">Styczeń 2024</span>
-              <span class="testimonial-service">Zmiana koloru</span>
+              <p class="quote-author">— Visual Communication</p>
             </div>
           </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-header">
-              <div class="testimonial-rating">
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-              </div>
-              <div class="testimonial-client">
-                <h4>Anna Nowak</h4>
-                <p class="client-company">Menadżer floty</p>
-              </div>
-            </div>
-            <div class="testimonial-content">
-              <Quote size={24} class="quote-icon" />
-              <p>
-                "Okleiliśmy całą flotę 15 pojazdów. Terminowość, jakość i profesjonalizm na najwyższym poziomie. Wszystkie pojazdy prezentują się spójnie i profesjonalnie."
-              </p>
-            </div>
-            <div class="testimonial-footer">
-              <span class="testimonial-date">Listopad 2023</span>
-              <span class="testimonial-service">Floty</span>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-header">
-              <div class="testimonial-rating">
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-              </div>
-              <div class="testimonial-client">
-                <h4>Piotr Wiśniewski</h4>
-                <p class="client-company">Właściciel firmy transportowej</p>
-              </div>
-            </div>
-            <div class="testimonial-content">
-              <Quote size={24} class="quote-icon" />
-              <p>
-                "Reklama na naszych pojazdach przyciąga uwagę i przynosi nowe zamówienia. Jakość wykonania i trwałość folii są imponujące. Bardzo dziękujemy!"
-              </p>
-            </div>
-            <div class="testimonial-footer">
-              <span class="testimonial-date">Październik 2023</span>
-              <span class="testimonial-service">Reklamy</span>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-header">
-              <div class="testimonial-rating">
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-              </div>
-              <div class="testimonial-client">
-                <h4>Maria Zielińska</h4>
-                <p class="client-company">Klient indywidualny</p>
-              </div>
-            </div>
-            <div class="testimonial-content">
-              <Quote size={24} class="quote-icon" />
-              <p>
-                "Zmieniłam kolor mojego Audi A4 na matowy szary. Wygląda fantastycznie! Otrzymałam też certyfikat gwarantujący jakość folii. Polecam!"
-              </p>
-            </div>
-            <div class="testimonial-footer">
-              <span class="testimonial-date">Wrzesień 2023</span>
-              <span class="testimonial-service">Zmiana koloru</span>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-header">
-              <div class="testimonial-rating">
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-              </div>
-              <div class="testimonial-client">
-                <h4>Tomasz Lewandowski</h4>
-                <p class="client-company">Dyrektor agencji reklamowej</p>
-              </div>
-            </div>
-            <div class="testimonial-content">
-              <Quote size={24} class="quote-icon" />
-              <p>
-                "Współpracujemy z Car-folie.pl od lat. Zawsze profesjonalne podejście, terminowość i wysoka jakość. Polecamy ich usługi wszystkim naszym klientom."
-              </p>
-            </div>
-            <div class="testimonial-footer">
-              <span class="testimonial-date">Sierpień 2023</span>
-              <span class="testimonial-service">Dystrybucja</span>
-            </div>
+          <div class="achievement-images">
+            <img
+              src="/images/euromaster.jpg"
+              alt="Euromaster"
+              class="achievement-image"
+            />
+            <img
+              src="/images/dyplom.jpg"
+              alt="Dyplom"
+              class="achievement-image"
+            />
           </div>
         </div>
       </div>
@@ -167,22 +124,19 @@ import { Star, Quote } from '@lucide/astro';
 
           <div class="partner-card">
             <h4>Integart</h4>
-            <p>
-              Profesjonalne studio graficzne i drukarnia cyfrowa.
-            </p>
+            <p>Profesjonalne studio graficzne i drukarnia cyfrowa.</p>
           </div>
 
           <div class="partner-card">
             <h4>APA</h4>
-            <p>
-              Europejski producent wysokiej jakości folii do zmiany koloru.
-            </p>
+            <p>Europejski producent wysokiej jakości folii do zmiany koloru.</p>
           </div>
 
           <div class="partner-card">
             <h4>3M</h4>
             <p>
-              Światowy lider w produkcji folii samochodowych i materiałów reklamowych.
+              Światowy lider w produkcji folii samochodowych i materiałów
+              reklamowych.
             </p>
           </div>
         </div>
@@ -192,11 +146,10 @@ import { Star, Quote } from '@lucide/astro';
         <div class="cta-section">
           <h3>Chcesz zostać naszym klientem?</h3>
           <p>
-            Skontaktuj się z nami, aby omówić projekt i dołączyć do grona zadowolonych klientów.
+            Skontaktuj się z nami, aby omówić projekt i dołączyć do grona
+            zadowolonych klientów.
           </p>
-          <a href="/kontakt" class="button">
-            Skontaktuj się z nami
-          </a>
+          <a href="/kontakt" class="button"> Skontaktuj się z nami </a>
         </div>
       </div>
     </div>
@@ -234,95 +187,73 @@ import { Star, Quote } from '@lucide/astro';
     border-bottom: 2px solid var(--color-primary);
   }
 
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .testimonial-card {
+  .achievement-card {
     background-color: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: 0.5rem;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
     transition: all 0.3s ease;
   }
 
-  .testimonial-card:hover {
+  .achievement-card:hover {
     border-color: var(--color-primary);
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   }
 
-  .testimonial-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .testimonial-rating {
-    display: flex;
-    gap: 0.25rem;
-    color: var(--color-accent);
-  }
-
-  .testimonial-client h4 {
-    color: white;
-    font-size: 1.125rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .client-company {
-    color: var(--color-text-muted);
-    font-size: 0.875rem;
-    margin: 0;
-  }
-
-  .testimonial-content {
-    position: relative;
-    padding-left: 2.5rem;
-  }
-
-  .quote-icon {
-    position: absolute;
-    left: 0;
-    top: 0;
+  .achievement-content h4 {
     color: var(--color-primary);
-    opacity: 0.3;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
   }
 
-  .testimonial-content p {
+  .achievement-content p {
     color: var(--color-text-main);
     line-height: 1.6;
-    font-style: italic;
-    margin: 0;
+    margin-bottom: 1rem;
   }
 
-  .testimonial-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-border);
-    gap: 1rem;
-  }
-
-  .testimonial-date {
-    color: var(--color-text-muted);
-    font-size: 0.875rem;
-  }
-
-  .testimonial-service {
-    background-color: var(--color-primary);
+  .achievement-content strong {
     color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
     font-weight: 600;
+  }
+
+  .achievement-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .achievement-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    object-fit: cover;
+  }
+
+  .quote-box {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-left: 4px solid var(--color-primary);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+
+  .quote-text {
+    color: var(--color-text-main);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .quote-author {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+    text-align: right;
   }
 
   .partners-grid {
@@ -358,7 +289,11 @@ import { Star, Quote } from '@lucide/astro';
   }
 
   .cta-section {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-primary-dark)
+    );
     border-radius: 0.5rem;
     padding: 3rem;
     text-align: center;
@@ -381,18 +316,12 @@ import { Star, Quote } from '@lucide/astro';
       font-size: 1rem;
     }
 
-    .testimonials-grid {
+    .achievement-card {
+      padding: 1.5rem;
+    }
+
+    .achievement-images {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .testimonial-card {
-      padding: 1.25rem;
-    }
-
-    .testimonial-header {
-      flex-direction: column;
-      gap: 0.5rem;
     }
 
     .partners-grid {
