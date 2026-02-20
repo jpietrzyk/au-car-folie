@@ -21,11 +21,13 @@ The Car-folie.pl website now has a contact form with Netlify Function processing
 ### ✅ Phase 1: Basic Netlify Forms Setup
 
 **Files Created/Modified:**
+
 - [`src/pages/kontakt.astro`](src/pages/kontakt.astro) - Contact form page
 - [`netlify.toml`](netlify.toml) - Netlify configuration
 - [`.env.example`](.env.example) - Environment variables template
 
 **Features:**
+
 - Netlify Forms integration (`data-netlify="true"`)
 - Honeypot spam protection (`netlify-honeypot="bot-field"`)
 - Hidden form-name field
@@ -34,9 +36,11 @@ The Car-folie.pl website now has a contact form with Netlify Function processing
 ### ✅ Phase 2: Netlify Function for Enhanced Processing
 
 **Files Created/Modified:**
+
 - [`netlify/functions/contact.ts`](netlify/functions/contact.ts)
 
 **Features:**
+
 - Custom form processing endpoint (`/.netlify/functions/contact`)
 - Server-side validation
 - Unified API response shape
@@ -46,12 +50,14 @@ The Car-folie.pl website now has a contact form with Netlify Function processing
 ### ✅ Phase 3: Airtable Integration (Core)
 
 **Files Created/Modified:**
+
 - [`netlify/functions/contact.ts`](netlify/functions/contact.ts)
 - [`.env.example`](.env.example)
 - [`AIRTABLE_INTEGRATION_PLAN.md`](AIRTABLE_INTEGRATION_PLAN.md)
 - [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)
 
 **Features:**
+
 - Airtable write integration with timeout and retry
 - Deterministic `submissionId` for idempotency
 - Duplicate detection (`accepted_duplicate`)
@@ -62,9 +68,11 @@ The Car-folie.pl website now has a contact form with Netlify Function processing
 ### ✅ Phase 4: Form Enhancements
 
 **Files Modified:**
+
 - [`src/pages/kontakt.astro`](src/pages/kontakt.astro)
 
 **Features:**
+
 - Client-side field validation
 - Loading state and submit lock
 - Response-code-aware UX messages (`accepted`, `accepted_duplicate`, `accepted_queued`, `validation_error`)
@@ -73,12 +81,14 @@ The Car-folie.pl website now has a contact form with Netlify Function processing
 ### 🔄 Phase 5: Testing & Rollout
 
 **Documentation Created/Updated:**
+
 - [`PHASE_5_TESTING_DEPLOYMENT.md`](PHASE_5_TESTING_DEPLOYMENT.md)
 - [`PHASE_5_CHECKLIST.md`](PHASE_5_CHECKLIST.md)
 - [`AIRTABLE_INTEGRATION_PLAN.md`](AIRTABLE_INTEGRATION_PLAN.md)
 - [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)
 
 **Testing Coverage (target):**
+
 - Local testing with Netlify Dev
 - Preview and production rollout checks
 - API contract verification (`success`, `code`, `message`, `submissionId`)
@@ -123,6 +133,7 @@ Show user message + reset form (on success)
 ## Key Features
 
 ### Security
+
 - ✅ Server-side validation
 - ✅ Basic input sanitization
 - ✅ Honeypot spam protection
@@ -130,12 +141,14 @@ Show user message + reset form (on success)
 - ✅ No sensitive values in repository
 
 ### Reliability
+
 - ✅ Idempotency via deterministic `submissionId`
 - ✅ Duplicate protection
 - ✅ Airtable timeout + retry
 - ✅ Fallback dead-letter logs to avoid lead loss in transient outages
 
 ### User Experience
+
 - ✅ Real-time validation feedback
 - ✅ Loading states
 - ✅ Contextual success/error messaging
@@ -195,17 +208,20 @@ Use the scenario matrix from [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_
 ## Next Steps
 
 ### Immediate (Phase 5)
+
 - [ ] Validate Airtable schema and operational views
 - [ ] Complete local matrix tests A-G
 - [ ] Run preview rollout checks
 - [ ] Verify production logs and response codes
 
 ### Short-term (After Rollout)
+
 - [ ] Monitor submissions and queued events for 1 week
 - [ ] Document incident handling outcomes
 - [ ] Tune timeout/retry values if needed
 
 ### Long-term (Optional)
+
 - [ ] Add CAPTCHA for stronger spam protection
 - [ ] Add rate limiting
 - [ ] Add secondary notification channel (email/webhook)

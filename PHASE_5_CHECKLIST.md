@@ -5,7 +5,7 @@ Use this checklist to track your progress through Phase 5 testing and deployment
 ## Pre-Deployment Checks
 
 - [ ] SendGrid API key created and copied
-- [ ] SendGrid sender domain verified (biuro@car-folie.pl)
+- [ ] SendGrid sender domain verified (<biuro@car-folie.pl>)
 - [ ] `.env` file contains correct configuration
 - [ ] Netlify CLI installed (`npm install -g netlify-cli`)
 - [ ] SendGrid package installed (`@sendgrid/mail@8.1.6`)
@@ -19,7 +19,7 @@ Use this checklist to track your progress through Phase 5 testing and deployment
 - [ ] Verify success message appears
 - [ ] Check browser console for errors (should be none)
 - [ ] Check Network tab for 200 OK response
-- [ ] Verify email received by site owner (biuro@car-folie.pl)
+- [ ] Verify email received by site owner (<biuro@car-folie.pl>)
 - [ ] Verify auto-reply sent to submitter
 - [ ] Test all error scenarios (missing fields, invalid email, etc.)
 
