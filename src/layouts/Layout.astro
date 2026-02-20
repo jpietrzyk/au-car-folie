@@ -179,7 +179,16 @@ const structuredData = {
     <!-- Animations script -->
     <script>
       import { initAnimations } from "../scripts/animations.ts";
-      initAnimations();
+
+      const initWhenIdle = () => {
+        initAnimations();
+      };
+
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(initWhenIdle, { timeout: 1200 });
+      } else {
+        window.setTimeout(initWhenIdle, 0);
+      }
     </script>
 
     <!-- Service worker registration -->

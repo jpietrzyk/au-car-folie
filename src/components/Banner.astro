@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 interface Props {
   image?: string;
   title?: string;
@@ -8,11 +10,18 @@ interface Props {
 const { image = "/images/comic_superman.jpg", title, subtitle } = Astro.props;
 ---
 
-<section
-  class="banner parallax"
-  style={`background-image: url('${image}')`}
-  data-parallax-speed="0.3"
->
+<section class="banner parallax" data-parallax-speed="0.3">
+  <Image
+    src={image}
+    alt={title ? `${title} - baner` : "Baner strony"}
+    width={1920}
+    height={1080}
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+    sizes="100vw"
+    class="banner-image"
+  />
   <div class="banner-content">
     {title && <h1 class="banner-title fade-in-up">{title}</h1>}
     {subtitle && <p class="banner-subtitle fade-in-up stagger-2">{subtitle}</p>}
@@ -23,15 +32,21 @@ const { image = "/images/comic_superman.jpg", title, subtitle } = Astro.props;
   .banner {
     position: relative;
     min-height: 400px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     transform: translateZ(0);
     will-change: transform;
+  }
+
+  .banner-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
   }
 
   .banner::before {
