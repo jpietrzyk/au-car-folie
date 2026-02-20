@@ -131,12 +131,14 @@ class LightboxController {
     this.updateImage();
     this.lightbox.classList.add("active");
     this.lightbox.setAttribute("aria-hidden", "false");
+    this.lightbox.removeAttribute("inert");
     this.closeBtn.focus();
   }
 
   private close() {
     this.lightbox.classList.remove("active");
     this.lightbox.setAttribute("aria-hidden", "true");
+    this.lightbox.setAttribute("inert", "");
   }
 
   private prev() {
