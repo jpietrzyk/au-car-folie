@@ -17,7 +17,7 @@ This guide covers the final phase of the contact form implementation: testing an
 Before proceeding with Phase 5, ensure you have:
 
 - ✅ SendGrid API key created and configured
-- ✅ SendGrid sender domain verified (biuro@car-folie.pl)
+- ✅ SendGrid sender domain verified (<biuro@car-folie.pl>)
 - ✅ `.env` file with SendGrid API key configured locally
 - ✅ Netlify CLI installed (`npm install -g netlify-cli`)
 - ✅ SendGrid package installed (`@sendgrid/mail@8.1.6`)
@@ -34,6 +34,7 @@ cat .env
 ```
 
 Expected content:
+
 ```env
 SENDGRID_API_KEY=SG.your_actual_api_key_here
 FROM_EMAIL=biuro@car-folie.pl
@@ -42,6 +43,7 @@ SITE_URL=https://car-folie.pl
 ```
 
 **Important**:
+
 - Replace `SG.your_actual_api_key_here` with your actual SendGrid Web API key
 - Ensure the API key has "Mail Send" permissions
 - The `.env` file should be in `.gitignore` (it is)
@@ -68,12 +70,14 @@ netlify dev
 ```
 
 This will:
+
 - Start a local development server (usually at `http://localhost:8888`)
 - Run Netlify Functions locally
 - Load environment variables from `.env` file
 
 **Expected output:**
-```
+
+```bash
 ◈ Netlify Dev ◈
 ◈ Ignoring general config unsupported by dev server: plugins
 ◈ Starting Netlify Dev with Astro
@@ -86,7 +90,7 @@ This will:
 1. Open your browser and navigate to `http://localhost:8888/kontakt`
 2. Fill out the contact form with test data:
    - **Name**: Test User
-   - **Email**: your-test-email@example.com (use a real email you can check)
+   - **Email**: <your-test-email@example.com> (use a real email you can check)
    - **Phone**: 123 456 789 (optional)
    - **Subject**: Zmiana koloru
    - **Message**: This is a test message to verify the contact form is working correctly.
@@ -96,6 +100,7 @@ This will:
 ### 2.3 Verify Local Test Results
 
 **Expected behavior:**
+
 - ✅ Submit button shows spinner animation
 - ✅ Submit button is disabled during submission
 - ✅ After 2-3 seconds, success message appears: "Dziękujemy za wiadomość! Odpowiemy wkrótce."
@@ -103,15 +108,18 @@ This will:
 - ✅ No error messages in browser console
 
 **Check browser console:**
+
 - Open Developer Tools (F12)
 - Go to Console tab
 - Look for any errors (should be none)
 - Check Network tab for the `/api/contact` request (should return 200 OK)
 
 **Check Netlify Dev terminal:**
+
 - Look for function execution logs
 - Should see something like:
-  ```
+
+  ```plain
   [POST] /.netlify/functions/contact 200
   ```
 
@@ -119,17 +127,18 @@ This will:
 
 Check your email inbox (and spam folder) for:
 
-1. **Email to site owner** (biuro@car-folie.pl):
+1. **Email to site owner** (<biuro@car-folie.pl>):
    - Subject: "Nowa wiadomość z formularza: Zmiana koloru"
    - Contains: Name, Email, Phone, Subject, Message, Timestamp
    - Should be professionally formatted with HTML
 
-2. **Auto-reply to submitter** (your-test-email@example.com):
+2. **Auto-reply to submitter** (<your-test-email@example.com>):
    - Subject: "Potwierdzenie otrzymania wiadomości - Car-folie.pl"
    - Contains: Thank you message, contact details
    - Should be professionally formatted with HTML
 
 **If emails are not received:**
+
 - Check SendGrid dashboard (Activity tab)
 - Verify API key has correct permissions
 - Check spam/junk folders
@@ -140,26 +149,31 @@ Check your email inbox (and spam folder) for:
 Test various error conditions:
 
 **Test 1: Missing required field**
+
 - Leave "Name" empty
 - Try to submit
 - Expected: Error message "Imię musi mieć co najmniej 2 znaki"
 
 **Test 2: Invalid email**
+
 - Enter "invalid-email" in Email field
 - Try to submit
 - Expected: Error message "Wprowadź poprawny adres email"
 
 **Test 3: Invalid phone**
+
 - Enter "abc" in Phone field
 - Try to submit
 - Expected: Error message "Wprowadź poprawny numer telefonu"
 
 **Test 4: Short message**
+
 - Enter "Hi" in Message field
 - Try to submit
 - Expected: Error message "Wiadomość musi mieć co najmniej 10 znaków"
 
 **Test 5: No subject selected**
+
 - Leave Subject dropdown on default
 - Try to submit
 - Expected: Error message "Wybierz temat"
@@ -175,7 +189,8 @@ npm run build
 ```
 
 **Expected output:**
-```
+
+```bash
 ▶ Astro v4.x
    build output: "dist"
    ✓ Completed in X.XXs.
@@ -194,6 +209,7 @@ netlify deploy --prod
 ```
 
 Follow the prompts:
+
 - Select your existing site or create a new one
 - Confirm the build directory: `dist`
 - Wait for deployment to complete
@@ -208,6 +224,7 @@ git push origin main
 ```
 
 Then:
+
 1. Go to Netlify dashboard
 2. Connect your Git repository
 3. Netlify will automatically deploy on push
@@ -229,8 +246,8 @@ After deploying, you need to add the SendGrid API key to Netlify:
 | `TO_EMAIL` | `biuro@car-folie.pl` |
 | `SITE_URL` | `https://car-folie.pl` |
 
-6. Click **Save**
-7. **Important**: Redeploy your site after adding environment variables:
+1. Click **Save**
+2. **Important**: Redeploy your site after adding environment variables:
    - Go to **Deploys** tab
    - Click **Trigger deploy** → **Deploy site**
 
@@ -261,6 +278,7 @@ Repeat the same tests from Step 2.2 on your live site:
 5. Check for any errors
 
 **Expected:**
+
 - Function should execute successfully
 - Response time should be < 3 seconds
 - No errors in logs
@@ -273,6 +291,7 @@ Repeat the same tests from Step 2.2 on your live site:
 4. Verify both emails were sent successfully
 
 **Expected:**
+
 - 2 emails sent (1 to owner, 1 auto-reply)
 - Status: "Delivered"
 - No bounces or spam reports
@@ -302,6 +321,7 @@ Test the form on different devices:
    - Desktop (1920px)
 
 **Verify:**
+
 - ✅ Form is usable on all screen sizes
 - ✅ Submit button is easily tappable on mobile
 - ✅ Error messages are readable
@@ -317,6 +337,7 @@ Test keyboard navigation:
 4. Verify screen reader announces error messages
 
 **Verify:**
+
 - ✅ All form fields are keyboard accessible
 - ✅ Focus order is logical
 - ✅ Error messages are announced by screen readers
@@ -329,6 +350,7 @@ Test keyboard navigation:
 The form should have a hidden honeypot field for spam protection. Currently, the form uses the Netlify Function approach, which has built-in spam protection.
 
 **To test:**
+
 - Submit a form with valid data (should work)
 - Monitor SendGrid Activity for any spam submissions
 - Check Netlify function logs for suspicious activity
@@ -346,11 +368,13 @@ After deployment, regularly check:
 ### 7.1 Set Up Monitoring
 
 **Netlify Monitoring:**
+
 - Check function execution logs weekly
 - Monitor error rates
 - Track submission volume
 
 **SendGrid Monitoring:**
+
 - Check email delivery rates
 - Monitor bounce rates
 - Track spam complaints
@@ -368,16 +392,19 @@ After deployment, regularly check:
 ### 7.3 Regular Maintenance Tasks
 
 **Weekly:**
+
 - Check Netlify function logs for errors
 - Review SendGrid email delivery rates
 - Monitor form submission volume
 
 **Monthly:**
+
 - Review spam protection effectiveness
 - Check email templates for updates
 - Verify API key usage is within limits
 
 **Quarterly:**
+
 - Rotate SendGrid API key (security best practice)
 - Review and update email templates
 - Test form submission end-to-end
@@ -387,10 +414,12 @@ After deployment, regularly check:
 ### Issue: Form submission fails locally
 
 **Symptoms:**
+
 - Error message appears
 - No email received
 
 **Solutions:**
+
 1. Check `.env` file exists and has correct values
 2. Verify SendGrid API key is valid
 3. Check Netlify Dev server is running
@@ -399,10 +428,12 @@ After deployment, regularly check:
 ### Issue: Form submission fails on production
 
 **Symptoms:**
+
 - Error message on live site
 - No email received
 
 **Solutions:**
+
 1. Verify environment variables are set in Netlify dashboard
 2. Check Netlify function logs for errors
 3. Ensure site was redeployed after adding environment variables
@@ -411,10 +442,12 @@ After deployment, regularly check:
 ### Issue: Emails not received
 
 **Symptoms:**
+
 - Form submission succeeds
 - No emails in inbox
 
 **Solutions:**
+
 1. Check spam/junk folders
 2. Verify sender email is verified in SendGrid
 3. Check SendGrid Activity dashboard for delivery status
@@ -423,10 +456,12 @@ After deployment, regularly check:
 ### Issue: Auto-reply not sent
 
 **Symptoms:**
+
 - Owner receives email
 - Submitter doesn't receive auto-reply
 
 **Solutions:**
+
 1. Check SendGrid Activity for both emails
 2. Verify submitter's email address is valid
 3. Check if submitter's email provider is blocking emails
@@ -435,10 +470,12 @@ After deployment, regularly check:
 ### Issue: High spam submissions
 
 **Symptoms:**
+
 - Many spam submissions in Netlify dashboard
 - Spam emails received
 
 **Solutions:**
+
 1. Add CAPTCHA (reCAPTCHA v3 recommended)
 2. Implement rate limiting in Netlify function
 3. Use Akismet integration
@@ -473,8 +510,8 @@ Once Phase 5 is complete and all tests pass:
 
 ---
 
-**Phase 5 Status**: 🔄 In Progress
+**Phase 5 Status**: 🔄 In Progress (Airtable integration testing)
 **Estimated Time**: 1-2 hours
-**Dependencies**: SendGrid API key configured, Netlify account created
+**Dependencies**: SendGrid API key configured, Netlify account created, Airtable setup required
 
-**Last Updated**: 2026-02-18
+**Last Updated**: 2026-02-20

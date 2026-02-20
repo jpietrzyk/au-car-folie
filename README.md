@@ -50,8 +50,9 @@ car-folie-astro/
 │   │   ├── technologia.astro
 │   │   ├── wycena.astro
 │   │   └── zmiana-koloru.astro
-│   ├── scripts/           # JavaScript utilities
-│   │   └── animations.js
+  │   ├── scripts/           # TypeScript utilities
+  │   │   ├── animations.ts
+  │   │   └── lightbox.ts
 │   └── styles/            # Global styles
 │       └── global.css
 ├── ANIMATIONS.md          # Animation system documentation
@@ -95,7 +96,9 @@ The development server will start at `http://localhost:4321`
 Jeśli chcesz szybko uruchomić zapis formularza kontaktowego do Airtable:
 
 1. Utwórz w Airtable tabelę `ContactSubmissions` zgodnie z checklistą:
+
   - [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)
+
 2. Skonfiguruj zmienne środowiskowe lokalnie i na Netlify:
 
 ```env
@@ -115,13 +118,16 @@ netlify dev
 
 4. Wejdź na `http://localhost:8888/kontakt` i wyślij formularz testowy.
 5. Zweryfikuj wynik:
-  - poprawny submit: HTTP `202` + `code=accepted`
-  - duplikat: HTTP `202` + `code=accepted_duplicate`
-  - fallback przy problemach z Airtable: HTTP `202` + `code=accepted_queued`
-  - walidacja: HTTP `400` + `code=validation_error`
+
+- poprawny submit: HTTP `202` + `code=accepted`
+- duplikat: HTTP `202` + `code=accepted_duplicate`
+- fallback przy problemach z Airtable: HTTP `202` + `code=accepted_queued`
+- walidacja: HTTP `400` + `code=validation_error`
+
 6. Do pełnego rolloutu użyj planu i checklisty:
-  - [`AIRTABLE_INTEGRATION_PLAN.md`](AIRTABLE_INTEGRATION_PLAN.md)
-  - [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)
+
+- [`AIRTABLE_INTEGRATION_PLAN.md`](AIRTABLE_INTEGRATION_PLAN.md)
+- [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)
 
 ## Features
 
@@ -162,23 +168,25 @@ netlify dev
 - [x] High priority accessibility improvements (WCAG AA compliance, color contrast, keyboard navigation)
 - [x] Dark mode support with system preference detection and localStorage persistence
 - [x] Animations and transitions (scroll-triggered, hover effects, page transitions, micro-interactions)
-- [x] Contact form backend integration with Netlify Functions (without external email provider)
+- [x] Contact form backend integration with Netlify Functions and SendGrid email service
 - [x] Client-side form validation with real-time feedback
 - [x] Loading states and error handling for better UX
+- [x] Airtable integration for form submission storage with duplicate protection and fallback logging
 
 ### 🚧 In Progress
 
-- [ ] Optional: Add email provider integration (SendGrid/Resend/Mailgun)
-- [ ] Phase 5: Testing and deployment of contact form
+- [ ] Phase 5: Testing and deployment of contact form (Airtable integration)
   - [ ] Local testing with Netlify Dev
   - [ ] Deploy to Netlify production
-  - [ ] Configure environment variables (if external provider is added)
+  - [ ] Configure Airtable environment variables
   - [ ] Verify production logs and form flow
 
 ### 📋 Planned
 
 - [ ] Medium priority accessibility improvements (focus management, ARIA live regions, breadcrumbs)
 - [ ] Analytics integration
+- [ ] CAPTCHA for enhanced spam protection (optional)
+- [ ] Rate limiting for form submissions (optional)
 
 ### 🔍 SEO Enhancement Tasks (Optional)
 
@@ -362,5 +370,5 @@ See [`ANIMATIONS.md`](ANIMATIONS.md) for comprehensive documentation about the a
 
 ---
 
-**Last Updated**: 2026-02-19
-**Status**: SEO, performance, high priority accessibility optimizations, dark mode support, animations, and Netlify Functions contact backend completed, ready for deployment
+**Last Updated**: 2026-02-20
+**Status**: SEO, performance, high priority accessibility optimizations, dark mode support, animations, Netlify Functions contact backend with SendGrid and Airtable integration completed. TypeScript error in Layout.astro fixed. Ready for Phase 5 testing and deployment.

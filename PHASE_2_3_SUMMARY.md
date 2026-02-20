@@ -9,13 +9,16 @@ Phases 2 and 3 have been successfully completed. The contact form now uses Netli
 ### Phase 2: Netlify Functions with SendGrid Integration
 
 #### 1. Dependencies Installed
+
 - **`@netlify/functions`**: Netlify Functions TypeScript types and utilities
 - **`@sendgrid/mail`**: SendGrid email service library
 
 #### 2. Netlify Function Created
+
 **File**: [`netlify/functions/contact.ts`](netlify/functions/contact.ts)
 
 **Features Implemented**:
+
 - ✅ Form validation (server-side)
 - ✅ SendGrid email integration
 - ✅ Professional HTML email templates
@@ -26,12 +29,14 @@ Phases 2 and 3 have been successfully completed. The contact form now uses Netli
 - ✅ Polish language support
 
 **Email Functionality**:
+
 - **Owner Email**: Professional HTML email with all form details sent to `biuro@car-folie.pl`
 - **Auto-Reply**: Automatic confirmation email sent to the submitter
 - **Email Templates**: Beautiful, branded HTML emails with responsive design
 - **Plain Text Fallback**: Text versions for email clients that don't support HTML
 
 **Validation Rules**:
+
 - Name: Minimum 2 characters
 - Email: Valid email format
 - Phone: Optional, but must be valid format if provided (9-15 digits)
@@ -39,7 +44,9 @@ Phases 2 and 3 have been successfully completed. The contact form now uses Netli
 - Message: Minimum 10 characters
 
 #### 3. Environment Configuration
+
 **File**: [`.env`](.env) (local development)
+
 ```env
 SENDGRID_API_KEY=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
 FROM_EMAIL=biuro@car-folie.pl
@@ -52,9 +59,11 @@ SITE_URL=https://car-folie.pl
 ### Phase 3: Client-Side Validation and Enhancements
 
 #### 1. Contact Form Updated
+
 **File**: [`src/pages/kontakt.astro`](src/pages/kontakt.astro)
 
 **Features Implemented**:
+
 - ✅ Real-time form validation
 - ✅ Field-specific error messages
 - ✅ Loading state with spinner animation
@@ -65,6 +74,7 @@ SITE_URL=https://car-folie.pl
 - ✅ Dark mode support
 
 **Form Enhancements**:
+
 - **Validation**: Client-side validation before submission
 - **Loading States**: Spinner animation while submitting
 - **Error Handling**: Clear error messages for each field
@@ -72,6 +82,7 @@ SITE_URL=https://car-folie.pl
 - **Accessibility**: Proper ARIA attributes and keyboard navigation
 
 **Form Fields**:
+
 | Field | Type | Required | Validation |
 |-------|------|----------|------------|
 | name | text | ✅ Yes | Min 2 characters |
@@ -100,6 +111,7 @@ export const handler = async (event: any) => {
 ### Email Templates
 
 **Owner Email Features**:
+
 - Professional gradient header
 - Formatted field display
 - Clickable email link
@@ -107,6 +119,7 @@ export const handler = async (event: any) => {
 - Site URL footer
 
 **Auto-Reply Email Features**:
+
 - Thank you message
 - Submission details
 - Contact information
@@ -116,6 +129,7 @@ export const handler = async (event: any) => {
 ### Client-Side JavaScript
 
 **Form Submission Flow**:
+
 1. User submits form
 2. Client-side validation runs
 3. If valid, show loading state
@@ -125,6 +139,7 @@ export const handler = async (event: any) => {
 7. Reset form on success
 
 **Validation Functions**:
+
 - `validateForm()`: Validates all fields
 - `showError()`: Displays field-specific errors
 - `clearErrors()`: Clears all error messages
@@ -174,7 +189,7 @@ export const handler = async (event: any) => {
 
 Add the following to Netlify dashboard → Site settings → Environment variables:
 
-```
+```env
 SENDGRID_API_KEY=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
 FROM_EMAIL=biuro@car-folie.pl
 TO_EMAIL=biuro@car-folie.pl
@@ -206,6 +221,7 @@ netlify deploy --prod
 ## Testing Checklist
 
 ### Local Testing
+
 - [ ] Form validation works correctly
 - [ ] Error messages display properly
 - [ ] Loading state appears during submission
@@ -214,6 +230,7 @@ netlify deploy --prod
 - [ ] Auto-reply email is sent
 
 ### Production Testing
+
 - [ ] Form submits successfully on live site
 - [ ] Email received by site owner
 - [ ] Auto-reply sent to submitter
@@ -222,6 +239,7 @@ netlify deploy --prod
 - [ ] Accessibility features work (keyboard navigation, screen readers)
 
 ### Email Testing
+
 - [ ] Owner email received with correct format
 - [ ] Auto-reply email received
 - [ ] Email templates display correctly
@@ -232,38 +250,45 @@ netlify deploy --prod
 ## Cost Analysis
 
 ### Netlify Functions
+
 - **Free Tier**: 125,000 invocations/month
 - **Cost**: $0
 - **Sufficient for**: Most contact form usage
 
 ### SendGrid
+
 - **Free Tier**: 100 emails/day (3,000/month)
 - **Cost**: $0
 - **Sufficient for**: Most small business contact forms
 
 ### Total Cost
+
 - **Monthly**: $0 (using free tiers)
 - **Annual**: $0
 
 **Note**: If you exceed free tier limits:
+
 - Netlify Functions Pro: $19/month
 - SendGrid Basic: $15/month (40,000 emails/month)
 
 ## Monitoring and Maintenance
 
 ### Netlify Dashboard
+
 - Monitor function invocations
 - Check execution time
 - Review error logs
 - Track usage statistics
 
 ### SendGrid Dashboard
+
 - Monitor email delivery
 - Check bounce rates
 - Review spam reports
 - Track email statistics
 
 ### Regular Tasks
+
 - Monitor form submission rates
 - Review email delivery status
 - Check for spam submissions
@@ -273,18 +298,22 @@ netlify deploy --prod
 ## Troubleshooting
 
 ### Form Not Submitting
+
 **Problem**: Form doesn't submit
 
 **Solutions**:
+
 - Check browser console for errors
 - Verify Netlify function is deployed
 - Check environment variables in Netlify
 - Verify SendGrid API key is correct
 
 ### Email Not Received
+
 **Problem**: No email received
 
 **Solutions**:
+
 - Check SendGrid Activity feed
 - Verify recipient email address
 - Check spam folder
@@ -292,9 +321,11 @@ netlify deploy --prod
 - Check SendGrid API key permissions
 
 ### Validation Errors
+
 **Problem**: Validation fails unexpectedly
 
 **Solutions**:
+
 - Check validation rules in function
 - Verify form field names match
 - Check client-side validation logic
@@ -303,6 +334,7 @@ netlify deploy --prod
 ## Security Considerations
 
 ### ✅ Implemented
+
 - Server-side validation
 - XSS protection (HTML escaping)
 - CORS support
@@ -310,6 +342,7 @@ netlify deploy --prod
 - Environment variables for sensitive data
 
 ### 🔒 Best Practices
+
 - Never commit API keys to version control
 - Use restricted API keys with minimal permissions
 - Rotate API keys periodically
@@ -319,6 +352,7 @@ netlify deploy --prod
 ## Next Steps
 
 ### Phase 4: Testing and Deployment
+
 - [ ] Test form locally with `netlify dev`
 - [ ] Deploy to Netlify
 - [ ] Test on production
@@ -327,6 +361,7 @@ netlify deploy --prod
 - [ ] Update documentation if needed
 
 ### Optional Enhancements (Future)
+
 - [ ] Add CAPTCHA for spam protection
 - [ ] Implement rate limiting
 - [ ] Add file upload support
@@ -336,7 +371,7 @@ netlify deploy --prod
 
 ## File Structure
 
-```
+```plain
 car-folie-astro/
 ├── netlify/
 │   └── functions/
@@ -384,5 +419,6 @@ Phases 2 and 3 are complete and ready for deployment. The contact form now has:
 
 **Phase 2 Status**: ✅ Complete
 **Phase 3 Status**: ✅ Complete
-**Phase 4 Status**: Ready for Testing and Deployment
+**Phase 4 Status**: ✅ Complete (Airtable integration)
+**Phase 5 Status**: 🔄 In Progress (Testing and Deployment)
 **Overall Progress**: 90% Complete
