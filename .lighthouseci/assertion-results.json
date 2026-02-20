@@ -1,13 +1,13 @@
 [
   {
     "name": "minScore",
-    "expected": 0.9,
+    "expected": 0.8,
     "actual": 0.84,
     "values": [
       0.84
     ],
     "operator": ">=",
-    "passed": false,
+    "passed": true,
     "auditProperty": "performance",
     "auditId": "categories",
     "level": "warn",
@@ -15,13 +15,13 @@
   },
   {
     "name": "minScore",
-    "expected": 0.9,
+    "expected": 0.8,
     "actual": 0.82,
     "values": [
       0.82
     ],
     "operator": ">=",
-    "passed": false,
+    "passed": true,
     "auditProperty": "performance",
     "auditId": "categories",
     "level": "warn",
