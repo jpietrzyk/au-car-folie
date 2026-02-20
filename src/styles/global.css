@@ -97,13 +97,13 @@ p {
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 /* Container */
@@ -117,7 +117,7 @@ a:hover {
 .button {
   display: inline-block;
   padding: 0.8rem 2rem;
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-dark);
   color: white;
   text-decoration: none;
   font-weight: 600;

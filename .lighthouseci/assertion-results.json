@@ -1,0 +1,30 @@
+[
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.84,
+    "values": [
+      0.84
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:43121/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.9,
+    "actual": 0.82,
+    "values": [
+      0.82
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:43121/galeria/"
+  }
+]

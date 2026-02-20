@@ -2,13 +2,14 @@
 import PageLayout from "../layouts/PageLayout.astro";
 import { Image as ImageIcon, Filter, Grid3x3 } from "@lucide/astro";
 import Lightbox from "../components/Lightbox.astro";
+import { Image } from "astro:assets";
 ---
 
 <PageLayout
   title="Car-folie.pl - Galeria"
   description="Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach"
   currentPath="/galeria"
-  bannerImage="/images/bg_galeria.jpg"
+  bannerImage="/images-optimized/bg_galeria_lcp.webp"
   bannerTitle="Galeria"
 >
   <div class="container">
@@ -54,10 +55,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="zmiana-koloru"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-1.jpg"
               alt="Zmiana koloru - realizacja 1"
+              width={640}
+              height={480}
               loading="lazy"
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -65,10 +71,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="zmiana-koloru"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-2.jpg"
               alt="Zmiana koloru - realizacja 2"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -76,10 +87,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="zmiana-koloru"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-3.jpg"
               alt="Zmiana koloru - realizacja 3"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -87,10 +103,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="zmiana-koloru"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-4.jpg"
               alt="Zmiana koloru - realizacja 4"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -98,10 +119,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="zmiana-koloru"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-5.jpg"
               alt="Zmiana koloru - realizacja 5"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -109,10 +135,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="zmiana-koloru"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-6.jpg"
               alt="Zmiana koloru - realizacja 6"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -120,10 +151,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="zmiana-koloru"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-7.jpg"
               alt="Zmiana koloru - realizacja 7"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -131,10 +167,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="zmiana-koloru"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-8.jpg"
               alt="Zmiana koloru - realizacja 8"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
         </div>
@@ -148,10 +189,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="reklamy"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-9.jpg"
               alt="Reklama - realizacja 1"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -159,10 +205,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="reklamy"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-10.jpg"
               alt="Reklama - realizacja 2"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -170,10 +221,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="reklamy"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-11.jpg"
               alt="Reklama - realizacja 3"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -181,10 +237,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="reklamy"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-12.jpg"
               alt="Reklama - realizacja 4"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
         </div>
@@ -198,10 +259,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="floty"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-13.jpg"
               alt="Flota - realizacja 1"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -209,10 +275,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="floty"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-14.jpg"
               alt="Flota - realizacja 2"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -220,10 +291,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="floty"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-15.jpg"
               alt="Flota - realizacja 3"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
           <a
@@ -231,10 +307,15 @@ import Lightbox from "../components/Lightbox.astro";
             class="gallery-item"
             data-category="floty"
           >
-            <img
+            <Image
               src="/img/demopage/thumb-16.jpg"
               alt="Flota - realizacja 4"
               loading="lazy"
+              width={640}
+              height={480}
+              decoding="async"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              format="webp"
             />
           </a>
         </div>
@@ -262,7 +343,7 @@ import Lightbox from "../components/Lightbox.astro";
   }
 
   .content-page h2 {
-    color: white;
+    color: var(--color-text-main);
     font-size: clamp(1.75rem, 4vw, 2.5rem);
     margin-bottom: 2rem;
     text-align: center;
@@ -279,7 +360,7 @@ import Lightbox from "../components/Lightbox.astro";
   }
 
   .content-section h3 {
-    color: white;
+    color: var(--color-text-main);
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
@@ -295,7 +376,7 @@ import Lightbox from "../components/Lightbox.astro";
   }
 
   .gallery-controls h3 {
-    color: white;
+    color: var(--color-text-main);
     font-size: 1.25rem;
     margin-bottom: 1rem;
   }
@@ -327,8 +408,8 @@ import Lightbox from "../components/Lightbox.astro";
   }
 
   .filter-button.active {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
     color: white;
   }
 
@@ -366,7 +447,7 @@ import Lightbox from "../components/Lightbox.astro";
   .cta-section {
     background: linear-gradient(
       135deg,
-      var(--color-primary),
+      var(--color-primary-dark),
       var(--color-primary-dark)
     );
     border-radius: 0.5rem;
