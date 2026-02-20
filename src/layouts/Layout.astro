@@ -185,9 +185,14 @@ const structuredData = {
       };
 
       if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(initWhenIdle, { timeout: 1200 });
+        (window as Window & typeof globalThis).requestIdleCallback(
+          initWhenIdle,
+          {
+            timeout: 1200,
+          },
+        );
       } else {
-        window.setTimeout(initWhenIdle, 0);
+        (window as Window & typeof globalThis).setTimeout(initWhenIdle, 0);
       }
     </script>
 
