@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "optimize:images": "node scripts/optimize-images.js"
+    "optimize:images": "node scripts/optimize-images.js",
+    "netlify:dev": "netlify dev"
   },
   "dependencies": {
     "@lucide/astro": "^0.574.0",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@fontsource/inter": "^5.2.8",
     "@fontsource/source-sans-pro": "^5.2.5",
-    "@types/node": "^25.2.3"
+    "@types/node": "^25.2.3",
+    "netlify-cli": "^17.0.0"
   }
 }
