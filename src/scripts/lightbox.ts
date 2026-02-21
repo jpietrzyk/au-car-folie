@@ -163,7 +163,12 @@ class LightboxController {
     }
 
     this.image.alt = imageData.alt;
-    this.caption.textContent = imageData.title;
+
+    // Update caption with more context for screen readers
+    const imageNumber = this.currentIndex + 1;
+    const totalImages = this.images.length;
+    this.caption.textContent = `${imageData.title || imageData.alt} (${imageNumber} z ${totalImages})`;
+
     this.image.src = imageData.src;
     this.image.style.opacity = "1";
     this.image.style.display = "block";

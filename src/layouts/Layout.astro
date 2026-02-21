@@ -206,5 +206,45 @@ const structuredData = {
         });
       }
     </script>
+
+    <!-- Focus management for page transitions -->
+    <script is:inline>
+      (function () {
+        // Move focus to main content on page transitions
+        document.addEventListener("astro:page-load", () => {
+          const mainContent = document.getElementById("main-content");
+          if (mainContent) {
+            // Set tabindex to -1 to make element focusable
+            mainContent.setAttribute("tabindex", "-1");
+            // Move focus to main content
+            mainContent.focus();
+            // Remove tabindex after focus to prevent double-tab issues
+            mainContent.addEventListener(
+              "blur",
+              () => {
+                mainContent.removeAttribute("tabindex");
+              },
+              { once: true },
+            );
+          }
+        });
+
+        // Also handle initial page load
+        document.addEventListener("DOMContentLoaded", () => {
+          const mainContent = document.getElementById("main-content");
+          if (mainContent && document.activeElement === document.body) {
+            mainContent.setAttribute("tabindex", "-1");
+            mainContent.focus();
+            mainContent.addEventListener(
+              "blur",
+              () => {
+                mainContent.removeAttribute("tabindex");
+              },
+              { once: true },
+            );
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

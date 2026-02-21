@@ -1,0 +1,124 @@
+---
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+  current?: boolean;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Ścieżka nawigacji" class="breadcrumbs">
+  <ol
+    class="breadcrumbs-list"
+    vocab="https://schema.org/"
+    typeof="BreadcrumbList"
+  >
+    {
+      items.map((item, index) => (
+        <li
+          class="breadcrumbs-item"
+          property="itemListElement"
+          typeof="ListItem"
+        >
+          {item.href ? (
+            <a href={item.href} class="breadcrumbs-link" property="item">
+              <span property="name">{item.label}</span>
+            </a>
+          ) : (
+            <span
+              class="breadcrumbs-current"
+              property="name"
+              aria-current="page"
+            >
+              {item.label}
+            </span>
+          )}
+          <meta property="position" content={String(index + 1)} />
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs {
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+  }
+
+  .breadcrumbs-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .breadcrumbs-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumbs-item:not(:last-child)::after {
+    content: "/";
+    margin-left: 0.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumbs-link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumbs-link:hover,
+  .breadcrumbs-link:focus {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .breadcrumbs-current {
+    color: var(--color-text-main);
+    font-weight: 600;
+  }
+
+  /* Dark mode styles */
+  .dark .breadcrumbs-link:hover,
+  .dark .breadcrumbs-link:focus {
+    color: var(--color-primary-light);
+  }
+
+  /* Breadcrumb focus styles */
+  .breadcrumbs-link:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Breadcrumb responsive styles */
+  @media (max-width: 640px) {
+    .breadcrumbs {
+      padding: 0.75rem 0;
+    }
+
+    .breadcrumbs-list {
+      gap: 0.25rem;
+    }
+
+    .breadcrumbs-item {
+      font-size: 0.8125rem;
+    }
+
+    .breadcrumbs-item:not(:last-child)::after {
+      margin-left: 0.25rem;
+    }
+  }
+</style>

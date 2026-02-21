@@ -55,6 +55,30 @@ const { class: className = "" } = Astro.props;
   </svg>
 </button>
 
+<!-- Live region for announcing theme changes -->
+<div id="theme-status" role="status" aria-live="polite" class="sr-only"></div>
+
+<script>
+  // Enhance dark mode toggle to announce changes to screen readers
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener("click", () => {
+      // Announce change to screen readers after a short delay
+      // to ensure the theme has been toggled
+      setTimeout(() => {
+        const themeStatus = document.getElementById("theme-status");
+        if (themeStatus) {
+          const isDark = document.documentElement.classList.contains("dark");
+          themeStatus.textContent = isDark
+            ? "Tryb ciemny włączony"
+            : "Tryb jasny włączony";
+        }
+      }, 100);
+    });
+  }
+</script>
+
 <style>
   .dark-mode-toggle {
     position: relative;
