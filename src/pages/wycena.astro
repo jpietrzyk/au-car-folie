@@ -346,6 +346,20 @@ const breadcrumbs = [
     color: var(--color-text-main);
   }
 
+  /* Fix for dropdown positioning on first open */
+  .form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-align: left;
+    text-align-last: left;
+  }
+
+  /* Custom dropdown arrow for consistency */
+  .form-group select::-ms-expand {
+    display: none;
+  }
+
   .form-group input:focus,
   .form-group select:focus,
   .form-group textarea:focus {
