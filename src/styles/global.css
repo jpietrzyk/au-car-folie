@@ -176,6 +176,32 @@ form textarea:focus {
   background-color: var(--color-bg-card);
 }
 
+/* Focus-visible support for mouse users */
+form input:focus:not(:focus-visible),
+form select:focus:not(:focus-visible),
+form textarea:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Strong focus for keyboard users */
+form input:focus-visible,
+form select:focus-visible,
+form textarea:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(77, 166, 255, 0.2);
+  background-color: var(--color-bg-card);
+}
+
+/* Button focus styles */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 form label {
   display: block;
   margin-bottom: 0.5rem;
@@ -521,6 +547,32 @@ form label {
 *:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focusable screen reader only content (for skip links, etc.) */
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
 }
 
 /* Skip navigation link for keyboard users */

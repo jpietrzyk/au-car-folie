@@ -1,6 +1,11 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
-import { Calculator, FileText, Phone, Mail } from '@lucide/astro';
+import PageLayout from "../layouts/PageLayout.astro";
+import { Calculator, FileText, Phone, Mail } from "@lucide/astro";
+
+const breadcrumbs = [
+  { label: "Home", href: "/" },
+  { label: "Wycena", current: true },
+];
 ---
 
 <PageLayout
@@ -9,6 +14,7 @@ import { Calculator, FileText, Phone, Mail } from '@lucide/astro';
   currentPath="/wycena"
   bannerImage="/images/bg_wycena.jpg"
   bannerTitle="Wycena"
+  breadcrumbs={breadcrumbs}
 >
   <div class="container">
     <div class="content-page">
@@ -16,7 +22,8 @@ import { Calculator, FileText, Phone, Mail } from '@lucide/astro';
 
       <div class="content-section">
         <p>
-          Zainteresowany naszymi usługami? Wypełnij formularz poniżej, a my przygotujemy indywidualną wycenę dla Twojego projektu.
+          Zainteresowany naszymi usługami? Wypełnij formularz poniżej, a my
+          przygotujemy indywidualną wycenę dla Twojego projektu.
         </p>
       </div>
 
@@ -132,8 +139,7 @@ import { Calculator, FileText, Phone, Mail } from '@lucide/astro';
                   name="description"
                   required
                   placeholder="Opisz szczegóły projektu, oczekiwania, preferencje..."
-                  rows="6"
-                ></textarea>
+                  rows="6"></textarea>
               </div>
 
               <div class="form-group">
@@ -165,14 +171,16 @@ import { Calculator, FileText, Phone, Mail } from '@lucide/astro';
                   id="additional"
                   name="additional"
                   placeholder="Wszelkie dodatkowe informacje..."
-                  rows="4"
-                ></textarea>
+                  rows="4"></textarea>
               </div>
             </div>
 
             <div class="form-actions">
               <button type="submit" class="button button-large">
-                <Calculator size={20} style="display: inline; vertical-align: middle;" />
+                <Calculator
+                  size={20}
+                  style="display: inline; vertical-align: middle;"
+                />
                 Wyślij zapytanie o wycenę
               </button>
             </div>
@@ -202,7 +210,9 @@ import { Calculator, FileText, Phone, Mail } from '@lucide/astro';
             <div class="contact-text">
               <h4>Email</h4>
               <p>
-                <a href="mailto:biuro@car-folie.pl" class="contact-link">biuro@car-folie.pl</a>
+                <a href="mailto:biuro@car-folie.pl" class="contact-link"
+                  >biuro@car-folie.pl</a
+                >
               </p>
             </div>
           </div>
@@ -213,9 +223,7 @@ import { Calculator, FileText, Phone, Mail } from '@lucide/astro';
             </div>
             <div class="contact-text">
               <h4>Godziny pracy</h4>
-              <p>
-                Pon-Pt: 8:00 - 17:00
-              </p>
+              <p>Pon-Pt: 8:00 - 17:00</p>
             </div>
           </div>
         </div>
@@ -226,16 +234,19 @@ import { Calculator, FileText, Phone, Mail } from '@lucide/astro';
           <h3>Ważne informacje</h3>
           <ul>
             <li>
-              <strong>Odpowiedź:</strong> Staraj się podać jak najwięcej szczegółów, abyśmy mogli przygotować dokładną wycenę.
+              <strong>Odpowiedź:</strong> Staraj się podać jak najwięcej szczegółów,
+              abyśmy mogli przygotować dokładną wycenę.
             </li>
             <li>
-              <strong>Czas odpowiedzi:</strong> Zwykle odpowiadamy w ciągu 1-2 dni roboczych.
+              <strong>Czas odpowiedzi:</strong> Zwykle odpowiadamy w ciągu 1-2 dni
+              roboczych.
             </li>
             <li>
               <strong>Bezpłatna wycena:</strong> Wycena jest bezpłatna i niezobowiązująca.
             </li>
             <li>
-              <strong>Dokładność:</strong> Wycena może się zmienić w zależności od szczegółów projektu.
+              <strong>Dokładność:</strong> Wycena może się zmienić w zależności od
+              szczegółów projektu.
             </li>
           </ul>
         </div>
@@ -407,7 +418,11 @@ import { Calculator, FileText, Phone, Mail } from '@lucide/astro';
   }
 
   .info-box {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-primary-dark)
+    );
     border-radius: 0.5rem;
     padding: 2rem;
   }

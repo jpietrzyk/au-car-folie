@@ -173,9 +173,22 @@ const menuItems = [
   const navList = document.getElementById("navList");
 
   if (mobileMenuToggle && navList) {
+    // Track focusable elements for focus trap
+    const getFocusableElements = () => {
+      return navList.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+    };
+
     mobileMenuToggle.addEventListener("click", () => {
       const isOpen = navList.classList.toggle("open");
       mobileMenuToggle.setAttribute("aria-expanded", isOpen.toString());
+
+      // Update aria-label based on state
+      mobileMenuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Zamknij menu" : "Otwórz menu",
+      );
 
       // Manage focus when menu opens/closes
       if (isOpen) {
@@ -194,6 +207,7 @@ const menuItems = [
       ) {
         navList.classList.remove("open");
         mobileMenuToggle?.setAttribute("aria-expanded", "false");
+        mobileMenuToggle?.setAttribute("aria-label", "Otwórz menu");
         mobileMenuToggle.focus();
       }
     });
@@ -203,7 +217,42 @@ const menuItems = [
       link.addEventListener("click", () => {
         navList.classList.remove("open");
         mobileMenuToggle?.setAttribute("aria-expanded", "false");
+        mobileMenuToggle?.setAttribute("aria-label", "Otwórz menu");
       });
+    });
+
+    // Focus trap within mobile menu
+    navList.addEventListener("keydown", (e) => {
+      if (!navList.classList.contains("open")) return;
+
+      if (e.key === "Tab") {
+        const focusableElements = getFocusableElements();
+
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0] as HTMLElement;
+        const lastElement = focusableElements[
+          focusableElements.length - 1
+        ] as HTMLElement;
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+
+      // Close menu on Escape
+      if (e.key === "Escape") {
+        navList.classList.remove("open");
+        mobileMenuToggle?.setAttribute("aria-expanded", "false");
+        mobileMenuToggle?.setAttribute("aria-label", "Otwórz menu");
+        mobileMenuToggle.focus();
+      }
     });
   }
 </script>
