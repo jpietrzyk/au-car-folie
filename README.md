@@ -174,13 +174,13 @@ netlify dev
 - [x] Loading states and error handling for better UX
 - [x] Airtable integration for form submission storage with duplicate protection and fallback logging
 - [x] Production deployment of Airtable integration with verified functionality
+- [x] Monitor Airtable integration for `accepted_queued` fallback submissions
+- [x] CAPTCHA for enhanced spam protection (optional)
+- [x] Rate limiting for form submissions (optional) ✅ **Implemented with unit tests**
 
 ### 📋 Planned
 
-- [ ] Monitor Airtable integration for `accepted_queued` fallback submissions
 - [ ] Analytics integration
-- [ ] CAPTCHA for enhanced spam protection (optional)
-- [x] Rate limiting for form submissions (optional)
 
 ### 🔍 SEO Enhancement Tasks (Optional)
 
@@ -413,14 +413,16 @@ RATE_LIMIT_PER_IP_DAY_WINDOW_MS=86400000
 
 ### Status
 
-✅ **Implemented** - Rate limiting code is ready for testing and deployment.
+✅ **Implemented with Unit Tests** - Rate limiting code is ready for testing and deployment. Comprehensive unit tests have been created with 29 passing tests.
 
 To enable rate limiting:
-1. Create an Upstash Redis account at https://console.upstash.com
+
+1. Create an Upstash Redis account at <https://console.upstash.com>
 2. Create a Redis database
 3. Add Redis credentials to environment variables
 4. Set `RATE_LIMIT_ENABLED=true`
 5. Follow the [Quick Start Guide](RATE_LIMITING_QUICK_START.md) for testing
+6. Run unit tests: `npm run test:functions`
 
 ## Airtable Integration Status
 
@@ -429,34 +431,41 @@ The Airtable integration for the contact form has been **fully implemented and d
 ### ✅ Completed Phases
 
 **Phase 1-2**: API contract, error handling, and Airtable schema configuration
+
 - Unified API response format with standardized error codes
 - Environment variable configuration documented in [`.env.example`](.env.example)
 - Feature flag for enabling/disabling Airtable integration (`AIRTABLE_ENABLED`)
 
 **Phase 3**: Airtable REST API integration
+
 - HTTP client implementation with timeout (4.5s) and retry logic (1 retry)
 - Field mapping from form data to Airtable schema
 - Graceful handling of Airtable responses
 
 **Phase 4**: Idempotency and duplicate protection
+
 - Unique `submissionId` generation for each submission
 - Duplicate detection before creating new records
 - Returns `accepted_duplicate` status for duplicate submissions
 
 **Phase 5**: Fallback mechanism (dead-letter queue)
+
 - Structured logging for submissions that cannot be saved to Airtable
 - Returns `accepted_queued` status when Airtable is unavailable
 - No lead loss during Airtable outages
 
 **Phase 6**: Frontend UX improvements
+
 - Updated form handling to display appropriate messages for all response codes
 - User-friendly messages for `accepted`, `accepted_duplicate`, `accepted_queued`, and `validation_error` states
 
 **Phase 7**: Observability and operations
+
 - Standardized logging with `submissionId`, `code`, and `durationMs`
 - Operational playbook for handling queued submissions
 
 **Phase 8**: Production deployment ✅ **COMPLETED**
+
 - ✅ Netlify CLI installed as dev dependency
 - ✅ `netlify:dev` script added to package.json for local testing
 - ✅ Environment variables documented in [`.env.example`](.env.example)
@@ -470,7 +479,8 @@ The Airtable integration for the contact form has been **fully implemented and d
 The Airtable integration has been verified in production with the following evidence:
 
 **Netlify Function Log (Feb 21, 10:09:58 PM):**
-```
+
+```bash
 INFO   contact_submission_processed {
   submissionId: 'sub_5c780742d1f782638fbe5d6f',
   code: 'accepted',
@@ -497,6 +507,7 @@ To enable Airtable integration:
 
 1. Create a `ContactSubmissions` table in Airtable following the schema in [`AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)
 2. Set environment variables:
+
    ```env
    AIRTABLE_ENABLED=true
    AIRTABLE_API_KEY=your_api_key
@@ -505,6 +516,7 @@ To enable Airtable integration:
    AIRTABLE_TIMEOUT_MS=4500
    AIRTABLE_MAX_RETRIES=1
    ```
+
 3. Test locally with `netlify dev`
 4. Deploy to production and verify form submissions
 
