@@ -8,7 +8,10 @@
     "preview": "astro preview",
     "astro": "astro",
     "optimize:images": "node scripts/optimize-images.js",
-    "netlify:dev": "netlify dev"
+    "netlify:dev": "netlify dev",
+    "test:functions": "cd netlify/functions && npm run test:run",
+    "test:functions:watch": "cd netlify/functions && npm run test",
+    "test:functions:ui": "cd netlify/functions && npm run test:ui"
   },
   "dependencies": {
     "@lucide/astro": "^0.574.0",
