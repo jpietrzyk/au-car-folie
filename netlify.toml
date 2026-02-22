@@ -4,6 +4,7 @@ publish = "dist"
 
 [functions]
 directory = "netlify/functions"
+node_bundler = "esbuild"
 
 # Redirect API routes to Netlify functions (for future use with custom functions)
 [[redirects]]
