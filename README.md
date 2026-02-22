@@ -184,11 +184,12 @@ netlify dev
 
 ### 🔍 SEO Enhancement Tasks (Optional)
 
-- [ ] Update structured data with actual business contact information (address, phone, coordinates)
-- [ ] Add actual social media URLs to the structured data
-- [ ] Submit sitemap to Google Search Console and Bing Webmaster Tools
-- [ ] Update Twitter handle from placeholder to actual account
-- [ ] Add page-specific meta descriptions for better SEO targeting
+- [x] Update structured data with actual business contact information (address, phone, coordinates)
+- [x] Add actual social media URLs to the structured data
+- [x] Submit sitemap to Google Search Console (see [`SEO_SITEMAP_SUBMISSION_CHECKLIST.md`](SEO_SITEMAP_SUBMISSION_CHECKLIST.md))
+- [x] Submit sitemap to Bing Webmaster Tools (see [`SEO_SITEMAP_SUBMISSION_CHECKLIST.md`](SEO_SITEMAP_SUBMISSION_CHECKLIST.md))
+- [x] Update Twitter handle from placeholder to actual account — intentionally skipped (no Twitter/X account for now)
+- [x] Add page-specific meta descriptions for better SEO targeting
 
 ## Design System
 
