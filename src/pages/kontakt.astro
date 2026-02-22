@@ -450,6 +450,8 @@ const isDev = import.meta.env.DEV;
     airtable_unavailable:
       "Usługa jest chwilowo niedostępna. Spróbuj ponownie za chwilę.",
     internal_error: "Wystąpił błąd. Spróbuj ponownie później.",
+    rate_limit_exceeded:
+      "Przekroczono limit zgłoszeń. Spróbuj ponownie za chwilę.",
   };
 
   const form = document.getElementById("contactForm") as HTMLFormElement;
@@ -564,6 +566,36 @@ const isDev = import.meta.env.DEV;
         });
 
         const result = await response.json();
+
+        // Handle rate limit (429) response
+        if (response.status === 429) {
+          const retryAfter = result.retryAfter || 60;
+          const message = `Przekroczono limit zgłoszeń. Spróbuj ponownie za ${retryAfter} sekund.`;
+          showMessage(message, "error");
+
+          // Update submit button with countdown
+          const originalBtnText =
+            submitBtn.querySelector(".btn-text")?.textContent ||
+            "Wyślij wiadomość";
+          let remaining = retryAfter;
+
+          submitBtn.disabled = true;
+          submitBtn.classList.remove("loading");
+          submitBtn.innerHTML = `<span class="btn-text">Spróbuj ponownie za ${remaining}s</span>`;
+
+          const countdown = setInterval(() => {
+            remaining--;
+            if (remaining <= 0) {
+              clearInterval(countdown);
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = `<span class="btn-text">${originalBtnText}</span><span class="btn-spinner" aria-hidden="true"></span>`;
+            } else {
+              submitBtn.innerHTML = `<span class="btn-text">Spróbuj ponownie za ${remaining}s</span>`;
+            }
+          }, 1000);
+
+          return;
+        }
 
         if (response.ok) {
           const successMessage =

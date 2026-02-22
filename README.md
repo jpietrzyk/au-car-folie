@@ -180,7 +180,7 @@ netlify dev
 - [ ] Monitor Airtable integration for `accepted_queued` fallback submissions
 - [ ] Analytics integration
 - [ ] CAPTCHA for enhanced spam protection (optional)
-- [ ] Rate limiting for form submissions (optional)
+- [x] Rate limiting for form submissions (optional)
 
 ### 🔍 SEO Enhancement Tasks (Optional)
 
@@ -366,6 +366,61 @@ See [`ANIMATIONS.md`](ANIMATIONS.md) for comprehensive documentation about the a
 
 **Last Updated**: 2026-02-21
 **Status**: SEO, performance, high and medium priority accessibility optimizations, dark mode support, animations, Netlify Functions contact backend with SendGrid and Airtable integration completed. **Airtable integration fully deployed to production and verified** - all phases (1-8) completed successfully. Form submissions are saving to Airtable with proper logging, duplicate protection, and fallback mechanisms. **Medium priority accessibility improvements completed** - focus management, ARIA live regions, and breadcrumbs implemented.
+
+## Rate Limiting Implementation
+
+The contact form now includes **rate limiting** to prevent spam, bot attacks, and abuse. Rate limiting works alongside reCAPTCHA v3 for comprehensive protection.
+
+### Features
+
+- **Multi-tiered rate limiting**: Global, per-IP minute, per-IP hour, and per-IP day limits
+- **Sliding window algorithm**: Accurate rate limiting without sudden spikes at window boundaries
+- **Upstash Redis integration**: Serverless Redis with free tier (10,000 commands/day)
+- **Graceful degradation**: Allows requests if Redis is unavailable
+- **User-friendly feedback**: Retry countdown on submit button when rate limited
+
+### Configuration
+
+Rate limiting is configured via environment variables:
+
+```env
+RATE_LIMIT_ENABLED=true
+RATE_LIMIT_REDIS_URL=https://your-redis-url.upstash.io
+RATE_LIMIT_REDIS_TOKEN=your_redis_token_here
+RATE_LIMIT_GLOBAL_REQUESTS=100
+RATE_LIMIT_GLOBAL_WINDOW_MS=60000
+RATE_LIMIT_PER_IP_MINUTE_REQUESTS=5
+RATE_LIMIT_PER_IP_MINUTE_WINDOW_MS=60000
+RATE_LIMIT_PER_IP_HOUR_REQUESTS=15
+RATE_LIMIT_PER_IP_HOUR_WINDOW_MS=3600000
+RATE_LIMIT_PER_IP_DAY_REQUESTS=30
+RATE_LIMIT_PER_IP_DAY_WINDOW_MS=86400000
+```
+
+### Default Limits
+
+| Level | Limit | Window | Purpose |
+|-------|-------|--------|---------|
+| Global | 100 requests | 1 minute | Prevent server overload |
+| Per-IP | 5 requests | 1 minute | Prevent individual abuse |
+| Per-IP | 15 requests | 1 hour | Prevent sustained abuse |
+| Per-IP | 30 requests | 1 day | Long-term abuse prevention |
+
+### Documentation
+
+- Implementation plan: [`RATE_LIMITING_IMPLEMENTATION_PLAN.md`](RATE_LIMITING_IMPLEMENTATION_PLAN.md)
+- Quick start guide: [`RATE_LIMITING_QUICK_START.md`](RATE_LIMITING_QUICK_START.md)
+
+### Status
+
+✅ **Implemented** - Rate limiting code is ready for testing and deployment.
+
+To enable rate limiting:
+1. Create an Upstash Redis account at https://console.upstash.com
+2. Create a Redis database
+3. Add Redis credentials to environment variables
+4. Set `RATE_LIMIT_ENABLED=true`
+5. Follow the [Quick Start Guide](RATE_LIMITING_QUICK_START.md) for testing
 
 ## Airtable Integration Status
 
