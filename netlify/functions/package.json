@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test": "vitest --config ./config/vitest.config.ts",
+    "test:ui": "vitest --config ./config/vitest.config.ts --ui",
+    "test:run": "vitest --config ./config/vitest.config.ts run",
+    "test:coverage": "vitest --config ./config/vitest.config.ts run --coverage"
   },
   "dependencies": {
     "@netlify/functions": "^5.1.2",
