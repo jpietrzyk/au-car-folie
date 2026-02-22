@@ -91,6 +91,25 @@ npm run preview
 
 The development server will start at `http://localhost:4321`
 
+## Analytics Quick Start (Plausible)
+
+Plan wdrożenia znajduje się w:
+
+- [`ANALYTICS_INTEGRATION_PLAN.md`](ANALYTICS_INTEGRATION_PLAN.md)
+
+Minimalna konfiguracja środowiska:
+
+```env
+ANALYTICS_ENABLED=true
+PLAUSIBLE_DOMAIN=car-folie.pl
+PLAUSIBLE_SCRIPT_SRC=https://plausible.io/js/script.js
+```
+
+Uwagi:
+
+- Lokalnie domyślnie trzymaj `ANALYTICS_ENABLED=false`.
+- Na Netlify ustaw zmienne tylko dla środowiska produkcyjnego.
+
 ## Airtable Quick Start (Contact Form)
 
 Jeśli chcesz szybko uruchomić zapis formularza kontaktowego do Airtable:
@@ -180,7 +199,7 @@ netlify dev
 
 ### 📋 Planned
 
-- [ ] Analytics integration
+- [ ] Analytics integration (see [`ANALYTICS_INTEGRATION_PLAN.md`](ANALYTICS_INTEGRATION_PLAN.md))
 
 ### 🔍 SEO Enhancement Tasks (Optional)
 

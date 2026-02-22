@@ -508,3 +508,18 @@ const breadcrumbs = [
     }
   }
 </style>
+
+<script>
+  const quoteForm = document.querySelector(
+    ".quote-form",
+  ) as HTMLFormElement | null;
+
+  if (quoteForm) {
+    quoteForm.addEventListener("submit", () => {
+      const plausible = (window as any).plausible;
+      if (typeof plausible === "function") {
+        plausible("quote_submit_success");
+      }
+    });
+  }
+</script>
