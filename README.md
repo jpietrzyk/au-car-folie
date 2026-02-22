@@ -199,7 +199,7 @@ netlify dev
 
 ### 📋 Planned
 
-- [ ] Analytics integration (see [`ANALYTICS_INTEGRATION_PLAN.md`](ANALYTICS_INTEGRATION_PLAN.md))
+- [x] Analytics integration (Plausible) (see [`ANALYTICS_INTEGRATION_PLAN.md`](ANALYTICS_INTEGRATION_PLAN.md))
 
 ### 🔍 SEO Enhancement Tasks (Optional)
 
