@@ -59,9 +59,18 @@ car-folie-astro/
 │       ├── contact.ts      # Contact form handler
 │       ├── rate-limit.ts   # Rate limiting logic
 │       └── __tests__/      # Unit tests
-├── ANIMATIONS.md          # Animation system documentation
-├── ACCESSIBILITY_IMPROVEMENTS.md  # Accessibility documentation
-├── PERFORMANCE_OPTIMIZATION.md     # Performance documentation
+├── docs/                 # Documentation
+│   ├── AIRTABLE_INTEGRATION_PLAN.md
+│   ├── AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md
+│   ├── ANALYTICS_INTEGRATION_PLAN.md
+│   ├── ANIMATIONS.md
+│   ├── CONTACT_FORM_IMPLEMENTATION_PLAN.md
+│   ├── CONTACT_FORM_IMPLEMENTATION_SUMMARY.md
+│   ├── DEVELOPMENT.md
+│   ├── FEATURES.md
+│   ├── PERFORMANCE_OPTIMIZATION.md
+│   ├── RATE_LIMITING.md
+│   └── RECAPTCHA_IMPLEMENTATION.md
 ├── README.md              # Project documentation
 ├── astro.config.mjs       # Astro configuration
 ├── package.json           # Dependencies
@@ -91,16 +100,23 @@ The development server will start at `http://localhost:4321`
 
 ## Documentation
 
-- **[`DEVELOPMENT.md`](DEVELOPMENT.md:1)** - Complete development guide
-- **[`FEATURES.md`](FEATURES.md:1)** - Complete feature list
-- **[`ANIMATIONS.md`](ANIMATIONS.md) - Animation system documentation
-- **[`ACCESSIBILITY_IMPROVEMENTS.md`](ACCESSIBILITY_IMPROVEMENTS.md) - Accessibility documentation
-- **[`PERFORMANCE_OPTIMIZATION.md`](PERFORMANCE_OPTIMIZATION.md) - Performance documentation
-- **[`RATE_LIMITING.md`](RATE_LIMITING.md) - Rate limiting documentation
+All documentation has been moved to the [`docs/`](docs/) directory:
+
+- **[`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md:1)** - Complete development guide
+- **[`docs/FEATURES.md`](docs/FEATURES.md:1)** - Complete feature list
+- **[`docs/ANIMATIONS.md`](docs/ANIMATIONS.md)** - Animation system documentation
+- **[`docs/PERFORMANCE_OPTIMIZATION.md`](docs/PERFORMANCE_OPTIMIZATION.md)** - Performance documentation
+- **[`docs/RATE_LIMITING.md`](docs/RATE_LIMITING.md)** - Rate limiting documentation
+- **[`docs/CONTACT_FORM_IMPLEMENTATION_SUMMARY.md`](docs/CONTACT_FORM_IMPLEMENTATION_SUMMARY.md)** - Contact form implementation
+- **[`docs/CONTACT_FORM_IMPLEMENTATION_PLAN.md`](docs/CONTACT_FORM_IMPLEMENTATION_PLAN.md)** - Contact form implementation plan
+- **[`docs/AIRTABLE_INTEGRATION_PLAN.md`](docs/AIRTABLE_INTEGRATION_PLAN.md)** - Airtable integration plan
+- **[`docs/AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md`](docs/AIRTABLE_SCHEMA_AND_TEST_CHECKLIST.md)** - Airtable schema and testing
+- **[`docs/ANALYTICS_INTEGRATION_PLAN.md`](docs/ANALYTICS_INTEGRATION_PLAN.md)** - Analytics integration plan
+- **[`docs/RECAPTCHA_IMPLEMENTATION.md`](docs/RECAPTCHA_IMPLEMENTATION.md)** - reCAPTCHA implementation
 
 ## Features
 
-See [`FEATURES.md`](FEATURES.md) for complete list of all project features including:
+See [`docs/FEATURES.md`](docs/FEATURES.md) for complete list of all project features including:
 
 - Core functionality (Astro, Tailwind, TypeScript)
 - Design system (animations, colors, dark mode, typography)
@@ -118,7 +134,7 @@ See [`FEATURES.md`](FEATURES.md) for complete list of all project features inclu
 Serverless functions for contact form and rate limiting:
 
 - **Rate Limiting** - Multi-tiered rate limiting with Upstash Redis
-  - See [`RATE_LIMITING.md`](RATE_LIMITING.md) for complete documentation
+  - See [`docs/RATE_LIMITING.md`](docs/RATE_LIMITING.md) for complete documentation
   - Unit tests: 29/32 passing
   - Test scripts: `npm run test:functions`
 - [x] Service card component
@@ -165,7 +181,7 @@ The website features a comprehensive animation system including:
 - **Staggered animations**: Grid items animate with sequential delays
 - **Accessibility**: Full support for `prefers-reduced-motion`
 
-See [`ANIMATIONS.md`](ANIMATIONS.md) for detailed documentation and usage examples.
+See [`docs/ANIMATIONS.md`](docs/ANIMATIONS.md) for detailed documentation and usage examples.
 
 ### Colors
 
@@ -297,7 +313,7 @@ npm run build
 - ✅ Form focus styles for better keyboard navigation
 - ✅ Reduced motion support for accessibility
 
-See [`ACCESSIBILITY_IMPROVEMENTS.md`](ACCESSIBILITY_IMPROVEMENTS.md) for detailed accessibility documentation.
+Accessibility improvements are documented throughout the codebase and in [`docs/PERFORMANCE_OPTIMIZATION.md`](docs/PERFORMANCE_OPTIMIZATION.md).
 
 ## Testing
 
@@ -319,7 +335,7 @@ npm run test:functions:watch    # Run in watch mode
 npm run test:functions:ui       # Run with UI
 ```
 
-See [`RATE_LIMITING_UNIT_TESTS_SUMMARY.md`](RATE_LIMITING_UNIT_TESTS_SUMMARY.md) for detailed test documentation.
+Rate limiting tests are documented in [`docs/RATE_LIMITING.md`](docs/RATE_LIMITING.md).
 
 ## License
 
@@ -327,7 +343,7 @@ Copyright © 2024 car-folie.pl. All rights reserved.
 
 ## Animations Documentation
 
-See [`ANIMATIONS.md`](ANIMATIONS.md) for comprehensive documentation about the animation system, including:
+See [`docs/ANIMATIONS.md`](docs/ANIMATIONS.md) for comprehensive documentation about the animation system, including:
 
 - Animation utilities and keyframes
 - Scroll-triggered animations
