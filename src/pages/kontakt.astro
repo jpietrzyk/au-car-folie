@@ -458,6 +458,13 @@ const isDev = import.meta.env.DEV;
   const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
   const formMessage = document.getElementById("formMessage") as HTMLDivElement;
 
+  function trackAnalyticsEvent(eventName: string): void {
+    const plausible = (window as any).plausible;
+    if (typeof plausible === "function") {
+      plausible(eventName);
+    }
+  }
+
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -601,6 +608,7 @@ const isDev = import.meta.env.DEV;
           const successMessage =
             responseMessages[result.code] || result.message;
           showMessage(successMessage || responseMessages.accepted, "success");
+          trackAnalyticsEvent("contact_submit_success");
           form.reset();
         } else {
           // Error from server

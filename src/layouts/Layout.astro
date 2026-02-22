@@ -23,6 +23,12 @@ const {
 const siteUrl = "https://car-folie.pl";
 const fullUrl = `${siteUrl}${currentPath}`;
 const fullImageUrl = `${siteUrl}${image}`;
+const analyticsEnabled = import.meta.env.ANALYTICS_ENABLED === "true";
+const plausibleDomain = import.meta.env.PLAUSIBLE_DOMAIN || "";
+const plausibleScriptSrc =
+  import.meta.env.PLAUSIBLE_SCRIPT_SRC || "https://plausible.io/js/script.js";
+const shouldLoadPlausible =
+  analyticsEnabled && !!plausibleDomain && !import.meta.env.DEV;
 
 // Structured data for Local Business
 const structuredData = {
@@ -118,6 +124,12 @@ const structuredData = {
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
     />
+
+    {
+      shouldLoadPlausible && (
+        <script defer data-domain={plausibleDomain} src={plausibleScriptSrc} />
+      )
+    }
   </head>
   <body>
     <a href="#main-content" class="skip-link"> Przejdź do głównej treści </a>
@@ -200,6 +212,44 @@ const structuredData = {
           });
         });
       }
+    </script>
+
+    <script is:inline>
+      (function () {
+        const trackEvent = (eventName) => {
+          if (typeof window === "undefined") {
+            return;
+          }
+
+          const plausible = window.plausible;
+          if (typeof plausible === "function") {
+            plausible(eventName);
+          }
+        };
+
+        document.addEventListener("click", (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) {
+            return;
+          }
+
+          const anchor = target.closest("a[href]");
+          if (!(anchor instanceof HTMLAnchorElement)) {
+            return;
+          }
+
+          const href = anchor.getAttribute("href") || "";
+
+          if (href.startsWith("tel:")) {
+            trackEvent("phone_click");
+            return;
+          }
+
+          if (href.startsWith("mailto:")) {
+            trackEvent("email_click");
+          }
+        });
+      })();
     </script>
 
     <!-- Focus management for page transitions -->
