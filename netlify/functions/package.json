@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "@netlify/functions": "^5.1.2"
+    "@netlify/functions": "^5.1.2",
+    "@upstash/redis": "^1.36.2"
   }
 }

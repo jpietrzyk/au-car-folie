@@ -1,4 +1,11 @@
 import { createHash, randomUUID } from 'node:crypto';
+import {
+  getRateLimitConfig,
+  createRedisClient,
+  checkRateLimit,
+  type RateLimitConfig,
+  type RateLimitResult
+} from './rate-limit';
 
 interface FormData {
   name: string;
@@ -23,7 +30,8 @@ type ApiResponseCode =
   | 'airtable_timeout'
   | 'airtable_unavailable'
   | 'method_not_allowed'
-  | 'internal_error';
+  | 'internal_error'
+  | 'rate_limit_exceeded';
 
 interface ContactApiResponse {
   success: boolean;
@@ -498,6 +506,44 @@ export const handler = async (event: any) => {
       message: 'Niedozwolona metoda żądania.',
       error: 'Niedozwolona metoda żądania.'
     });
+  }
+
+  // Extract IP address for rate limiting
+  const xForwardedFor = getHeader(event, 'x-forwarded-for');
+  const ipAddress = xForwardedFor ? xForwardedFor.split(',')[0].trim() : 'unknown';
+
+  // Check rate limits
+  const rateLimitConfig = getRateLimitConfig();
+  const redis = createRedisClient(rateLimitConfig);
+  const rateLimitResult = await checkRateLimit(redis, ipAddress, rateLimitConfig);
+
+  if (!rateLimitResult.allowed) {
+    console.warn('contact_form_rate_limited', {
+      ipAddress,
+      limitType: rateLimitResult.limitType,
+      retryAfter: rateLimitResult.retryAfter,
+      userAgent: getHeader(event, 'user-agent')
+    });
+
+    const headers = {
+      ...BASE_HEADERS,
+      'Retry-After': rateLimitResult.retryAfter?.toString() || '60',
+      'X-RateLimit-Limit-Type': rateLimitResult.limitType || 'unknown',
+      'X-RateLimit-Remaining': '0',
+      'X-RateLimit-Reset': rateLimitResult.reset?.toISOString() || new Date(Date.now() + 60000).toISOString()
+    };
+
+    return {
+      statusCode: 429,
+      headers,
+      body: JSON.stringify({
+        success: false,
+        code: 'rate_limit_exceeded',
+        message: 'Przekroczono limit zgłoszeń. Spróbuj ponownie za chwilę.',
+        retryAfter: rateLimitResult.retryAfter,
+        limitType: rateLimitResult.limitType
+      })
+    };
   }
 
   try {
