@@ -550,7 +550,8 @@ export const handler = async (event: any) => {
         console.error('contact_form_error', {
           submissionId,
           error: 'Missing reCAPTCHA token',
-          recaptchaConfig
+          recaptchaEnabled: recaptchaConfig.enabled,
+          recaptchaMinScore: recaptchaConfig.minScore
         });
         return buildResponse(400, {
           success: false,
@@ -573,7 +574,8 @@ export const handler = async (event: any) => {
         console.error('contact_form_error', {
           submissionId,
           error: recaptchaResult.error,
-          recaptchaConfig
+          recaptchaEnabled: recaptchaConfig.enabled,
+          recaptchaMinScore: recaptchaConfig.minScore
         });
         return buildResponse(400, {
           success: false,
