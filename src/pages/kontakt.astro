@@ -6,6 +6,10 @@ const breadcrumbs = [
   { label: "Home", href: "/" },
   { label: "Kontakt", current: true },
 ];
+
+const recaptchaSiteKey = import.meta.env.RECAPTCHA_SITE_KEY || "";
+const recaptchaEnabled = import.meta.env.RECAPTCHA_ENABLED === "true";
+const isDev = import.meta.env.DEV;
 ---
 
 <PageLayout
@@ -80,6 +84,8 @@ const breadcrumbs = [
           name="contact"
           method="POST"
           action="/.netlify/functions/contact"
+          data-recaptcha-enabled={recaptchaEnabled ? "true" : "false"}
+          data-recaptcha-site-key={recaptchaSiteKey}
         >
           <div class="form-group">
             <label for="name">Imię i nazwisko</label>
@@ -144,6 +150,12 @@ const breadcrumbs = [
             <span class="error-message" id="message-error"></span>
           </div>
 
+          {
+            recaptchaEnabled && (
+              <input type="hidden" id="recaptchaToken" name="recaptchaToken" />
+            )
+          }
+
           <button type="submit" class="button button-full" id="submitBtn">
             <span class="btn-text">Wyślij wiadomość</span>
             <span class="btn-spinner" aria-hidden="true"></span>
@@ -161,6 +173,15 @@ const breadcrumbs = [
     </div>
   </div>
 </PageLayout>
+
+{
+  recaptchaEnabled && recaptchaSiteKey && !isDev && (
+    <script
+      is:inline
+      src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
+    />
+  )
+}
 
 <style>
   .contact-page {
@@ -282,7 +303,11 @@ const breadcrumbs = [
     -moz-appearance: none;
     appearance: none;
     text-align: left;
-    text-align-last: left;
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%2394a3b8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    background-size: 1rem;
   }
 
   /* Custom dropdown arrow for consistency */
@@ -344,8 +369,11 @@ const breadcrumbs = [
   }
 
   .form-group input:invalid:not(:placeholder-shown):not(:focus),
-  .form-group select:invalid:not(:placeholder-shown):not(:focus),
   .form-group textarea:invalid:not(:placeholder-shown):not(:focus) {
+    border-color: #ef4444;
+  }
+
+  .form-group select[aria-invalid="true"] {
     border-color: #ef4444;
   }
 
@@ -446,6 +474,86 @@ const breadcrumbs = [
 
       try {
         const formData = new FormData(form);
+
+        // Generate reCAPTCHA token if enabled
+        const recaptchaEnabled = form.dataset.recaptchaEnabled === "true";
+        const recaptchaSiteKey = form.dataset.recaptchaSiteKey || "";
+
+        console.log("reCAPTCHA config:", {
+          enabled: recaptchaEnabled,
+          siteKey: recaptchaSiteKey,
+        });
+        console.log(
+          "grecaptcha available:",
+          typeof window.grecaptcha !== "undefined",
+        );
+
+        if (recaptchaEnabled && recaptchaSiteKey && !import.meta.env.DEV) {
+          if (typeof window.grecaptcha === "undefined") {
+            console.error(
+              "reCAPTCHA script not loaded yet - checking if script tag exists",
+            );
+
+            // Check if reCAPTCHA script tag exists in the page
+            const recaptchaScript = document.querySelector(
+              'script[src*="recaptcha/api.js"]',
+            );
+            if (!recaptchaScript) {
+              console.error("reCAPTCHA script tag not found in DOM");
+              showMessage(
+                "reCAPTCHA nie jest załadowany. Spróbuj odświeżyć stronę.",
+                "error",
+              );
+              setLoading(false);
+              return;
+            }
+
+            console.log(
+              "reCAPTCHA script tag found, waiting for it to load...",
+            );
+            // Wait a bit for script to load
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+
+            if (typeof window.grecaptcha === "undefined") {
+              console.error("reCAPTCHA still not loaded after waiting");
+              showMessage(
+                "reCAPTCHA nie jest jeszcze załadowany. Spróbuj ponownie za chwilę.",
+                "error",
+              );
+              setLoading(false);
+              return;
+            }
+          }
+
+          try {
+            const recaptchaToken = await window.grecaptcha.execute(
+              recaptchaSiteKey,
+              {
+                action: "submit",
+              },
+            );
+            console.log(
+              "reCAPTCHA token generated successfully, length:",
+              recaptchaToken.length,
+            );
+            formData.set("recaptchaToken", recaptchaToken);
+          } catch (recaptchaError) {
+            console.error("reCAPTCHA token generation failed:", recaptchaError);
+            showMessage(
+              "Wystąpił błąd weryfikacji CAPTCHA. Spróbuj ponownie.",
+              "error",
+            );
+            setLoading(false);
+            return;
+          }
+        } else {
+          console.log("reCAPTCHA is disabled or site key not provided");
+        }
+
+        // Always set recaptchaToken to FormData (even if empty) to avoid server errors
+        if (!formData.get("recaptchaToken")) {
+          formData.set("recaptchaToken", "");
+        }
 
         const response = await fetch("/.netlify/functions/contact", {
           method: "POST",

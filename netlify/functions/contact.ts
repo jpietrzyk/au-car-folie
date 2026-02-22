@@ -58,6 +58,12 @@ interface AirtableConfig {
   maxRetries: number;
 }
 
+interface RecaptchaConfig {
+  enabled: boolean;
+  secretKey: string;
+  minScore: number;
+}
+
 interface AirtableRecord {
   id: string;
   fields: Record<string, unknown>;
@@ -95,6 +101,25 @@ function getAirtableConfig(): AirtableConfig {
     timeoutMs: Number(process.env.AIRTABLE_TIMEOUT_MS || 4500),
     maxRetries: Number(process.env.AIRTABLE_MAX_RETRIES || 1)
   };
+}
+
+function getRecaptchaConfig(): RecaptchaConfig {
+  return {
+    enabled: process.env.RECAPTCHA_ENABLED === 'true',
+    secretKey: process.env.RECAPTCHA_SECRET_KEY || '',
+    minScore: Number(process.env.RECAPTCHA_MIN_SCORE || 0.5)
+  };
+}
+
+function isDevelopmentEnvironment(): boolean {
+  const context = process.env.CONTEXT || '';
+
+  return (
+    process.env.NODE_ENV !== 'production' ||
+    context === 'dev' ||
+    context === 'development' ||
+    process.env.NETLIFY_DEV === 'true'
+  );
 }
 
 function getMissingAirtableEnv(config: AirtableConfig): string[] {
@@ -164,6 +189,80 @@ function validateFormData(formData: FormData): {
     valid: errors.length === 0,
     errors: errors.length > 0 ? errors : undefined
   };
+}
+
+async function verifyRecaptcha(token: string, config: RecaptchaConfig): Promise<{
+  valid: boolean;
+  error?: string;
+}> {
+  if (!config.enabled) {
+    return { valid: true };
+  }
+
+  if (!config.secretKey) {
+    console.warn('reCAPTCHA is enabled but secret key is missing. Skipping verification.');
+    return { valid: true };
+  }
+
+  try {
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        secret: config.secretKey,
+        response: token
+      }).toString()
+    });
+
+    const result = await response.json() as {
+      success: boolean;
+      score?: number;
+      'error-codes'?: string[];
+      challenge_ts?: string;
+      hostname?: string;
+    };
+
+    if (!result.success) {
+      const errorCode = result['error-codes']?.[0] || 'unknown';
+      console.error('reCAPTCHA verification failed:', errorCode, result);
+
+      const errorMessages: Record<string, string> = {
+        'missing-input-secret': 'Brak sekretnego klucza reCAPTCHA',
+        'invalid-input-secret': 'Nieprawidłowy sekretny klucz reCAPTCHA',
+        'missing-input-response': 'Brak tokenu reCAPTCHA',
+        'invalid-input-response': 'Nieprawidłowy token reCAPTCHA',
+        'bad-request': 'Nieprawidłowe żądanie',
+        'timeout-or-duplicate': 'Token wygasł lub został już użyty'
+      };
+
+      return {
+        valid: false,
+        error: errorMessages[errorCode] || 'Weryfikacja CAPTCHA nie powiodła się'
+      };
+    }
+
+    if (result.score !== undefined && result.score < config.minScore) {
+      return {
+        valid: false,
+        error: `Wynik weryfikacji (${result.score.toFixed(2)}) jest niższy niż wymagany (${config.minScore})`
+      };
+    }
+
+    console.info('reCAPTCHA verification successful', {
+      score: result.score,
+      hostname: result.hostname
+    });
+
+    return { valid: true };
+  } catch (error) {
+    console.error('reCAPTCHA verification error:', error);
+    return {
+      valid: false,
+      error: 'Błąd podczas weryfikacji CAPTCHA'
+    };
+  }
 }
 
 function getHeader(event: any, name: string): string {
@@ -404,6 +503,7 @@ export const handler = async (event: any) => {
   try {
     const formData = parseFormBody(event);
     const airtableConfig = getAirtableConfig();
+    const recaptchaConfig = getRecaptchaConfig();
 
     const data: FormData = {
       name: formData.get('name')?.toString() || '',
@@ -425,6 +525,65 @@ export const handler = async (event: any) => {
         errors: validation.errors,
         error: 'Dane formularza są nieprawidłowe.'
       });
+    }
+
+    // Verify reCAPTCHA token
+    const recaptchaToken = formData.get('recaptchaToken')?.toString();
+    console.info('contact_form_received', {
+      submissionId,
+      recaptchaEnabled: recaptchaConfig.enabled,
+      recaptchaTokenProvided: !!recaptchaToken,
+      recaptchaTokenLength: recaptchaToken?.length || 0
+    });
+
+    const shouldVerifyRecaptcha = recaptchaConfig.enabled && !isDevelopmentEnvironment();
+
+    if (recaptchaConfig.enabled && !shouldVerifyRecaptcha) {
+      console.info('recaptcha_verification_skipped', {
+        submissionId,
+        reason: 'development_environment'
+      });
+    }
+
+    if (shouldVerifyRecaptcha) {
+      if (!recaptchaToken) {
+        console.error('contact_form_error', {
+          submissionId,
+          error: 'Missing reCAPTCHA token',
+          recaptchaConfig
+        });
+        return buildResponse(400, {
+          success: false,
+          code: 'validation_error',
+          message: 'Weryfikacja CAPTCHA jest wymagana.',
+          submissionId,
+          errors: [{ field: 'recaptcha', message: 'Weryfikacja CAPTCHA jest wymagana.' }],
+          error: 'Weryfikacja CAPTCHA jest wymagana.'
+        });
+      }
+
+      const recaptchaResult = await verifyRecaptcha(recaptchaToken, recaptchaConfig);
+      console.info('recaptcha_verification_result', {
+        submissionId,
+        valid: recaptchaResult.valid,
+        error: recaptchaResult.error
+      });
+
+      if (!recaptchaResult.valid) {
+        console.error('contact_form_error', {
+          submissionId,
+          error: recaptchaResult.error,
+          recaptchaConfig
+        });
+        return buildResponse(400, {
+          success: false,
+          code: 'validation_error',
+          message: recaptchaResult.error || 'Weryfikacja CAPTCHA nie powiodła się.',
+          submissionId,
+          errors: [{ field: 'recaptcha', message: recaptchaResult.error || 'Weryfikacja CAPTCHA nie powiodła się.' }],
+          error: recaptchaResult.error || 'Weryfikacja CAPTCHA nie powiodła się.'
+        });
+      }
     }
 
     if (!airtableConfig.enabled) {
