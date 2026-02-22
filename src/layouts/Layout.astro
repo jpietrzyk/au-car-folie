@@ -23,8 +23,12 @@ const {
 const siteUrl = "https://car-folie.pl";
 const fullUrl = `${siteUrl}${currentPath}`;
 const fullImageUrl = `${siteUrl}${image}`;
-const analyticsEnabled = import.meta.env.ANALYTICS_ENABLED === "true";
-const plausibleDomain = import.meta.env.PLAUSIBLE_DOMAIN || "";
+const analyticsEnabled =
+  String(import.meta.env.ANALYTICS_ENABLED || "")
+    .trim()
+    .toLowerCase() === "true";
+const plausibleDomain =
+  String(import.meta.env.PLAUSIBLE_DOMAIN || "").trim() || "car-folie.pl";
 const plausibleScriptSrc =
   import.meta.env.PLAUSIBLE_SCRIPT_SRC || "https://plausible.io/js/script.js";
 const shouldLoadPlausible =
@@ -127,7 +131,7 @@ const structuredData = {
 
     {
       shouldLoadPlausible && (
-        <script defer data-domain={plausibleDomain} src={plausibleScriptSrc} />
+        <script defer data-domain={plausibleDomain} src={plausibleScriptSrc}></script>
       )
     }
   </head>
