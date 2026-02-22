@@ -12,8 +12,8 @@ interface Props {
 }
 
 const {
-  title = "Car-folie.pl - Oklejanie aut, Zmiana koloru aut folia, pełne oklejanie, reklama na pojazdach",
-  description = "Zmiana koloru aut folia, pełne oklejanie, grafika na pojazdach. Profesjonalne oklejanie samochodów, zmiana koloru folią, reklama na pojazdach, oklejanie flot.",
+  title = "Oklejanie aut i reklamy na pojazdach | Car-folie.pl",
+  description = "Car-folie.pl: zmiana koloru auta folią, reklamy na pojazdach, oklejanie flot i profesjonalna aplikacja folii.",
   image = "/images/logo.png",
   currentPath = "/",
   type = "website",
@@ -34,18 +34,18 @@ const structuredData = {
   url: siteUrl,
   logo: `${siteUrl}/images/logo.png`,
   image: [`${siteUrl}/images/logo.png`, `${siteUrl}/images/banner.jpg`],
-  telephone: "+48 XXX XXX XXX",
+  telephone: "+48 570 603 695",
+  email: "biuro@car-folie.pl",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Twój adres",
-    addressLocality: "Miasto",
-    postalCode: "00-000",
+    streetAddress: "ul. Wybickiego 48",
+    addressLocality: "Myślenice",
     addressCountry: "PL",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 52.2297,
-    longitude: 21.0122,
+    latitude: 49.836098948051564,
+    longitude: 19.9286364666677,
   },
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
@@ -54,10 +54,7 @@ const structuredData = {
     closes: "17:00",
   },
   priceRange: "$$",
-  sameAs: [
-    "https://www.facebook.com/carfolie",
-    "https://www.instagram.com/carfolie",
-  ],
+  sameAs: ["https://www.facebook.com/pages/Car-foliepl/162406957140941"],
 };
 ---
 
@@ -99,8 +96,6 @@ const structuredData = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullImageUrl} />
-    <meta name="twitter:site" content="@carfolie" />
-    <meta name="twitter:creator" content="@carfolie" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={fullUrl} />
