@@ -15,7 +15,7 @@ This document outlines the plan for implementing rate limiting for the contact f
 
 ### Current Contact Form Flow
 
-```
+```plain
 User submits form
     ↓
 Client-side validation
@@ -51,6 +51,7 @@ We'll implement a multi-tiered rate limiting approach:
 ### Rate Limiting Algorithm
 
 We'll use the **Sliding Window Counter** algorithm, which provides:
+
 - Accurate rate limiting
 - No sudden spikes at window boundaries
 - Memory-efficient implementation
@@ -67,6 +68,7 @@ Since we're on Netlify Functions (serverless), we have several options:
 | **Upstash Redis** | Serverless Redis, free tier available | External dependency, network latency | ✅ Best for Netlify (free tier) |
 
 **Recommendation**: Use **Upstash Redis** for the following reasons:
+
 - Free tier available (10,000 commands/day)
 - HTTP API (no TCP connection issues in serverless)
 - Edge-optimized for low latency
@@ -77,7 +79,7 @@ Since we're on Netlify Functions (serverless), we have several options:
 
 ### Components
 
-```
+```plain
 ┌─────────────────────────────────────────────────────────────┐
 │                     Contact Form Handler                     │
 ├─────────────────────────────────────────────────────────────┤
@@ -709,6 +711,7 @@ Set up alerts for:
 ### Graceful Degradation
 
 If Redis is unavailable:
+
 - Log the error
 - Allow requests to proceed (fail-open)
 - Alert administrators
@@ -742,6 +745,7 @@ If Redis is unavailable:
 | Netlify Functions | 125,000 invocations/month | $19/month |
 
 **Estimated usage**:
+
 - 100 form submissions/day = 400 Redis commands/day (4 per submission)
 - Free tier is sufficient for most small businesses
 

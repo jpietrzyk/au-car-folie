@@ -51,6 +51,7 @@ RATE_LIMIT_PER_IP_DAY_WINDOW_MS=86400000
 ### Testing Results
 
 All tests passed successfully:
+
 - ✅ Normal requests succeed (HTTP 202)
 - ✅ Rate limits enforced correctly (HTTP 429)
 - ✅ Per-IP isolation working (different IPs have independent limits)
@@ -60,6 +61,7 @@ All tests passed successfully:
 ### Unit Tests Created
 
 Comprehensive unit tests have been created:
+
 - **Test File:** [`netlify/functions/__tests__/rate-limit.test.ts`](netlify/functions/__tests__/rate-limit.test.ts:1)
 - **Test Framework:** Vitest v4.0.18
 - **Results:** 29 passed, 3 skipped, 0 failed
