@@ -32,6 +32,7 @@ Tabela: `ContactSubmissions`
 - [ ] `inne`
 
 `status`:
+
 - [ ] `accepted`
 - [ ] `duplicate`
 - [ ] `queued`

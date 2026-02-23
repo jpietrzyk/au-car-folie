@@ -20,6 +20,7 @@ The contact form now includes comprehensive rate limiting to prevent spam, bot a
 ### Sliding Window Algorithm
 
 Uses a sliding window counter algorithm for accurate rate limiting:
+
 - No sudden spikes at window boundaries
 - Memory-efficient implementation
 - Precise request counting
@@ -35,6 +36,7 @@ Uses a sliding window counter algorithm for accurate rate limiting:
 ### Fail-Open Strategy
 
 If Redis is unavailable or errors occur, requests are allowed to prevent service disruption:
+
 - Connection errors logged
 - System remains available
 - Users can still submit forms
@@ -42,6 +44,7 @@ If Redis is unavailable or errors occur, requests are allowed to prevent service
 ### User-Friendly Feedback
 
 When rate limited, users receive:
+
 - Clear error message
 - Retry countdown timer
 - Time until they can submit again
@@ -79,7 +82,7 @@ RATE_LIMIT_PER_IP_DAY_WINDOW_MS=86400000
 ### Default Limits
 
 | Level | Requests | Window | Reset Time |
-|-------|----------|---------|-----------|
+| --- | --- | --- | --- |
 | Global | 100 | 60 seconds | 1 minute |
 | Per-IP Minute | 5 | 60 seconds | 1 minute |
 | Per-IP Hour | 15 | 60 minutes | 1 hour |
@@ -105,22 +108,28 @@ RATE_LIMIT_PER_IP_DAY_WINDOW_MS=86400000
 ### Key Functions
 
 #### `getRateLimitConfig()`
+
 Reads environment variables and returns configuration object.
 
 #### `createRedisClient(config: RateLimitConfig)`
+
 Creates Redis client if rate limiting is enabled and credentials are provided.
 
 #### `isRateLimitingEnabled(config: RateLimitConfig, redis: Redis | null)`
+
 Checks if rate limiting should be active.
 
 #### `checkRateLimit(redis: Redis | null, ipAddress: string, config: RateLimitConfig)`
+
 Main rate limiting function that checks all limit tiers:
+
 1. Global limit (all requests combined)
 2. Per-IP minute limit
 3. Per-IP hour limit
 4. Per-IP day limit
 
 Returns `RateLimitResult` object with:
+
 - `allowed`: Boolean - Whether request is allowed
 - `limitType`: string - Which limit was exceeded (if not allowed)
 - `retryAfter`: number - Seconds until retry (if not allowed)
@@ -128,10 +137,13 @@ Returns `RateLimitResult` object with:
 - `reset`: Date - When the window resets
 
 #### `cleanupRateLimitData(redis: Redis | null)`
+
 Cleans up old rate limit data and sets expiration on keys without TTL.
 
 #### `getRateLimitStats(redis: Redis | null)`
+
 Returns statistics about current rate limiting usage:
+
 - `enabled`: Boolean - Whether rate limiting is active
 - `globalCount`: number - Requests in global window
 - `ipCount`: number - Number of unique IPs tracked
@@ -143,6 +155,7 @@ Returns statistics about current rate limiting usage:
 Comprehensive unit tests have been created in [`netlify/functions/__tests__/rate-limit.test.ts`](netlify/functions/__tests__/rate-limit.test.ts:1).
 
 **Test Results:**
+
 - **Total Tests:** 32
 - **Passed:** 29 ✅
 - **Skipped:** 3 (due to mock complexity)
@@ -150,6 +163,7 @@ Comprehensive unit tests have been created in [`netlify/functions/__tests__/rate
 - **Duration:** ~400-500ms
 
 **Test Coverage:**
+
 - Configuration management (6 tests)
 - Redis client creation (4 tests)
 - Rate limiting logic (10 tests)
@@ -159,6 +173,7 @@ Comprehensive unit tests have been created in [`netlify/functions/__tests__/rate
 ### Running Tests
 
 From main directory:
+
 ```bash
 npm run test:functions          # Run all tests once
 npm run test:functions:watch    # Run in watch mode
@@ -166,6 +181,7 @@ npm run test:functions:ui       # Run with Vitest UI
 ```
 
 From functions directory:
+
 ```bash
 cd netlify/functions
 npm run test:run            # Run all tests once
@@ -177,6 +193,7 @@ npm run test:coverage        # Run with coverage
 ### Integration Testing
 
 See [`test-rate-limit.sh`](test-rate-limit.sh:1) for automated integration tests:
+
 - Tests normal requests (should succeed)
 - Tests rate limit enforcement (should be blocked after exceeding limits)
 - Tests per-IP isolation (different IPs have independent limits)
@@ -237,11 +254,13 @@ done
 ### Monitoring
 
 Check Netlify function logs:
+
 ```bash
 netlify functions:log contact
 ```
 
 Monitor Upstash Redis:
+
 1. Go to [Upstash Console](https://console.upstash.com)
 2. Select your Redis database
 3. Monitor key count and memory usage
@@ -252,7 +271,7 @@ Monitor Upstash Redis:
 When rate limited, the contact function returns these headers:
 
 | Header | Description | Example |
-|--------|-------------|---------|
+| --- | --- | --- |
 | `Retry-After` | Seconds until retry | `60` |
 | `X-RateLimit-Limit-Type` | Which limit was exceeded | `per_ip_minute` |
 | `X-RateLimit-Remaining` | Requests remaining in window | `0` |
@@ -273,9 +292,11 @@ When rate limited, the contact function returns these headers:
    - Check firewall rules
 
 3. **Check Function Logs**
+
    ```bash
    netlify functions:log contact
    ```
+
    Look for Redis connection errors or rate limit errors
 
 ### All Requests Being Rate Limited

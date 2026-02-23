@@ -18,7 +18,7 @@ Complete guide for developing, testing, and deploying the Car-folie.pl website.
 
 ## Project Structure
 
-```
+```plain
 car-folie-astro/
 ├── public/                 # Static assets
 │   ├── images/            # Images
@@ -172,6 +172,7 @@ import { Footer } from '../components/Footer.astro';
 **File:** [`netlify/functions/contact.ts`](netlify/functions/contact.ts:1)
 
 **Features:**
+
 - Form validation (client and server-side)
 - reCAPTCHA v3 verification with score-based filtering
 - Rate limiting with multi-tiered protection
@@ -181,6 +182,7 @@ import { Footer } from '../components/Footer.astro';
 - Graceful error handling and fallback mechanisms
 
 **Environment Variables:**
+
 ```env
 # Airtable
 AIRTABLE_ENABLED=true
@@ -218,6 +220,7 @@ SENDGRID_API_KEY=your_sendgrid_api_key_here
 **File:** [`netlify/functions/rate-limit.ts`](netlify/functions/rate-limit.ts:1)
 
 **Features:**
+
 - Multi-tiered rate limiting (global, per-IP minute, per-IP hour, per-IP day)
 - Sliding window algorithm for accurate rate limiting
 - Upstash Redis integration with free tier
@@ -227,8 +230,9 @@ SENDGRID_API_KEY=your_sendgrid_api_key_here
 - Statistics retrieval for monitoring
 
 **Default Limits:**
+
 | Level | Limit | Window |
-|-------|-------|--------|
+| --- | --- | --- |
 | Global | 100/min | 1 min |
 | Per-IP | 5/min | 1 min |
 | Per-IP | 15/hour | 1 hour |
@@ -241,6 +245,7 @@ SENDGRID_API_KEY=your_sendgrid_api_key_here
 **Framework:** Vitest v4.0.18
 
 **Test Results:**
+
 - Total Tests: 32
 - Passed: 29 ✅
 - Skipped: 3
@@ -248,6 +253,7 @@ SENDGRID_API_KEY=your_sendgrid_api_key_here
 - Duration: ~400-500ms
 
 **Test Coverage:**
+
 - Configuration management (6 tests)
 - Redis client creation (4 tests)
 - Rate limiting logic (10 tests)
@@ -255,6 +261,7 @@ SENDGRID_API_KEY=your_sendgrid_api_key_here
 - Statistics retrieval (9 tests)
 
 **Running Tests:**
+
 ```bash
 # From main directory (recommended)
 npm run test:functions          # Run all tests once
@@ -398,7 +405,7 @@ See [`ACCESSIBILITY_IMPROVEMENTS.md`](ACCESSIBILITY_IMPROVEMENTS.md) for detaile
 
 ## Testing
 
-### Unit Tests
+### Unit Tests for Netlify functions
 
 Comprehensive unit tests have been created for Netlify Functions:
 
@@ -409,6 +416,7 @@ Comprehensive unit tests have been created for Netlify Functions:
 - **Duration:** ~400-500ms
 
 **Test Coverage:**
+
 - Configuration management (6 tests)
 - Redis client creation (4 tests)
 - Rate limiting logic (10 tests)
@@ -416,6 +424,7 @@ Comprehensive unit tests have been created for Netlify Functions:
 - Statistics retrieval (9 tests)
 
 **Running Tests:**
+
 ```bash
 npm run test:functions          # Run all tests once
 npm run test:functions:watch    # Run in watch mode
@@ -428,7 +437,7 @@ Use [`test-rate-limit.sh`](test-rate-limit.sh:1) for automated integration tests
 
 ## Environment Configuration
 
-### Development
+### Development environment
 
 Create a `.env` file in the project root:
 
@@ -487,11 +496,13 @@ See [`RATE_LIMITING.md`](RATE_LIMITING.md) for deployment guide and production t
    - Check firewall rules
 
 3. **Check Function Logs**
+
    ```bash
    netlify functions:log contact
    ```
 
 4. **Test Unit Tests**
+
    ```bash
    npm run test:functions
    ```

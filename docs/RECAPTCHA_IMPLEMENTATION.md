@@ -70,6 +70,7 @@ The `RECAPTCHA_MIN_SCORE` determines how strict the verification is:
 ### Frontend Changes
 
 1. **Form Data Attributes**:
+
    ```html
    <form
      data-recaptcha-enabled="true"
@@ -78,11 +79,13 @@ The `RECAPTCHA_MIN_SCORE` determines how strict the verification is:
    ```
 
 2. **Hidden Token Field**:
+
    ```html
    <input type="hidden" id="recaptchaToken" name="recaptchaToken" />
    ```
 
 3. **Token Generation**:
+
    ```javascript
    const recaptchaToken = await window.grecaptcha.execute(recaptchaSiteKey, {
      action: 'submit'
@@ -93,6 +96,7 @@ The `RECAPTCHA_MIN_SCORE` determines how strict the verification is:
 ### Backend Changes
 
 1. **Configuration Interface**:
+
    ```typescript
    interface RecaptchaConfig {
      enabled: boolean;
@@ -102,6 +106,7 @@ The `RECAPTCHA_MIN_SCORE` determines how strict the verification is:
    ```
 
 2. **Verification Function**:
+
    ```typescript
    async function verifyRecaptcha(token: string, config: RecaptchaConfig): Promise<{
      valid: boolean;
@@ -110,6 +115,7 @@ The `RECAPTCHA_MIN_SCORE` determines how strict the verification is:
    ```
 
 3. **Form Validation**:
+
    ```typescript
    const recaptchaToken = formData.get('recaptchaToken')?.toString();
    if (recaptchaConfig.enabled) {
