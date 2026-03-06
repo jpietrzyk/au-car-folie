@@ -21,8 +21,28 @@ const {
 } = Astro.props;
 
 const siteUrl = "https://car-folie.pl";
-const fullUrl = `${siteUrl}${currentPath}`;
-const fullImageUrl = `${siteUrl}${image}`;
+const normalizePath = (path: string) => {
+  const [withoutQuery] = path.split("?");
+  const [withoutFragment] = withoutQuery.split("#");
+
+  let normalizedPath = withoutFragment || "/";
+
+  if (!normalizedPath.startsWith("/")) {
+    normalizedPath = `/${normalizedPath}`;
+  }
+
+  normalizedPath = normalizedPath.replace(/\/{2,}/g, "/");
+
+  if (normalizedPath.length > 1 && normalizedPath.endsWith("/")) {
+    normalizedPath = normalizedPath.slice(0, -1);
+  }
+
+  return normalizedPath;
+};
+
+const canonicalPath = normalizePath(currentPath);
+const fullUrl = new URL(canonicalPath, siteUrl).toString();
+const fullImageUrl = new URL(image, siteUrl).toString();
 const analyticsEnabled =
   String(import.meta.env.ANALYTICS_ENABLED || "")
     .trim()
