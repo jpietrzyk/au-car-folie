@@ -6,6 +6,31 @@ publish = "dist"
 directory = "netlify/functions"
 node_bundler = "esbuild"
 
+# Canonical SEO redirects
+[[redirects]]
+from = "http://car-folie.pl/*"
+to = "https://car-folie.pl/:splat"
+status = 301
+force = true
+
+[[redirects]]
+from = "https://www.car-folie.pl/*"
+to = "https://car-folie.pl/:splat"
+status = 301
+force = true
+
+[[redirects]]
+from = "http://www.car-folie.pl/*"
+to = "https://car-folie.pl/:splat"
+status = 301
+force = true
+
+[[redirects]]
+from = "/:splat/"
+to = "/:splat"
+status = 301
+force = true
+
 # Redirect API routes to Netlify functions (for future use with custom functions)
 [[redirects]]
 from = "/api/*"
