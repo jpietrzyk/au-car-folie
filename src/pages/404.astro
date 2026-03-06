@@ -1,0 +1,40 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+
+const breadcrumbs = [
+  { label: "Home", href: "/" },
+  { label: "404", current: true },
+];
+---
+
+<PageLayout
+  title="404 - Nie znaleziono strony | Car-folie.pl"
+  description="Szukana strona nie istnieje lub została usunięta."
+  currentPath="/404"
+  noIndex={true}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="container">
+    <section class="section">
+      <h1>404 - Nie znaleziono strony</h1>
+      <p>
+        Ta podstrona nie istnieje lub została przeniesiona. Przejdź na stronę
+        główną albo skontaktuj się z nami.
+      </p>
+
+      <div class="actions">
+        <a href="/" class="button">Wróć na stronę główną</a>
+        <a href="/kontakt" class="button button-secondary">Kontakt</a>
+      </div>
+    </section>
+  </div>
+</PageLayout>
+
+<style>
+  .actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+</style>
