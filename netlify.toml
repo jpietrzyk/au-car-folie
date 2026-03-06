@@ -25,6 +25,19 @@ to = "https://car-folie.pl/:splat"
 status = 301
 force = true
 
+# Remove accidental/test URL from index
+[[redirects]]
+from = "/przyklad"
+to = "/404"
+status = 410
+force = true
+
+[[redirects]]
+from = "/przyklad/"
+to = "/404"
+status = 410
+force = true
+
 [[redirects]]
 from = "/:splat/"
 to = "/:splat"
