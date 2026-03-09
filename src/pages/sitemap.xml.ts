@@ -110,12 +110,20 @@ const pages = [
 ];
 
 export const GET: APIRoute = () => {
+  const toCanonicalPath = (path: string) => {
+    if (path === '/') {
+      return '/';
+    }
+
+    return `${path.replace(/\/+$/, '')}/`;
+  };
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages
   .map(
     (page) => `  <url>
-    <loc>${SITE_URL}${page.url}</loc>
+    <loc>${SITE_URL}${toCanonicalPath(page.url)}</loc>
     <lastmod>${page.lastModified.toISOString()}</lastmod>
     <changefreq>${page.changeFreq}</changefreq>
     <priority>${page.priority}</priority>
