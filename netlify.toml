@@ -38,12 +38,6 @@ to = "/404"
 status = 410
 force = true
 
-[[redirects]]
-from = "/:splat/"
-to = "/:splat"
-status = 301
-force = true
-
 # Redirect API routes to Netlify functions (for future use with custom functions)
 [[redirects]]
 from = "/api/*"
