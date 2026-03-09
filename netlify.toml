@@ -38,12 +38,6 @@ to = "/404"
 status = 410
 force = true
 
-# Normalize trailing slashes to match Astro's `trailingSlash: "never"`
-[[redirects]]
-from = "/*/"
-to = "/:splat"
-status = 308
-force = true
 # Redirect API routes to Netlify functions (for future use with custom functions)
 [[redirects]]
 from = "/api/*"
