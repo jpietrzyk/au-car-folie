@@ -7,17 +7,27 @@ interface Props {
 
 const { currentPath } = Astro.props;
 
+const normalizePath = (path: string) => {
+  if (path === "/") {
+    return "/";
+  }
+
+  return path.replace(/\/+$/, "");
+};
+
+const normalizedCurrentPath = normalizePath(currentPath);
+
 const menuItems = [
   { label: "Home", href: "/" },
-  { label: "O nas", href: "/o-nas" },
-  { label: "O foliach", href: "/o-foliach" },
-  { label: "Referencje", href: "/referencje" },
-  { label: "Wycena", href: "/wycena" },
-  { label: "Prasa o nas", href: "/press" },
-  { label: "Kontakt", href: "/kontakt" },
-  { label: "Drukarnia", href: "/drukarnia" },
-  { label: "Inspiracje", href: "/inspiracje" },
-  { label: "Galeria", href: "/galeria" },
+  { label: "O nas", href: "/o-nas/" },
+  { label: "O foliach", href: "/o-foliach/" },
+  { label: "Referencje", href: "/referencje/" },
+  { label: "Wycena", href: "/wycena/" },
+  { label: "Prasa o nas", href: "/press/" },
+  { label: "Kontakt", href: "/kontakt/" },
+  { label: "Drukarnia", href: "/drukarnia/" },
+  { label: "Inspiracje", href: "/inspiracje/" },
+  { label: "Galeria", href: "/galeria/" },
 ];
 ---
 
@@ -34,17 +44,21 @@ const menuItems = [
 
   <ul class="nav-list" id="navList">
     {
-      menuItems.map((item) => (
-        <li>
-          <a
-            href={item.href}
-            class={currentPath === item.href ? "active" : ""}
-            aria-current={currentPath === item.href ? "page" : undefined}
-          >
-            {item.label}
-          </a>
-        </li>
-      ))
+      menuItems.map((item) => {
+        const isActive = normalizedCurrentPath === normalizePath(item.href);
+
+        return (
+          <li>
+            <a
+              href={item.href}
+              class={isActive ? "active" : ""}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        );
+      })
     }
   </ul>
 </nav>

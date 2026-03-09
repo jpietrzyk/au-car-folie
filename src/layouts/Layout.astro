@@ -33,8 +33,11 @@ const normalizePath = (path: string) => {
 
   normalizedPath = normalizedPath.replace(/\/{2,}/g, "/");
 
-  if (normalizedPath.length > 1 && normalizedPath.endsWith("/")) {
-    normalizedPath = normalizedPath.slice(0, -1);
+  const hasFileExtension = /\.[a-z0-9]+$/i.test(normalizedPath);
+
+  if (normalizedPath !== "/" && !hasFileExtension) {
+    normalizedPath = normalizedPath.replace(/\/+$/, "");
+    normalizedPath = `${normalizedPath}/`;
   }
 
   return normalizedPath;
