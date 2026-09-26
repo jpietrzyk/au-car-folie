@@ -82,16 +82,16 @@ car-folie-astro/
 ### Prerequisites
 
 - Node.js 18+ installed
-- npm or yarn package manager
+- pnpm 10 (via `corepack enable`)
 
 ### Installation
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Start development server
-npm run dev
+pnpm run dev
 ```
 
 ### Development
@@ -136,7 +136,7 @@ Serverless functions for contact form and rate limiting:
 - **Rate Limiting** - Multi-tiered rate limiting with Upstash Redis
   - See [`docs/RATE_LIMITING.md`](docs/RATE_LIMITING.md) for complete documentation
   - Unit tests: 29/32 passing
-  - Test scripts: `npm run test:functions`
+  - Test scripts: `pnpm run test:functions`
 - [x] Service card component
 - [x] Lightbox component for image gallery
 - [x] Homepage with services and features
@@ -262,7 +262,7 @@ The website supports dark mode with the following features:
 npm install -g netlify-cli
 
 # Build and deploy
-npm run build
+pnpm run build
 netlify deploy --prod
 ```
 
@@ -280,7 +280,7 @@ vercel --prod
 
 ```bash
 # Build
-npm run build
+pnpm run build
 
 # Deploy dist folder to gh-pages branch
 ```
@@ -322,7 +322,7 @@ Accessibility improvements are documented throughout the codebase and in [`docs/
 Comprehensive unit tests have been created for Netlify Functions:
 
 - **Test File**: [`netlify/functions/__tests__/rate-limit.test.ts`](netlify/functions/__tests__/rate-limit.test.ts)
-- **Framework**: Vitest v4.0.18
+- **Framework**: Vitest v4.1.11
 - **Total Tests**: 32
 - **Passed**: 29 ✅
 - **Duration**: ~400-500ms
@@ -330,9 +330,9 @@ Comprehensive unit tests have been created for Netlify Functions:
 Run tests from the main directory:
 
 ```bash
-npm run test:functions          # Run all tests once
-npm run test:functions:watch    # Run in watch mode
-npm run test:functions:ui       # Run with UI
+pnpm run test:functions          # Run all tests once
+pnpm run test:functions:watch    # Run in watch mode
+pnpm run test:functions:ui       # Run with UI
 ```
 
 Rate limiting tests are documented in [`docs/RATE_LIMITING.md`](docs/RATE_LIMITING.md).
