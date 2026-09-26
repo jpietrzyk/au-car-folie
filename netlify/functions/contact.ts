@@ -72,6 +72,15 @@ interface RecaptchaConfig {
   minScore: number;
 }
 
+interface EmailConfig {
+  enabled: boolean;
+  apiKey: string;
+  fromEmail: string;
+  fromName: string;
+  toEmails: string[];
+  timeoutMs: number;
+}
+
 interface AirtableRecord {
   id: string;
   fields: Record<string, unknown>;
@@ -117,6 +126,143 @@ function getRecaptchaConfig(): RecaptchaConfig {
     secretKey: process.env.RECAPTCHA_SECRET_KEY || '',
     minScore: Number(process.env.RECAPTCHA_MIN_SCORE || 0.5)
   };
+}
+
+const DEFAULT_FROM_NAME = 'Car-Folie';
+
+const SUBJECT_LABELS: Record<string, string> = {
+  'zmiana-koloru': 'Zmiana koloru',
+  reklamy: 'Reklamy',
+  floty: 'Floty',
+  szkolenia: 'Szkolenia',
+  dystrybucja: 'Dystrybucja',
+  inne: 'Inne'
+};
+
+function getEmailConfig(): EmailConfig {
+  const apiKey = process.env.RESEND_API_KEY || '';
+  const fromEmail = process.env.EMAIL_FROM || '';
+  const toEmails = (process.env.TO_EMAIL || '')
+    .split(',')
+    .map((email) => email.trim())
+    .filter(Boolean);
+
+  return {
+    enabled: Boolean(apiKey && fromEmail && toEmails.length > 0),
+    apiKey,
+    fromEmail,
+    fromName: process.env.FROM_NAME || DEFAULT_FROM_NAME,
+    toEmails,
+    timeoutMs: Number(process.env.EMAIL_TIMEOUT_MS || 5000)
+  };
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+interface EmailDeliveryResult {
+  ok: boolean;
+  status?: number;
+  error?: string;
+}
+
+async function sendContactEmail(
+  config: EmailConfig,
+  data: FormData,
+  submissionId: string
+): Promise<EmailDeliveryResult> {
+  const subjectLabel = SUBJECT_LABELS[data.subject] || data.subject;
+  const createdAt = new Date().toISOString();
+  const emailSubject = `Nowa wiadomość z formularza: ${subjectLabel}`;
+
+  const text = [
+    'Nowa wiadomość z formularza kontaktowego car-folie.pl',
+    '',
+    `Imię i nazwisko: ${data.name}`,
+    `Email: ${data.email}`,
+    `Telefon: ${data.phone || '—'}`,
+    `Temat: ${subjectLabel}`,
+    '',
+    'Wiadomość:',
+    data.message,
+    '',
+    `ID zgłoszenia: ${submissionId}`,
+    `Data: ${createdAt}`
+  ].join('\n');
+
+  const rows: Array<[string, string]> = [
+    ['Imię i nazwisko', escapeHtml(data.name)],
+    ['Email', escapeHtml(data.email)],
+    ['Telefon', escapeHtml(data.phone || '—')],
+    ['Temat', escapeHtml(subjectLabel)],
+    ['ID zgłoszenia', escapeHtml(submissionId)],
+    ['Data', escapeHtml(createdAt)]
+  ];
+
+  const html = [
+    '<h2>Nowa wiadomość z formularza kontaktowego</h2>',
+    '<table cellpadding="6" cellspacing="0" style="border-collapse:collapse">',
+    ...rows.map(
+      ([label, value]) =>
+        `<tr><td style="font-weight:bold;border:1px solid #ddd">${label}</td><td style="border:1px solid #ddd">${value}</td></tr>`
+    ),
+    '</table>',
+    '<h3>Wiadomość</h3>',
+    `<p style="white-space:pre-wrap">${escapeHtml(data.message)}</p>`
+  ].join('');
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), config.timeoutMs);
+
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      signal: controller.signal,
+      headers: {
+        Authorization: `Bearer ${config.apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: `${config.fromName} <${config.fromEmail}>`,
+        to: config.toEmails,
+        reply_to: data.email,
+        subject: emailSubject,
+        text,
+        html
+      })
+    });
+
+    if (!response.ok) {
+      const detail = await response.text();
+      return {
+        ok: false,
+        status: response.status,
+        error: detail.slice(0, 500) || `Resend responded with ${response.status}`
+      };
+    }
+
+    return { ok: true, status: response.status };
+  } catch (error: any) {
+    if (error?.name === 'AbortError') {
+      return {
+        ok: false,
+        error: `Resend request timeout after ${config.timeoutMs}ms`
+      };
+    }
+
+    return {
+      ok: false,
+      error: error?.message || 'Unknown email error'
+    };
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
 
 function isDevelopmentEnvironment(): boolean {
@@ -550,6 +696,7 @@ export const handler = async (event: any) => {
     const formData = parseFormBody(event);
     const airtableConfig = getAirtableConfig();
     const recaptchaConfig = getRecaptchaConfig();
+    const emailConfig = getEmailConfig();
 
     const data: FormData = {
       name: formData.get('name')?.toString() || '',
@@ -560,6 +707,43 @@ export const handler = async (event: any) => {
     };
 
     const submissionId = generateIdempotencySubmissionId(data) || fallbackSubmissionId();
+
+    // Best-effort email notification, sent at most once per request and never
+    // allowed to fail the submission. Duplicate submissions are skipped so a
+    // retried form does not produce a second notification.
+    let emailDeliveryPromise: Promise<void> | null = null;
+
+    const deliverEmailOnce = (): Promise<void> => {
+      if (!emailDeliveryPromise) {
+        emailDeliveryPromise = (async () => {
+          if (!emailConfig.enabled) {
+            console.warn('contact_email_skipped', {
+              submissionId,
+              reason: 'email_config_incomplete'
+            });
+            return;
+          }
+
+          const emailResult = await sendContactEmail(emailConfig, data, submissionId);
+
+          if (emailResult.ok) {
+            console.info('contact_email_sent', {
+              submissionId,
+              status: emailResult.status,
+              durationMs: Date.now() - startedAt
+            });
+          } else {
+            console.error('contact_email_failed', {
+              submissionId,
+              status: emailResult.status,
+              detail: emailResult.error
+            });
+          }
+        })();
+      }
+
+      return emailDeliveryPromise;
+    };
 
     const validation = validateFormData(data);
     if (!validation.valid) {
@@ -635,6 +819,7 @@ export const handler = async (event: any) => {
     }
 
     if (!airtableConfig.enabled) {
+      await deliverEmailOnce();
       console.info('contact_submission_processed', {
         submissionId,
         code: 'accepted',
@@ -652,6 +837,7 @@ export const handler = async (event: any) => {
 
     const missingEnv = getMissingAirtableEnv(airtableConfig);
     if (missingEnv.length > 0) {
+      await deliverEmailOnce();
       console.error('airtable_config_incomplete', {
         submissionId,
         missingEnv,
@@ -673,6 +859,7 @@ export const handler = async (event: any) => {
     );
 
     if (!duplicateResult.ok) {
+      await deliverEmailOnce();
       const code = mapAirtableFailureToCode(duplicateResult.error.kind);
 
       logFallback(submissionId, code, data, event, duplicateResult.error.detail);
@@ -712,6 +899,7 @@ export const handler = async (event: any) => {
     );
 
     if (!createResult.ok) {
+      await deliverEmailOnce();
       const code = mapAirtableFailureToCode(createResult.error.kind);
 
       logFallback(submissionId, code, data, event, createResult.error.detail);
@@ -730,6 +918,8 @@ export const handler = async (event: any) => {
         submissionId
       });
     }
+
+    await deliverEmailOnce();
 
     console.info('contact_submission_processed', {
       submissionId,

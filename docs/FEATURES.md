@@ -59,7 +59,7 @@
 
 - **Netlify Functions** - Serverless functions for contact form
 - **Rate Limiting** - Multi-tiered rate limiting with Upstash Redis
-- **SendGrid Email** - Email service for form notifications
+- **Resend Email** - Email service for form notifications
 - **Airtable Storage** - Form submission storage with duplicate protection
 - **reCAPTCHA v3** - Invisible spam protection with score-based filtering
 
