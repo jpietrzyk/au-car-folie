@@ -122,7 +122,7 @@ See [`docs/FEATURES.md`](docs/FEATURES.md) for complete list of all project feat
 - Design system (animations, colors, dark mode, typography)
 - All 17 pages with descriptions
 - 9 reusable components
-- Backend integration (Netlify Functions, rate limiting, SendGrid, Airtable)
+- Backend integration (Netlify Functions, rate limiting, Resend, Airtable)
 - Performance & SEO optimizations
 - Accessibility features (WCAG 2.1 AA compliant)
 - Testing infrastructure (unit tests with Vitest)
@@ -163,7 +163,7 @@ Serverless functions for contact form and rate limiting:
 - [x] Medium priority accessibility improvements (focus management, ARIA live regions, breadcrumbs)
 - [x] Dark mode support with system preference detection and localStorage persistence
 - [x] Animations and transitions (scroll-triggered, hover effects, page transitions, micro-interactions)
-- [x] Contact form backend integration with Netlify Functions, SendGrid email service, and Airtable storage
+- [x] Contact form backend integration with Netlify Functions, Resend email service, and Airtable storage
 - [x] Rate limiting for form submissions with unit tests
 
 ## Design System

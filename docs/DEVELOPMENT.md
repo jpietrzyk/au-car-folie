@@ -11,7 +11,7 @@ Complete guide for developing, testing, and deploying the Car-folie.pl website.
 - **Fontsource Fonts** - Self-hosted Inter & Source Sans Pro
 - **Netlify Functions** - Serverless functions for backend logic
 - **Upstash Redis** - Serverless Redis for rate limiting
-- **SendGrid** - Email service for notifications
+- **Resend** - Email service for notifications
 - **Airtable** - Database for form submissions
 - **reCAPTCHA v3** - Invisible spam protection
 - **Vitest** - Testing framework
@@ -178,7 +178,7 @@ import { Footer } from '../components/Footer.astro';
 - Rate limiting with multi-tiered protection
 - Airtable integration for form storage
 - Duplicate detection and prevention
-- SendGrid email notifications
+- Resend email notifications
 - Graceful error handling and fallback mechanisms
 
 **Environment Variables:**
@@ -211,8 +211,12 @@ RATE_LIMIT_PER_IP_HOUR_WINDOW_MS=3600000
 RATE_LIMIT_PER_IP_DAY_REQUESTS=30
 RATE_LIMIT_PER_IP_DAY_WINDOW_MS=86400000
 
-# SendGrid
-SENDGRID_API_KEY=your_sendgrid_api_key_here
+# Resend
+RESEND_API_KEY=your_resend_api_key_here
+EMAIL_FROM=formularz@car-folie.pl
+TO_EMAIL=au.hanmix@gmail.com
+FROM_NAME=Car-Folie
+EMAIL_TIMEOUT_MS=5000
 ```
 
 ### Rate Limiting
@@ -469,8 +473,12 @@ RATE_LIMIT_PER_IP_HOUR_WINDOW_MS=3600000
 RATE_LIMIT_PER_IP_DAY_REQUESTS=30
 RATE_LIMIT_PER_IP_DAY_WINDOW_MS=86400000
 
-# SendGrid
-SENDGRID_API_KEY=your_sendgrid_api_key_here
+# Resend
+RESEND_API_KEY=your_resend_api_key_here
+EMAIL_FROM=formularz@car-folie.pl
+TO_EMAIL=au.hanmix@gmail.com
+FROM_NAME=Car-Folie
+EMAIL_TIMEOUT_MS=5000
 ```
 
 ### Production
