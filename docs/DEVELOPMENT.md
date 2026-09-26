@@ -84,16 +84,16 @@ car-folie-astro/
 ### Prerequisites
 
 - Node.js 18+ installed
-- npm or yarn package manager
+- pnpm 10 (via `corepack enable`)
 
 ### Installation
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Start development server
-npm run dev
+pnpm run dev
 ```
 
 ### Development
@@ -106,17 +106,17 @@ The development server will start at `http://localhost:4321`
 
 ```bash
 # Development
-npm run dev                    # Start development server
-npm run build                  # Build for production
-npm run preview                # Preview production build
+pnpm run dev                    # Start development server
+pnpm run build                  # Build for production
+pnpm run preview                # Preview production build
 
 # Netlify
-npm run netlify:dev           # Start Netlify dev server
+pnpm run netlify:dev           # Start Netlify dev server
 
 # Testing
-npm run test:functions          # Run Netlify Functions unit tests
-npm run test:functions:watch    # Run tests in watch mode
-npm run test:functions:ui       # Run tests with Vitest UI
+pnpm run test:functions          # Run Netlify Functions unit tests
+pnpm run test:functions:watch    # Run tests in watch mode
+pnpm run test:functions:ui       # Run tests with Vitest UI
 ```
 
 ## Components
@@ -264,15 +264,15 @@ SENDGRID_API_KEY=your_sendgrid_api_key_here
 
 ```bash
 # From main directory (recommended)
-npm run test:functions          # Run all tests once
-npm run test:functions:watch    # Run in watch mode
-npm run test:functions:ui       # Run with Vitest UI
+pnpm run test:functions          # Run all tests once
+pnpm run test:functions:watch    # Run in watch mode
+pnpm run test:functions:ui       # Run with Vitest UI
 
 # From functions directory
 cd netlify/functions
-npm run test:run            # Run all tests once
-npm run test                 # Run in watch mode
-npm run test:ui             # Run with UI
+pnpm run test:run            # Run all tests once
+pnpm run test                # Run in watch mode
+pnpm run test:ui             # Run with UI
 ```
 
 See [`RATE_LIMITING.md`](RATE_LIMITING.md) for complete rate limiting documentation.
@@ -350,7 +350,7 @@ See [`ANIMATIONS.md`](ANIMATIONS.md) for detailed documentation.
 npm install -g netlify-cli
 
 # Build and deploy
-npm run build
+pnpm run build
 netlify deploy --prod
 ```
 
@@ -368,7 +368,7 @@ vercel --prod
 
 ```bash
 # Build
-npm run build
+pnpm run build
 
 # Deploy dist folder to gh-pages branch
 ```
@@ -426,9 +426,9 @@ Comprehensive unit tests have been created for Netlify Functions:
 **Running Tests:**
 
 ```bash
-npm run test:functions          # Run all tests once
-npm run test:functions:watch    # Run in watch mode
-npm run test:functions:ui       # Run with Vitest UI
+pnpm run test:functions          # Run all tests once
+pnpm run test:functions:watch    # Run in watch mode
+pnpm run test:functions:ui       # Run with Vitest UI
 ```
 
 ### Integration Testing
@@ -504,15 +504,15 @@ See [`RATE_LIMITING.md`](RATE_LIMITING.md) for deployment guide and production t
 4. **Test Unit Tests**
 
    ```bash
-   npm run test:functions
+   pnpm run test:functions
    ```
 
 ### Development Workflow
 
 1. **Make Changes**
    - Edit code in your IDE
-   - Run unit tests: `npm run test:functions`
-   - Test locally: `npm run netlify:dev`
+   - Run unit tests: `pnpm run test:functions`
+   - Test locally: `pnpm run netlify:dev`
 
 2. **Test Integration**
    - Test contact form submission

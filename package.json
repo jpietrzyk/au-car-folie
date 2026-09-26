@@ -2,6 +2,7 @@
   "name": "car-folie-astro",
   "type": "module",
   "version": "0.7.0",
+  "packageManager": "pnpm@10.28.2",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -9,9 +10,9 @@
     "astro": "astro",
     "optimize:images": "node scripts/optimize-images.js",
     "netlify:dev": "netlify dev",
-    "test:functions": "cd netlify/functions && npm run test:run",
-    "test:functions:watch": "cd netlify/functions && npm run test",
-    "test:functions:ui": "cd netlify/functions && npm run test:ui"
+    "test:functions": "pnpm --filter contact-function test:run",
+    "test:functions:watch": "pnpm --filter contact-function test",
+    "test:functions:ui": "pnpm --filter contact-function test:ui"
   },
   "dependencies": {
     "@lucide/astro": "^0.574.0",

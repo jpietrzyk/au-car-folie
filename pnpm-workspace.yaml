@@ -1,0 +1,8 @@
+packages:
+  - 'netlify/functions'
+
+allowBuilds:
+  esbuild: false
+  netlify-cli: false
+  sharp: false
+  unix-dgram: false
